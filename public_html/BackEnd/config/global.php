@@ -188,6 +188,10 @@ define('DEF_UPLOAD_EMPRESA_DIR', 'images');
 define("DEF_UPLOAD_EMPRESA_W", 160);
 define("DEF_UPLOAD_EMPRESA_H", 160);
 // ++++++++++++++++++++++++++++++++++++ //
+define('DEF_UPLOAD_ACADEMIA_DIR', 'academia');
+define("DEF_UPLOAD_ACADEMIA_W", 200);
+define("DEF_UPLOAD_ACADEMIA_H", 200);
+// ++++++++++++++++++++++++++++++++++++ //
 
 define('DIR_UPLOAD_INFO', 'info');
 define("IMG_LOGO_ANCHO", 128);

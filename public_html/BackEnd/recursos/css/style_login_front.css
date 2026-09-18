@@ -1,99 +1,199 @@
+/* ============================================
+   Login Frontend - JM Talent Group / Academia TKD
+   ============================================ */
+
+:root{
+	--tkd-red: #e30613;
+	--tkd-red-dark: #a80410;
+	--tkd-dark: #14161a;
+}
+
+html, body{
+	height: 100%;
+}
+
 body {
-	background: #000;	
-	background-image: url(../images/t_fondo_front.jpg) !important;
+	margin: 0;
+	min-height: 100vh;
+	background: #0b0d10 url(../images/t_fondo_front.jpg) no-repeat center center;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px 16px;
+	box-sizing: border-box;
+}
+
+/* Oscurece la foto para que el formulario resalte y sea legible */
+body::before{
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(6,8,12,.75) 0%, rgba(6,8,12,.55) 45%, rgba(6,8,12,.85) 100%);
+	z-index: 0;
 }
 
 .login-form{
-	margin:4% auto 0;
-	max-width:440px;
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 400px;
+	animation: tkd-fade-up .5s ease-out;
+}
+
+@keyframes tkd-fade-up{
+	from{ opacity: 0; transform: translateY(16px); }
+	to{ opacity: 1; transform: translateY(0); }
 }
 
 .login-form h1{
 	font-size: 30pt;
 	font-weight: 700;
-    letter-spacing: -1px;
-    font-style: oblique;
+	letter-spacing: -1px;
+	font-style: oblique;
 }
 
-.form-header,.form-footer{
-	background-color: rgba(255, 255, 255, .8);
-  	border: 1px solid rgba(0,0,0,0.1);
-}
-
-.form-signin{
-	padding: 45px 35px 45px;
-  	background-color: #fff;
-  	border: 1px solid rgba(0,0,0,0.1);  
-  	border-bottom: 0px; 
-  	border-top: 0px;  
-}
-
+.form-header,
+.form-footer,
+.form-signin,
 .form-register{
-	padding: 45px 35px 45px;
-  	background-color: #fff;
-  	border: 1px solid rgba(0,0,0,0.1);  
-  	border-bottom: 0px; 
-  	border-top: 0px; 
+	background-color: rgba(255, 255, 255, .97);
+	border: none;
 }
 
 .form-header{
 	text-align: center;
-	padding: 15px 40px;
-	border-radius: 10px 10px 0 0;
+	padding: 28px 32px 12px;
+	border-radius: 16px 16px 0 0;
+	position: relative;
 }
-.form-header i{font-size:60px;}
+
+.form-header::after{
+	content: "";
+	display: block;
+	width: 56px;
+	height: 4px;
+	margin: 18px auto 0;
+	background: var(--tkd-red);
+	border-radius: 4px;
+}
+
+.form-header i{ font-size: 60px; }
+
+.form-header img{
+	border-radius: 50%;
+	box-shadow: 0 6px 18px rgba(0,0,0,.25);
+	background: #fff;
+	padding: 4px;
+}
+
+.form-signin,
+.form-register{
+	padding: 28px 32px 8px;
+	border-bottom: 0;
+	border-top: 0;
+}
+
 .form-footer {
-	padding: 15px 40px;	
+	padding: 16px 32px 26px;
+	border-radius: 0 0 16px 16px;
+	box-shadow: 0 18px 45px rgba(0,0,0,.35);
 }
+
 .form-signin-heading{
 	margin-bottom: 30px;
 }
+
 .bt-login{
-	background-color: #3498db;
-    color: #ffffff;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    transition: background-color 300ms linear 0s;
+	background-color: var(--tkd-red);
+	color: #ffffff;
+	border: none;
+	padding-bottom: 12px;
+	padding-top: 12px;
+	font-weight: 600;
+	letter-spacing: .3px;
+	text-transform: uppercase;
+	border-radius: 6px;
+	transition: background-color 200ms linear, transform 150ms ease;
 }
-.form-signin .form-control, .form-register .form-control{
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
+.bt-login:hover,
+.bt-login:focus{
+	background-color: var(--tkd-red-dark);
+	color: #fff;
+	transform: translateY(-1px);
 }
-.form-signin .form-control:focus, .form-register .form-control:focus {
-  z-index: 2;
+
+.form-signin .form-control,
+.form-register .form-control{
+	position: relative;
+	height: auto;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	font-size: 16px;
+	border-radius: 6px;
+	border: 1px solid #ddd;
+	transition: border-color 150ms ease, box-shadow 150ms ease;
 }
+.form-signin .form-control:focus,
+.form-register .form-control:focus{
+	z-index: 2;
+	border-color: var(--tkd-red);
+	box-shadow: 0 0 0 3px rgba(227, 6, 19, .12);
+	outline: none;
+}
+
+.form-group label{
+	font-weight: 600;
+	color: #333;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: .3px;
+}
+
 .form-register input{
 	border: 1px solid #ddd;
-    border-radius: 0;
-    color: #333;
-    height: 43px;
-    margin-bottom: 10px;
-    padding-left: 20px;
+	border-radius: 0;
+	color: #333;
+	height: 43px;
+	margin-bottom: 10px;
+	padding-left: 20px;
 }
 
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
 }
 .form-signin input[type="password"] {
-  margin-bottom: 30px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+	margin-bottom: 20px;
 }
-i{margin-right: 4%;}
-a{text-decoration: none;color:#333;}
 
-.has-error{color:#ff0000 !important;}
-.has-success{color:#78b310 !important;}
-.has-error input{border:1px solid red !important;}
-.has-success input{border:1px solid #78b310 !important;}
+i{ margin-right: 4%; }
+a{ text-decoration: none; color:#333; transition: color 150ms ease; }
+a:hover{ color: var(--tkd-red); }
 
-.message_success{background-color: #78b310; color:#fff;padding: 5px;}
-.message_error{background-color: #e74c3c; color:#fff;padding: 5px;}
-h1{font-family: Pacifico;}
+.has-error{ color:#ff0000 !important; }
+.has-success{ color:#78b310 !important; }
+.has-error input{ border:1px solid #ff0000 !important; box-shadow: 0 0 0 3px rgba(255,0,0,.1) !important; }
+.has-success input{ border:1px solid #78b310 !important; }
+
+.message_success{ background-color: #78b310; color:#fff; padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+.message_error{ background-color: #e74c3c; color:#fff; padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+
+.form-footer .row .col-xs-12{
+	padding-top: 10px;
+	border-top: 1px solid #eee;
+}
+.form-footer .fa-user-secret{ color: var(--tkd-red); }
+
+h1{ font-family: Pacifico; }
+
+@media (max-width: 480px){
+	.form-header{ padding: 22px 20px 10px; }
+	.form-signin,
+	.form-register{ padding: 22px 20px 6px; }
+	.form-footer{ padding: 14px 20px 22px; }
+}

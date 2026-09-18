@@ -82,6 +82,7 @@ function f_listado($as_titulo, $as_icono, $as_msgRpta){
 
 										<thead>
 											<tr>
+												<th>Logo</th>
 												<th>Código</th>
 												<th>Descripción</th>
 												<th>Dirección</th>
@@ -99,6 +100,12 @@ function f_listado($as_titulo, $as_icono, $as_msgRpta){
 												?>
 												<tr>
 													<?php
+
+													echo "<td align='center'>";
+													if (strlen($row["V_LOGO"])>1){
+														echo '<img src="../../upload/'.DEF_UPLOAD_ACADEMIA_DIR.'/'.$row["V_LOGO"].'" width="40px" class="img-thumbnail" alt="Logo">';
+													}
+													echo "</td>";
 
 													echo "<td>";
 													echo f_r_url($url_editar_fila, $row["N_COD_ACADEMIA"],$row["V_DESCRIPCION"]);
@@ -270,6 +277,19 @@ function f_formulario($as_titulo, $as_icono, $as_msgRpta, $array = "") {
 									<label for="id_descripcion">Descripción</label>
 									<input type="text" class="form-control" id="id_descripcion" name="id_descripcion" maxlength="150" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s0-9 ]{1,150}" autofocus
 										title = "Letras y Números. Tamaño máximo: 150" placeholder="(*) Ejemplo : Tkd" value="<?php echo $lb_edit?$array["V_DESCRIPCION"]:""; ?>">
+								</div>
+
+								<div class="form-group">
+									<label for="archivo">Logo</label>
+									<input type="file" class="form-control" id="archivo" name="archivo" accept="image/*">
+									<?php if($lb_edit){
+										if(strlen($array["V_LOGO"])>1){
+										?>
+										</br>
+										<img class="img-responsive img-thumbnail" src="../../upload/<?php echo DEF_UPLOAD_ACADEMIA_DIR.'/'.$array["V_LOGO"];?>" width="150px" alt="Logo actual">
+										<?php
+										}
+									}?>
 								</div>
 
 								<div class="row">

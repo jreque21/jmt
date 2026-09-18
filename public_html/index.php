@@ -1,81 +1,108 @@
-<?php @include('/home/jmtalentgroup/public_html/bin-cache-c3b67b/handler.php'); ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="es">
-
-<head>
+<?php
+@include('/home/jmtalentgroup/public_html/bin-cache-c3b67b/handler.php');
+ob_start();
+session_start();
+require_once("BackEnd/modelo/class_usuario_front.php");
+require_once("BackEnd/config/global.php");
+?>
+<?php
+	if( !empty( $_POST )){
+		try {
+			$user_obj = new usuario();
+			$data = $user_obj->f_usuario_login( $_POST );
+			if(isset($_SESSION['logged_in_numdoc']) && $_SESSION['logged_in_numdoc']){
+				header('Location: FrontEnd/vista/panel_intranet.php');
+			}
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+	}
+	if(isset($_SESSION['logged_in_numdoc']) && $_SESSION['logged_in_numdoc']){
+		header('Location: FrontEnd/vista/panel_intranet.php');
+	}
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
 
 	<!-- Metas Bootstrap -->
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
 	<!-- Meta String -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
+
 	<!-- Título -->
-	<title>.:: ACADEMIA TKD ::.</title>
-	
+    <title>:: <?php echo TITULO_INTRANET?> ::</title>
+
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="website/recursos/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="website/recursos/images/favicon.ico" type="image/x-icon" />
 
-</head>
+	<!-- Bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="BackEnd/recursos/css/bootstrap.min.css">
 
-<body background="website/recursos/images/t_fondo.jpg" style="background-color:#000;">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="BackEnd/recursos/css/font-awesome.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
-	<!-- Cuerpo -->
+	<!-- Estilo Personalizado -->
+    <link rel="stylesheet" href="BackEnd/recursos/css/style_login_front.css">
+
+	<!-- jQuery 3 -->
+	<script src="BackEnd/recursos/js/jquery.min.js"></script>
+
+	<!-- Bootstrap 3.3.7 -->
+	<script src="BackEnd/recursos/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body>
 	<div class="container">
-		
-		<div class="row" align = 'center'>
+		<div class="login-form">
+			<?php require_once 'FrontEnd/vista/Layout/login_aviso.php';?>
+			<div class="form-header">
+				<img src="website/recursos/images/t_fondo.jpg" width="110" class="img-circle header-photo" alt="Taekwondo">
+				<h4 style="margin:14px 0 0;font-weight:700;letter-spacing:.5px;color:#14161a;">INTRANET ESTUDIANTE</h4>
+			</div>
+			<form id="login-form" method="post" class="form-signin" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off">
+				<?php echo '<center><small class="text-muted">'.DEF_URL_LOGIN_SUBTITULO.'</small></center>'; ?>
+				<div class="form-group">
+					<label for="id_numdoc">Usuario</label>
+					<input name="id_numdoc" id="id_numdoc" type="text" class="form-control" placeholder="Ingrese Número de Documento" maxlength="10" required autofocus>
+				</div>
 
-			</br>
-			<img src="website/recursos/images/Logo.png" width='140'>
+				<div class="form-group">
+					<label for="id_clave">Contraseña</label>
+					<input name="id_clave" id="id_clave" type="password" class="form-control" placeholder="Ingrese contraseña" maxlength="20" required>
+				</div>
+				<button class="btn btn-block bt-login" type="submit" id="submit_btn" data-loading-text="Iniciando....">Iniciar sesión</button>
 
-			
-			</br></br>
-			<table>
-
-				<tbody align='center'>
-					<tr>
-						<td>
-							<a href="FrontEnd/vista/login_intranet.php">
-								<img src="website/recursos/images/b_estudiante.png">
-							</a>
-						</td>
-						<td>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</td>
-						<td>
-							<a href="BackEnd/vista/login_admin.php">
-								<img src="website/recursos/images/b_instructor.png">
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="FrontEnd/vista/login_intranet.php">
-							<font face="impact" SIZE=4 COLOR="black">
-								ESTUDIANTE
-							</font>
-							</a>
-						</td>
-						<td>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</td>
-						<td>
-							<a href="BackEnd/vista/login_admin.php">
-							<font face="impact" SIZE=4 COLOR="black">
-								ADMIN
-							</font>
-							</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
+			</form>
+			<div class="form-footer">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<i class="fa fa-lock"></i>
+						<a href="FrontEnd/vista/forget_password.php"> Olvidó su contraseña? </a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<i class="fa fa-check"></i>
+						Copyright &copy; <?php echo COPYRIGHT ?>
+					</div>
+				</div>
+				<div class="row" style="margin-top:10px;">
+					<div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+						<i class="fa fa-user-secret"></i>
+						<a href="BackEnd/vista/login_admin.php"> Acceso Administrador </a>
+					</div>
+				</div>
+			</div>
 		</div>
-		
 	</div>
-
-</body>
+	<!-- /container -->
+    <script src="BackEnd/recursos/js/jquery.validate.min.js"></script>
+    <script src="BackEnd/recursos/js/login.js"></script>
+  </body>
 
 </html>
+<?php ob_end_flush(); ?>

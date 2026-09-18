@@ -23,15 +23,23 @@ if(isset($_POST) && !empty($_POST)){
 	$ls_fono		= $bd->bd_escapeCadena($_POST['id_fono']);
 	$ls_movil		= $bd->bd_escapeCadena($_POST['id_movil']);
 	$ls_flag_estado	= $bd->bd_escapeCadena($_POST['id_flag_estado']);
+	$ls_logo		= $bd->bd_escapeCadena($_FILES['archivo']['name']);
 
 	// Gestionar estado
 	if ($ls_flag_estado != '1') {
 		$ls_flag_estado = '0';
 	}
-	
+
 	// Obtener datos iniciales
 	$ldt_fecha_insercion = date('Y-m-d h:i:s');
-	
+
+	// =======================================   UPLOAD    =========================================== //
+	// Upload de archivo (logo)
+	if (!empty($ls_logo)){
+		$ls_logo = f_upload_archivo($_FILES["archivo"], DEF_UPLOAD_ACADEMIA_DIR, "C", DEF_UPLOAD_ACADEMIA_W, DEF_UPLOAD_ACADEMIA_H);
+	}
+	// =======================================   FIN UPLOAD    =========================================== //
+
 	// ==================================== VALIDACIONES SERVIDOR ======================================== //
 	// Validar ingreso de datos correctos
 	$array_campo_pk	= array('V_DESCRIPCION');
@@ -49,8 +57,8 @@ if(isset($_POST) && !empty($_POST)){
 	if ($lb_result == true) {
 
 		// Definir estructura
-		$array_campo	= array('V_DESCRIPCION', 'V_DIRECCION', 'V_REFERENCIA', 'V_EMAIL',  'V_FONO', 'V_MOVIL', 'V_FLAG_ESTADO', 'V_AUD_USR_REG', 'D_AUD_FEC_REG');
-		$array_valor	= array($ls_descripcion, $ls_direccion, $ls_referencia, $ls_email, $ls_fono, $ls_movil, $ls_flag_estado, $_SESSION['usr_conectado'], $ldt_fecha_insercion);
+		$array_campo	= array('V_DESCRIPCION', 'V_DIRECCION', 'V_REFERENCIA', 'V_EMAIL',  'V_FONO', 'V_MOVIL', 'V_LOGO', 'V_FLAG_ESTADO', 'V_AUD_USR_REG', 'D_AUD_FEC_REG');
+		$array_valor	= array($ls_descripcion, $ls_direccion, $ls_referencia, $ls_email, $ls_fono, $ls_movil, $ls_logo, $ls_flag_estado, $_SESSION['usr_conectado'], $ldt_fecha_insercion);
 		
 		// Invocar inserción
 		$lb_result = $crud->fila_registrar(DEF_TABLA_ACADEMIA, $array_campo, $array_valor, '0');

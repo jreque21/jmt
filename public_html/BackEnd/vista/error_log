@@ -15203,3 +15203,8 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/jmtalentgroup/public_html/BackEnd/vista/mov_asistencia_lista.php on line 11
+[17-Sep-2026 23:25:53 America/Lima] PHP Warning:  Undefined array key "logged_in" in /home/jmtalentgroup/public_html/BackEnd/vista/mae_usuario_nuevo.php on line 10
+[17-Sep-2026 23:25:53 America/Lima] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string + string in /home/jmtalentgroup/public_html/BackEnd/vista/mae_usuario_nuevo.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/vista/mae_usuario_nuevo.php on line 11

@@ -21,22 +21,62 @@ if(isset($_POST) && !empty($_POST)){
 	$ls_fono		= $bd->bd_escapeCadena($_POST['id_fono']);
 	$ls_movil		= $bd->bd_escapeCadena($_POST['id_movil']);
 	$ls_flag_estado	= $bd->bd_escapeCadena($_POST['id_flag_estado']);
-	
+	$ls_logo		= $bd->bd_escapeCadena($_FILES['archivo']['name']);
+
 	// Gestionar estado
 	if ($ls_flag_estado != '1') {
 		$ls_flag_estado = '0';
 	}
-	
+
 	// Obtener datos iniciales
 	$ldt_fecha_actualizacion = date('Y-m-d h:i:s');
-			
+
+	// =======================================   UPLOAD    =========================================== //
+	// Gestionar upload de archivo (logo)
+	if (!empty($ls_logo)){
+
+		// Definir estructura
+		$array_campo_pk_logo	= array('N_COD_ACADEMIA');
+		$array_valor_pk_logo	= array($li_codigo);
+
+		// Recupera logo a eliminar
+		$ls_logo_delete = $crud->fila_recuperar_campo(DEF_TABLA_ACADEMIA, $array_campo_pk_logo, $array_valor_pk_logo, 'V_LOGO');
+
+		// Borrar archivo fisicamente
+		if (!empty($ls_logo_delete)) {
+
+			// Preparar directorio
+			$ls_logo_delete = "../../upload/".DEF_UPLOAD_ACADEMIA_DIR."/".$ls_logo_delete;
+
+			// Eliminar archivo
+			if (file_exists($ls_logo_delete)){
+				unlink($ls_logo_delete);
+			}
+
+		}
+
+		// Upload de archivo
+		$ls_logo = f_upload_archivo($_FILES["archivo"], DEF_UPLOAD_ACADEMIA_DIR, "C", DEF_UPLOAD_ACADEMIA_W, DEF_UPLOAD_ACADEMIA_H);
+
+	}else{
+
+		// Definir estructura
+		$array_campo_pk_logo	= array('N_COD_ACADEMIA');
+		$array_valor_pk_logo	= array($li_codigo);
+
+		// Recupera logo original (no se tocó el campo de archivo)
+		$ls_logo = $crud->fila_recuperar_campo(DEF_TABLA_ACADEMIA, $array_campo_pk_logo, $array_valor_pk_logo, 'V_LOGO');
+
+	}
+	// =======================================   FIN UPLOAD    =========================================== //
+
 	// ======================================= CRUD ACTUALIZAR =========================================== //
-	
+
 	// Definir estructura
 	$array_campo_pk	= array('N_COD_ACADEMIA');
 	$array_valor_pk	= array($li_codigo);
-	$array_campo	= array('V_DESCRIPCION', 'V_DIRECCION', 'V_REFERENCIA', 'V_EMAIL',  'V_FONO', 'V_MOVIL', 'V_FLAG_ESTADO', 'V_AUD_USR_MOD', 'D_AUD_FEC_MOD');
-	$array_valor	= array($ls_descripcion, $ls_direccion, $ls_referencia, $ls_email, $ls_fono, $ls_movil, $ls_flag_estado, $_SESSION['usr_conectado'], $ldt_fecha_actualizacion);
+	$array_campo	= array('V_DESCRIPCION', 'V_DIRECCION', 'V_REFERENCIA', 'V_EMAIL',  'V_FONO', 'V_MOVIL', 'V_LOGO', 'V_FLAG_ESTADO', 'V_AUD_USR_MOD', 'D_AUD_FEC_MOD');
+	$array_valor	= array($ls_descripcion, $ls_direccion, $ls_referencia, $ls_email, $ls_fono, $ls_movil, $ls_logo, $ls_flag_estado, $_SESSION['usr_conectado'], $ldt_fecha_actualizacion);
 	
 	// Invocar Actualización
 	$lb_result = $crud->fila_actualizar(DEF_TABLA_ACADEMIA, $array_campo_pk, $array_valor_pk, $array_campo, $array_valor);

@@ -82,11 +82,17 @@ require_once("../../BackEnd/config/global.php");
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<i class="fa fa-lock"></i>
-						<a href="forget_password.php"> Olvidó su contraseña? </a>					
-					</div>					
+						<a href="forget_password.php"> Olvidó su contraseña? </a>
+					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<i class="fa fa-check"></i>
 						Copyright &copy; <?php echo COPYRIGHT ?>
+					</div>
+				</div>
+				<div class="row" style="margin-top:10px;">
+					<div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+						<i class="fa fa-user-secret"></i>
+						<a href="../../BackEnd/vista/login_admin.php"> Acceso Administrador </a>
 					</div>
 				</div>
 			</div>
