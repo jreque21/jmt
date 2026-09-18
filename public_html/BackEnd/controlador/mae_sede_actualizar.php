@@ -36,9 +36,9 @@ if(isset($_POST) && !empty($_POST)){
 	if (!empty($ls_imagen)){
 				
 		// Definir estructura
-		$array_campo_pk	= array(N_COD_SEDE);
+		$array_campo_pk	= array('N_COD_SEDE');
 		$array_valor_pk	= array($li_codigo);
-	
+
 		// Recupera imagen a eliminar
 		$ls_imagen_delete = $crud->fila_recuperar_campo(DEF_TABLA_SEDE, $array_campo_pk, $array_valor_pk, 'V_FOTO');
 		
