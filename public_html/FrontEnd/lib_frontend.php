@@ -140,13 +140,7 @@ if ($arrayPadron["V_TIPO_EST"] == 'EST_INT') {
 	$ls_logo_dir	= DEF_UPLOAD_ACADEMIA_DIR;
 }
 
-// Si la sede/academia no tiene logo propio, usar el logo general de la empresa
-if (empty($t_img_logo)) {
-	$t_img_logo		= $crud->fila_recuperar_campo('MAE_EMPRESA', array('V_ID'), array(1), 'V_FOTO');
-	$ls_logo_dir	= 'empresa';
-}
-
-// Si tampoco existe logo de empresa, usar una imagen genérica de taekwondo
+// Si la sede/academia no tiene logo propio, usar una imagen genérica de taekwondo
 if (empty($t_img_logo)) {
 	$ls_logo_src = '../../website/recursos/images/t_fondo.jpg';
 } else {
