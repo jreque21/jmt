@@ -99,7 +99,8 @@ class usuario{
 		session_destroy();
 		session_start();
 		session_regenerate_id(true);
-		header('Location: login_intranet.php');
+		// El login de estudiante vive en la raíz del sitio (index.php).
+		header('Location: /');
 	}
 	
 	/* Esto restablece la contraseña actual y la nueva contraseña para enviar correo */

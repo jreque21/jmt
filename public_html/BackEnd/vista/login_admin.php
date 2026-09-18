@@ -46,7 +46,7 @@ require_once("../config/global.php");
 	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 	
 	<!-- Estilo Personalizado -->
-    <link rel="stylesheet" href="../recursos/css/style_login.css">
+    <link rel="stylesheet" href="../recursos/css/style_login_admin.css">
 	
 	<!-- jQuery 3 -->  
 	<script src="../recursos/js/jquery.min.js"></script>
@@ -60,8 +60,12 @@ require_once("../config/global.php");
 	<div class="container">
 		<div class="login-form">
 			<?php require_once 'Layout/login_aviso.php';?>
-			<div class="form-header">				
-				<img src="../../website/recursos/images/Logo.png" width="140px" class="img-circle" alt="Logo">				
+			<div class="form-header">
+				<div class="admin-badge">
+					<i class="fa fa-shield"></i>
+				</div>
+				<h4>ACCESO ADMINISTRADOR</h4>
+				<small class="text-muted">Panel de administración</small>
 			</div>
 			<form id="login-form" method="post" class="form-signin" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off">
 				
@@ -87,6 +91,10 @@ require_once("../config/global.php");
 						<i class="fa fa-check"></i>
 						Copyright &copy; <?php echo COPYRIGHT ?>
 					</div>
+				</div>
+				<div class="back-to-student">
+					<i class="fa fa-arrow-left"></i>
+					<a href="../../"> Volver al login de estudiante </a>
 				</div>
 			</div>
 		</div>

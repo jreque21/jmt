@@ -1,0 +1,217 @@
+/* ============================================
+   Login Administrador - JM Talent Group / Academia TKD
+   ============================================ */
+
+:root{
+	--tkd-gold: #c9a227;
+	--tkd-gold-dark: #a5811c;
+	--tkd-dark: #14161a;
+	--tkd-dark-2: #1c1f26;
+}
+
+html, body{
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: #0b0d10 url(../images/t_fondo_front.jpg) no-repeat center center;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px 16px;
+	box-sizing: border-box;
+}
+
+/* Overlay más oscuro que el del login de estudiante: refuerza el tono "acceso restringido" */
+body::before{
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(6,7,9,.9) 0%, rgba(10,11,14,.82) 45%, rgba(6,7,9,.94) 100%);
+	z-index: 0;
+}
+
+.login-form{
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 400px;
+	animation: tkd-fade-up .5s ease-out;
+}
+
+@keyframes tkd-fade-up{
+	from{ opacity: 0; transform: translateY(16px); }
+	to{ opacity: 1; transform: translateY(0); }
+}
+
+.form-header,
+.form-footer,
+.form-signin,
+.form-register{
+	background-color: var(--tkd-dark-2);
+	border: none;
+}
+
+.form-header{
+	text-align: center;
+	padding: 32px 32px 16px;
+	border-radius: 16px 16px 0 0;
+	position: relative;
+}
+
+.form-header::after{
+	content: "";
+	display: block;
+	width: 56px;
+	height: 4px;
+	margin: 18px auto 0;
+	background: var(--tkd-gold);
+	border-radius: 4px;
+}
+
+.admin-badge{
+	width: 84px;
+	height: 84px;
+	margin: 0 auto;
+	border-radius: 50%;
+	background: linear-gradient(145deg, #23262e, #14161a);
+	border: 2px solid var(--tkd-gold);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 6px 18px rgba(0,0,0,.4);
+}
+
+.admin-badge i{
+	font-size: 34px;
+	color: var(--tkd-gold);
+	margin: 0;
+}
+
+.form-header h4{
+	margin: 16px 0 0;
+	font-weight: 700;
+	letter-spacing: .5px;
+	color: #f4f4f4;
+}
+
+.form-header small{
+	color: #9aa0a8 !important;
+}
+
+.form-signin,
+.form-register{
+	padding: 24px 32px 8px;
+	border-bottom: 0;
+	border-top: 0;
+}
+
+.form-footer {
+	padding: 16px 32px 26px;
+	border-radius: 0 0 16px 16px;
+	box-shadow: 0 18px 45px rgba(0,0,0,.5);
+}
+
+.bt-login{
+	background-color: var(--tkd-gold);
+	color: var(--tkd-dark);
+	border: none;
+	padding-bottom: 12px;
+	padding-top: 12px;
+	font-weight: 700;
+	letter-spacing: .3px;
+	text-transform: uppercase;
+	border-radius: 6px;
+	transition: background-color 200ms linear, transform 150ms ease;
+}
+.bt-login:hover,
+.bt-login:focus{
+	background-color: var(--tkd-gold-dark);
+	color: var(--tkd-dark);
+	transform: translateY(-1px);
+}
+
+.form-signin .form-control,
+.form-register .form-control{
+	position: relative;
+	height: auto;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	font-size: 16px;
+	border-radius: 6px;
+	border: 1px solid #3a3f4a;
+	background-color: #23262e;
+	color: #f4f4f4;
+	transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.form-signin .form-control::placeholder{
+	color: #6b7178;
+}
+.form-signin .form-control:focus,
+.form-register .form-control:focus{
+	z-index: 2;
+	border-color: var(--tkd-gold);
+	box-shadow: 0 0 0 3px rgba(201, 162, 39, .18);
+	outline: none;
+	background-color: #23262e;
+	color: #f4f4f4;
+}
+
+.form-group label{
+	font-weight: 600;
+	color: #c7ccd1;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: .3px;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 20px;
+}
+
+i{ margin-right: 4%; }
+a{ text-decoration: none; color:#c7ccd1; transition: color 150ms ease; }
+a:hover{ color: var(--tkd-gold); }
+
+.has-error{ color:#ff6b6b !important; }
+.has-success{ color:#78b310 !important; }
+.has-error input{ border:1px solid #ff6b6b !important; box-shadow: 0 0 0 3px rgba(255,107,107,.15) !important; }
+.has-success input{ border:1px solid #78b310 !important; }
+
+.message_success{ background-color: #78b310; color:#fff; padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+.message_error{ background-color: #e74c3c; color:#fff; padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+
+.form-footer .row .col-xs-12,
+.form-footer .row .col-xs-6{
+	padding-top: 10px;
+}
+.form-footer .row{
+	border-top: 1px solid #2c2f36;
+	margin-top: 6px;
+}
+.form-footer .row .col-xs-6:first-child{
+	border-right: 1px solid #2c2f36;
+}
+
+.back-to-student{
+	text-align: center;
+	margin-top: 18px;
+}
+.back-to-student a{
+	color: #9aa0a8;
+	font-size: 13px;
+}
+.back-to-student a:hover{ color: var(--tkd-gold); }
+
+@media (max-width: 480px){
+	.form-header{ padding: 26px 20px 12px; }
+	.form-signin,
+	.form-register{ padding: 20px 20px 6px; }
+	.form-footer{ padding: 14px 20px 22px; }
+}
