@@ -1,0 +1,8 @@
+[22-Jul-2026 07:07:22 UTC] PHP Fatal error:  Uncaught Error: Class "elFinderVolumeDriver" not found in /home/jmtalentgroup/public_html/BackEnd/ckeditor/elfinder/php/elFinderVolumeLocalFileSystem.class.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/ckeditor/elfinder/php/elFinderVolumeLocalFileSystem.class.php on line 9
+[28-Jul-2026 04:38:53 UTC] PHP Fatal error:  Uncaught Error: Class "elFinderVolumeDriver" not found in /home/jmtalentgroup/public_html/BackEnd/ckeditor/elfinder/php/elFinderVolumeMySQL.class.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/ckeditor/elfinder/php/elFinderVolumeMySQL.class.php on line 8

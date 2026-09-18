@@ -1,0 +1,243 @@
+-- DML - TKD
+
+-- Poblar usuarios
+INSERT INTO MAE_USUARIO (V_COD_USER, V_NOMBRES, V_EMAIL, V_CLAVE, V_COD_TIPO, V_FOTO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+('admweb', 'Johnny Reque', 'johnnyreque@gmail.com','jreque21', 'USER_ADM', 'admweb.jpg', '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Poblar empresa
+INSERT INTO MAE_EMPRESA (V_ID, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+('1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Poblar tipos de usuario
+INSERT INTO MAE_TIPO_USUARIO (V_COD_TIPO, V_DES_LARGA, V_DES_CORTA, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+('USER_ADM', 'Usuario Administrativo', 'Administrativo', '1', 'admweb', CURRENT_TIMESTAMP),
+('USER_INST', 'Usuario Instructor', 'Instructor', '1', 'admweb', CURRENT_TIMESTAMP),
+('EST_INT', 'Estudiante Interno', 'Estudiante Interno', '1', 'admweb', CURRENT_TIMESTAMP),
+('EST_EXT', 'Estudiante Externo', 'Estudiante Externo', '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Poblar Rol
+INSERT INTO MAE_ROL VALUES ('WEB_MASTER', 'ADMINISTRADOR WEB', 'ADMIN. WEB', 'USER_ADM', '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+
+-- Poblar Rol-USUARIO
+INSERT INTO MAE_ROL_USUARIO VALUES ('WEB_MASTER', 'admweb', 'USER_ADM', '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+
+-- Poblar niveles
+INSERT INTO MAE_MENU_NIVEL (N_COD_NIVEL, V_NOMBRE, V_ICONO, N_ORDEN, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(001, 'Reportes', 'fa fa-dashboard', 1, '1', 'admweb', CURRENT_TIMESTAMP),
+(002, 'Administracion', 'fa fa-group', 2, '1', 'admweb', CURRENT_TIMESTAMP),
+(003, 'Control', 'fa fa-clipboard', 3, '1', 'admweb', CURRENT_TIMESTAMP),
+(004, 'Actividades', 'fa fa-laptop', 4, '1', 'admweb', CURRENT_TIMESTAMP),
+(005, 'Externo', 'fa fa-globe', 5, '1', 'admweb', CURRENT_TIMESTAMP),
+(006, 'Academia', 'fa fa-thumb-tack', 6, '1', 'admweb', CURRENT_TIMESTAMP),
+(007, 'Maestros', 'fa fa-files-o', 7, '1', 'admweb', CURRENT_TIMESTAMP),
+(008, 'Seguridad', 'fa fa-lock', 8, '1', 'admweb', CURRENT_TIMESTAMP),
+(009, 'Privado', 'fa fa-warning', 9, '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Pobar opciones
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(1, 1, 'Dashboard', 'Dashboard','panel_admin.php', 'fa fa-spinner', 'PANEL_ADMIN', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(1, 2, 'Estudiantes por Sede', 'Estudiantes por Sede','rpt_estudiante_x_sede.php', 'fa fa-line-chart', 'RPT_EST_X_SEDE', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(1, 3, 'Matrícula por Horario', 'Matrícula por Horario','rpt_matricula_x_horario.php', 'fa fa-pie-chart', 'RPT_MAT_X_HORARIO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(1, 4, 'Créditos', 'Créditos','rpt_creditos.php', 'fa fa-bar-chart', 'RPT_CREDITOS', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(1, 5, 'Asistencia por Horario', 'Asistencia por Horario','rpt_asistencia_x_horario.php', 'fa fa-circle-o', 'RPT_ASISTENCIA_X_HORARIO', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+(1, 6, 'Traslados en Curso', 'Traslados en Curso','rpt_traslados_pendientes.php', 'fa fa-hourglass-2', 'RPT_TRASLADOS_PENDIENTES', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+(1, 7, 'Cuadre de Ingresos', 'Cuadre de Ingresos','rpt_cuadre_ingresos.php', 'fa fa-calculator', 'RPT_CUADRE_INGRESOS', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(2, 1, 'Estudiante', 'Estudiante','mae_estudiante_lista.php', 'fa fa-child', 'MAE_ESTUDIANTE', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(2, 2, 'Horario', 'Horario','mov_horario_lista.php', 'fa fa-calendar-check-o', 'MOV_HORARIO','1', '1', 'admweb', CURRENT_TIMESTAMP),
+(2, 3, 'Matricula', 'Matricula','mov_matriculahorario_lista.php', 'fa fa-file-text-o', 'MOV_MATRICULA','1', '1', 'admweb', CURRENT_TIMESTAMP),
+(2, 4, 'Pagos', 'Créditos','mov_creditos_lista.php', 'fa fa-credit-card', 'MOV_PAGO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(2, 5, 'Horario - Clase', 'Horario - Clase','mov_horarioprog_lista.php', 'fa fa-calendar', 'MOV_HORARIO_PROG','1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(3, 1, 'Registro de Asistencia', 'Asistencia','mov_asisthorario_lista.php', 'fa fa-clock-o', 'MOV_ASISTENCIA', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(3, 2, 'Registro de Notas', 'Evaluación','mov_evaluacionhorario_lista.php', 'fa fa-check-square-o', 'MOV_EVALUACION', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(4, 1, 'Promoción Interna', 'Promoción Interna','mov_promocion_lista.php', 'fa fa-balance-scale', 'MOV_PROMOCION', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(4, 2, 'Graduado Interno', 'Graduado Interno','mov_graduado_lista.php', 'fa fa-mortar-board', 'MOV_PROMOCION_PROG', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(4, 3, 'Evento', 'Evento','mov_evento_lista.php', 'fa fa-calendar', 'MOV_EVENTO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(4, 4, 'Evento - Asistencia', 'Asistencia Evento','mov_eventoasistencia_lista.php', 'fa fa-check-square-o', 'MOV_EVENTO_PROG', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(5, 1, 'Academia', 'Academia','mae_academia_lista.php', 'fa fa-handshake-o', 'MAE_ACADEMIA', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(5, 2, 'Estudiante Externo', 'Estudiante Externo','mae_estudiantext_lista.php', 'fa fa-child', 'MAE_ESTUDIANTEXT', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(5, 3, 'Promoción Externa', 'Promoción Externa','mov_promocionext_lista.php', 'fa fa-location-arrow', 'MOV_PROMOCION_EXT', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(5, 4, 'Graduado Externo', 'Graduado Externo','mov_graduadoext_lista.php', 'fa fa-trophy', 'MOV_PROMOCION_PROG_EXT', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(6, 1, 'Empresa', 'Empresa','mae_empresa_editar.php', 'fa fa-sitemap', 'MAE_EMPRESA', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(6, 2, 'Sedes', 'Sede','mae_sede_lista.php', 'fa fa-briefcase', 'MAE_SEDE', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(6, 3, 'Instructor', 'Instructor','mae_instructor_lista.php', 'fa fa-user-secret', 'MAE_INSTRUCTOR', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(6, 4, 'Sede - Instructor', 'Sede - Instructor','mae_sedeinstructor_lista.php', 'fa fa-slideshare', 'MAE_SEDE_INSTRUCTOR', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(6, 5, 'Traslado Registro', 'Traslado Registro','mov_traslado_lista.php', 'fa fa-plane', 'MOV_TRASLADO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(6, 6, 'Traslado Aprobación', 'Traslado - Aprobación','mov_trasladoaprob_lista.php', 'fa fa-thumbs-up', 'MOV_TRASLADO_APROB', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(7, 1, 'Tipo de Documento', 'Tipo de Documento', 'mae_tipodoc_lista.php', 'fa fa-vcard-o', 'MAE_TIPO_DOC', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 2, 'Moneda', 'Moneda', 'mae_moneda_lista.php', 'fa fa-usd', 'MAE_MONEDA', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 3, 'Forma de Pago', 'Forma de Pago', 'mae_formapago_lista.php', 'fa fa-bitcoin', 'MAE_FORMA_PAGO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 4, 'Medio de Pago', 'Medio de Pago', 'mae_mediopago_lista.php', 'fa fa-cc-visa', 'MAE_MEDIO_PAGO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 5, 'Tipos de Grado', 'Tipos de Grado', 'mae_tipogrado_lista.php', 'fa fa-diamond', 'MAE_TIPO_GRADO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 6, 'Cinturon', 'Cinturon', 'mae_cinturon_lista.php', 'fa fa-flag-o', 'MAE_CINTURON', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 7, 'Tipos de Turno', 'Tipos de Turno', 'mae_catturno_lista.php', 'fa fa-bell-o', 'MAE_CAT_TURNO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 8, 'Tipos de Asistencia', 'Tipos de Asistencia', 'mae_tipoasis_lista.php', 'fa fa-clock-o', 'MAE_TIPO_ASISTENCIA', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 9, 'Tarifas', 'Tarifas', 'mae_tarifa_lista.php', 'fa fa-code', 'MAE_TARIFA', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(7, 10, 'Examen', 'Examen', 'mae_examen_lista.php', 'fa fa-file-code-o', 'MAE_EXAMEN', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(8, 1, 'Usuarios', 'Usuario','mae_usuario_lista.php', 'fa fa-user-o', 'MAE_USUARIO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(8, 2, 'Roles', 'Roles','mae_rol_lista.php', 'fa fa-briefcase', 'MAE_ROL', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(8, 3, 'Rol - Usuario', 'Rol - Usuario','mae_rolusuario_lista.php', 'fa fa-cogs', 'MAE_ROL_USUARIO', '1', '1', 'admweb', CURRENT_TIMESTAMP),
+(8, 4, 'Permisos', 'Permisos','mae_rolopcion_lista.php', 'fa fa-key', 'MAE_ROL_OPCION', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+INSERT INTO MAE_MENU_OPCION (N_COD_NIVEL, N_ORDEN, V_NOMBRE, V_ETIQUETA, V_URL, V_ICONO, V_COD_TABLA, V_FLAG_PERMISO, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+(9, 1, 'Ingresos por Periodo', 'Ingresos por Periodo','priv_rpt_ingresos_x_periodo.php', 'fa fa-random', 'RPT_INGRESOS_X_PERIODO', '1', '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Poblar Rol-Opción
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 1, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 2, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 3, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 4, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 5, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 6, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 7, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 8, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 9, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 10, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 11, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 12, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 13, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 14, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 15, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 16, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 17, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 18, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 19, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 20, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 21, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 22, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 23, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 24, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 25, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 26, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 27, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 28, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 29, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 30, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 31, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 32, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 33, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 34, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 35, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 36, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 37, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 38, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 39, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 40, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 41, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 42, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+INSERT INTO `MAE_ROL_OPCION` VALUES ('WEB_MASTER', 44, '1', 'admweb', CURRENT_TIMESTAMP, NULL, NULL);
+
+-- Poblar Categoria Estudiante
+INSERT INTO MAE_CAT_ESTUDIANTE (V_DES_LARGA, V_DES_CORTA, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+('Nivel Basico', 'Basico', '1', 'admweb', CURRENT_TIMESTAMP),
+('Nivel Intermedio', 'Intermedio', '1', 'admweb', CURRENT_TIMESTAMP),
+('Nivel Avanzado', 'Avanzado', '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Poblar Maestra Pais
+INSERT INTO MAE_PAIS (V_DES_LARGA, V_DES_CORTA, V_FLAG_ESTADO, V_AUD_USR_REG, D_AUD_FEC_REG) VALUES
+('Perú', 'Perú', '1', 'admweb', CURRENT_TIMESTAMP),
+('Venezuela', 'Venezuela', '1', 'admweb', CURRENT_TIMESTAMP),
+('Argentina', 'Argentina', '1', 'admweb', CURRENT_TIMESTAMP),
+('Bolivia', 'Bolivia', '1', 'admweb', CURRENT_TIMESTAMP),
+('Brasil', 'Brasil', '1', 'admweb', CURRENT_TIMESTAMP),
+('Chile', 'Chile', '1', 'admweb', CURRENT_TIMESTAMP),
+('Colombia', 'Colombia', '1', 'admweb', CURRENT_TIMESTAMP),
+('Ecuador', 'Ecuador', '1', 'admweb', CURRENT_TIMESTAMP),
+('Paraguay', 'Paraguay', '1', 'admweb', CURRENT_TIMESTAMP),
+('Uruguay', 'Uruguay', '1', 'admweb', CURRENT_TIMESTAMP);
+
+-- Poblar Turnos
+INSERT INTO MAE_CAT_TURNO (`N_COD_CATURNO`, `V_DES_LARGA`, `V_DES_CORTA`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Turno Mañana', 'Mañana', '1', 'admweb', '2023-04-17 03:17:15', NULL, NULL),
+(00002, 'Turno Tarde', ' Tarde', '1', 'admweb', '2023-04-17 03:17:38', NULL, NULL),
+(00003, 'Turno Noche', 'Noche', '1', 'admweb', '2023-04-17 03:18:32', NULL, NULL);
+
+-- Poblar Tipo de Documento
+INSERT INTO MAE_TIPO_DOC (`N_COD_TIPODOC`, `V_DES_LARGA`, `V_DES_CORTA`, `N_LONGITUD`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Documento Nacional de Identidad', 'DNI', 8, '1', 'admweb', '2023-04-17 02:45:38', NULL, NULL),
+(00002, 'Carnet de Extranjeria', 'CARNET EXT', 12, '1', 'admweb', '2023-04-17 02:46:07', NULL, NULL),
+(00003, 'Registro Unico de Contribuyentes', '	 RUC', 11, '1', 'admweb', '2023-04-17 02:46:30', NULL, NULL),
+(00004, 'Pasaporte', 'Pasaporte', 12, '1', 'admweb', '2023-04-17 02:46:53', NULL, NULL),
+(00005, 'Partida de Nacimiento de Identidad', 'Partida', 15, '1', 'admweb', '2023-04-17 02:47:25', NULL, NULL),
+(00006, 'Otros', 'Otros', 15, '1', 'admweb', '2023-04-17 02:47:36', NULL, NULL);
+
+-- Poblar Moneda
+INSERT INTO MAE_MONEDA (`N_COD_MONEDA`, `V_DES_LARGA`, `V_DES_CORTA`, `V_SIMBOLO`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'SOL (PEN)', 'Soles', 'S/', '1', 'admweb', '2023-04-17 02:50:24', NULL, NULL),
+(00002, 'Dólar (USD)', 'Dolares', '$/', '1', 'admweb', '2023-04-17 02:50:53', 'admweb', '2023-04-17 02:51:17');
+
+
+-- Poblar Formas de Pago
+INSERT INTO MAE_FORMA_PAGO (`N_COD_FORMAPAGO`, `V_DES_LARGA`, `V_DES_CORTA`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Pago al Contado', 'Al Contado', '1', 'admweb', '2023-04-17 03:03:56', NULL, NULL),
+(00002, 'Pago a Crédito', 'Al Crédito', '1', 'admweb', '2023-04-17 03:04:17', NULL, NULL);
+
+-- Poblar Medios de Pago
+INSERT INTO MAE_MEDIO_PAGO (`N_COD_MEDIOPAGO`, `V_DES_LARGA`, `V_DES_CORTA`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Efectivo', 'Efectivo', '1', 'admweb', '2023-04-17 03:05:09', NULL, NULL),
+(00002, 'Transferencia Bancaria', 'Transferencia', '1', 'admweb', '2023-04-17 03:05:37', NULL, NULL),
+(00003, 'Tarjeta de Crédito o Débito', 'Tarjeta', '1', 'admweb', '2023-04-17 03:06:26', NULL, NULL),
+(00004, 'Pagos Móviles', 'Pago Móvil', '1', 'admweb', '2023-04-17 03:06:54', NULL, NULL);
+
+-- Poblar Tarifa
+INSERT INTO MAE_TARIFA (`N_COD_TARIFA`, `V_DES_LARGA`, `V_DES_CORTA`, `N_COD_MONEDA`, `N_MONTO`, `N_DESCUENTO`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Tarifa General', 'General', 1, 160.00, 0.00, '1', 'admweb', '2023-04-17 03:24:29', NULL, NULL);
+
+-- Poblar Tipos de Asistencia
+INSERT INTO MAE_TIPO_ASISTENCIA (`N_COD_TIPOASIST`, `V_DES_LARGA`, `V_DES_CORTA`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Falta', 'Falta', '1', 'admweb', '2023-04-17 03:19:53', NULL, NULL),
+(00002, 'Tardanza', 'Tardanza', '1', 'admweb', '2023-04-17 03:20:03', NULL, NULL),
+(00003, 'Ausencia Justificada', 'Ausencia Justificada', '1', 'admweb', '2023-04-17 03:20:20', NULL, NULL);
+
+-- Poblar Tipos de Grado
+INSERT INTO MAE_TIPO_GRADO (`N_COD_TIPOGRADO`, `V_DES_LARGA`, `V_DES_CORTA`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Grados KUP', 'KUP', '1', 'admweb', '2023-04-17 03:12:15', NULL, NULL),
+(00002, 'Grados DAN', 'DAN', '1', 'admweb', '2023-04-17 03:12:31', NULL, NULL),
+(00003, 'Grados PUM', 'PUM', '1', 'admweb', '2023-04-17 03:12:47', NULL, NULL);
+
+-- Poblar Cinturones
+INSERT INTO MAE_CINTURON (`N_COD_CINTURON`, `N_COD_TIPOGRADO`, `V_DES_LARGA`, `V_DES_CORTA`, `V_COD_COLOR`, `V_TEXTO`, `N_ORDEN`, `V_FOTO`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 1, 'Cinturón Blanco', 'Blanco', '#fdfcfc', 'Este color simboliza la inocencia, el inicio del practicante en el camino del Taekwondo.', 1, 'Judo_white_belt.svg.png', '1', 'admweb', '2023-04-17 03:34:30', NULL, NULL),
+(00002, 1, 'Cinturón Blanco c/ Punta Amarilla', 'Blanco con Punta Amarilla', '#f8f7f7', 'Esta combinación simboliza la semilla del taekwondo, sembrada en el practicante.', 2, 'Tkd_9th_kup.svg.png', '1', 'admweb', '2023-04-17 03:36:14', NULL, NULL),
+(00003, 1, 'Cinturón Amarillo', 'Amarillo', '#f9d801', 'Este color simboliza la tierra fértil, donde se plantará una nueva semilla que brotará como una futura planta.', 3, 'Judo_yellow_belt.svg.png', '1', 'admweb', '2023-04-17 03:46:32', NULL, NULL),
+(00004, 1, 'Cinturón Amarillo con Punta Verde', 'Amarillo con Punta Verde', '#f7cf02', 'Esta combinación simboliza la germinación de la semilla, como una nueva planta.', 4, 'Tkd_7th_kup.svg.png', '1', 'admweb', '2023-04-17 03:47:36', NULL, NULL),
+(00005, 1, 'Cinturón Verde', 'Verde', '#02e31d', 'Este color simboliza el crecimiento de la planta, a medida que las habilidades en el Taekwondo comienzan a desarrollarse.', 5, 'Judo_green_belt.svg.png', '1', 'admweb', '2023-04-17 03:48:38', NULL, NULL),
+(00006, 1, 'Cinturón Verde con Punta Azul', 'Verde con Punta Azul', '#42da01', 'Esta combinación representa a la planta buscando su punto de maduración en su crecimiento.', 6, 'Tkd_5th_kup.svg.png', '1', 'admweb', '2023-04-17 03:49:42', NULL, NULL),
+(00007, 1, 'Cinturón Azul', 'Azul', '#0531e1', 'Simboliza el Cielo, hacia el cual va creciendo la planta hasta convertirse en un árbol maduro, a medida que los conocimientos en Taekwondo avanzan.', 7, 'Judo_blue_belt.svg.png', '1', 'admweb', '2023-04-17 03:50:38', NULL, NULL),
+(00008, 1, 'Cinturón Azul con Punta Roja', 'Azul con Punta Roja', '#042dd2', 'Esta combinación simboliza a los primeros frutos que el árbol comienza a dar, los cuales son los frutos logrados en el aprendizaje del Taekwondo.', 8, 'Tkd_3rd_kup.svg.png', '1', 'admweb', '2023-04-17 03:51:50', NULL, NULL),
+(00009, 1, 'Cinturón Rojo', 'Rojo', '#f90101', 'Este color simboliza el peligro. Es la etapa en la cual el estudiante debe aprender a manejar la cautela para medir su fuerza ante sus oponentes. Al mismo tiempo, indica a sus oponentes que deben mantenerse alejados, debido a la madurez de sus conocimientos. Otro significado, es el fruto cosechado del árbol del Taekwondo.', 9, 'Judo_red_belt.svg.png', '1', 'admweb', '2023-04-17 03:52:45', NULL, NULL),
+(00010, 1, 'Cinturón Rojo con Punta Negra', 'Rojo con Punta Negra', '#e60000', 'Esta combinación simboliza la transición del estudiante en su paso de alumno a instructor. En este grado, el alumno comienza a preparar su graduación como instructor.', 10, 'Tkd_1st_kup.svg.png', '1', 'admweb', '2023-04-17 03:53:51', NULL, NULL),
+(00011, 1, 'Cinturón 1 Grado Poom', '1 Grado Poom', '#e60000', 'Esta combinación simboliza la transición del estudiante en su paso de alumno a instructor. En este grado, el alumno comienza a preparar su graduación como instructor.', 11, 'Tkd_1st_kup.svg.png', '1', 'admweb', '2023-04-17 03:53:51', NULL, NULL),
+(00012, 1, 'Cinturón 2 Grado Poom', '2 Grado Poom', '#e60000', 'Esta combinación simboliza la transición del estudiante en su paso de alumno a instructor. En este grado, el alumno comienza a preparar su graduación como instructor.', 12, 'Tkd_1st_kup.svg.png', '1', 'admweb', '2023-04-17 03:53:51', NULL, NULL),
+(00013, 1, 'Cinturón 3 Grado Poom', '3 Grado Poom', '#e60000', 'Esta combinación simboliza la transición del estudiante en su paso de alumno a instructor. En este grado, el alumno comienza a preparar su graduación como instructor.', 13, 'Tkd_1st_kup.svg.png', '1', 'admweb', '2023-04-17 03:53:51', NULL, NULL),
+(00014, 2, 'Cinturón Negro 1 Grado Dan', '1 Grado Dan', '#000000', 'Este color simboliza la madurez del practicante en cuanto a su competencia para impartir enseñanza en el Taekwondo. Es completamente lo opuesto al color blanco. Una representación que tiene el negro, es en el carbón, por su dureza y sencillez, el cual puede arder para generar energía o desintegrarse para escribir su historia. Representa también la impermeabilidad de su portador, al miedo y la oscuridad.', 14, '55px-ITF_1_DAN_belt.png', '1', 'admweb', '2023-04-17 03:55:14', 'admweb', '2023-04-17 03:57:02'),
+(00015, 2, 'Cinturón Negro 2 Grado Dan', '2 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Instructor Asistente (Boo Sabom Nim).', 15, '55px-ITF_1_DAN_belt_1.png', '1', 'admweb', '2023-04-17 03:56:34', NULL, NULL),
+(00016, 2, 'Cinturón Negro 3 Grado Dan', '3 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Instructor Asistente (Boo Sabom Nim).', 16, '55px-ITF_1_DAN_belt_2.png', '1', 'admweb', '2023-04-17 03:57:47', NULL, NULL),
+(00017, 2, 'Cinturón Negro 4 Grado Dan', '4 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Instructor Internacional (Sabom Nim).', 17, '55px-ITF_1_DAN_belt_3.png', '1', 'admweb', '2023-04-17 03:58:32', NULL, NULL),
+(00018, 2, 'Cinturón Negro 5 Grado Dan', '5 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Instructor Mayor (Sabom Nim).', 18, '55px-ITF_1_DAN_belt_4.png', '1', 'admweb', '2023-04-17 03:59:03', NULL, NULL),
+(00019, 2, 'Cinturón Negro 6 Grado Dan', '6 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Instructor Mayor (Sabom Nim).', 19, '55px-ITF_1_DAN_belt_5.png', '1', 'admweb', '2023-04-17 03:59:43', NULL, NULL),
+(00020, 2, 'Cinturón Negro 7 Grado Dan', '7 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Master o Maestro (Sajiong Nim). Es el último título entregado a través de examen de graduación.', 20, '55px-ITF_1_DAN_belt_6.png', '1', 'admweb', '2023-04-17 04:00:16', NULL, NULL),
+(00021, 2, 'Cinturón Negro 8 Grado Dan', '8 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Master Senior (Sajiong Nim). Es el primero de dos títulos que se entregan de forma honorífica.', 21, '55px-ITF_1_DAN_belt_7.png', '1', 'admweb', '2023-04-17 04:00:58', NULL, NULL),
+(00022, 2, 'Cinturón Negro 9 Grado Dan', '9 Grado Dan', '#000000', 'Quien sea portador de este grado, será conocido con el título de Gran Maestro (Sasong Nim). Es el segundo y último título que se entrega en forma honorífica, por lo tanto, es la máxima graduación a la que un practicante de Taekwondo puede aspirar.', 22, '55px-ITF_1_DAN_belt_8.png', '1', 'admweb', '2023-04-17 04:01:44', NULL, NULL);
+
+-- Poblar Sede (Prueba)
+INSERT INTO MAE_SEDE (`N_COD_SEDE`, `V_NOMBRE`, `N_COD_PAIS`, `N_COD_DEPARTAMENTO`, `N_COD_DISTRITO`, `V_DIRECCION`, `V_REFERENCIA`, `V_EMAIL`, `V_FONO`, `V_MOVIL`, `V_FOTO`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Sede Principal', NULL, NULL, NULL, 'Calle Principal', 'Ref', '', '', '999999999', '', '1', 'admweb', '2023-04-17 03:28:47', NULL, NULL);
+
+-- Poblar Instructor (Prueba)
+INSERT INTO `mae_instructor` (`N_COD_INSTRUCTOR`, `V_NOMBRES`, `V_APE_PATERNO`, `V_APE_MATERNO`, `V_FG_SEXO`, `D_FEC_NACIMIENTO`, `N_COD_TIPODOC`, `V_NRO_DOC`, `N_COD_PAIS`, `N_COD_DEPARTAMENTO`, `N_COD_DISTRITO`, `V_DIRECCION`, `V_REFERENCIA`, `V_EMAIL`, `V_FONO`, `V_MOVIL`, `V_FOTO`, `N_COD_CINTURON`, `D_FEC_ALTA`, `D_FEC_BAJA`, `V_MOTIVO_BAJA`, `V_FLAG_ESTADO`, `V_AUD_USR_REG`, `D_AUD_FEC_REG`, `V_AUD_USR_MOD`, `D_AUD_FEC_MOD`) VALUES
+(00001, 'Johnny', 'Reque', 'Llumpo', 'M', '1986-01-21', 1, '43515949', 1, NULL, NULL, 'Palma Max Arrue Mz A Lote 35', 'Al costado de la Muni de los Olivos', '', '', '977137699', 'admweb.jpg', 11, '2023-04-17', '0000-00-00', '', '1', 'admweb', '2023-04-17 04:12:01', NULL, NULL);
+

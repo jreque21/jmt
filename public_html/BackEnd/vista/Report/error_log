@@ -1,0 +1,48 @@
+[16-Sep-2026 00:09:12 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Could not include font definition file in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php:273
+Stack trace:
+#0 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(1140): FPDF->Error()
+#1 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(461): FPDF->_loadfont()
+#2 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(509): FPDF->AddFont()
+#3 /home/jmtalentgroup/public_html/BackEnd/vista/Report/rpt_estudiantes_x_sede.php(61): FPDF->SetFont()
+#4 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php on line 273
+[16-Sep-2026 00:14:31 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Could not include font definition file in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php:273
+Stack trace:
+#0 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(1140): FPDF->Error()
+#1 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(461): FPDF->_loadfont()
+#2 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(509): FPDF->AddFont()
+#3 /home/jmtalentgroup/public_html/BackEnd/vista/Report/rpt_estudiantes_x_sede.php(61): FPDF->SetFont()
+#4 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php on line 273
+[16-Sep-2026 00:15:47 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Could not include font definition file in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php:273
+Stack trace:
+#0 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(1140): FPDF->Error()
+#1 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(461): FPDF->_loadfont()
+#2 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(509): FPDF->AddFont()
+#3 /home/jmtalentgroup/public_html/BackEnd/vista/Report/rpt_estudiantes_x_sede.php(61): FPDF->SetFont()
+#4 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php on line 273
+[16-Sep-2026 00:20:22 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Could not include font definition file in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php:273
+Stack trace:
+#0 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(1140): FPDF->Error()
+#1 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(461): FPDF->_loadfont()
+#2 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(509): FPDF->AddFont()
+#3 /home/jmtalentgroup/public_html/BackEnd/vista/Report/rpt_estudiantes_x_sede.php(61): FPDF->SetFont()
+#4 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php on line 273
+[16-Sep-2026 00:24:24 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Could not include font definition file in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php:273
+Stack trace:
+#0 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(1140): FPDF->Error()
+#1 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(461): FPDF->_loadfont()
+#2 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(509): FPDF->AddFont()
+#3 /home/jmtalentgroup/public_html/BackEnd/vista/Report/rpt_estudiantes_x_sede.php(61): FPDF->SetFont()
+#4 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php on line 273
+[16-Sep-2026 00:24:34 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Could not include font definition file in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php:273
+Stack trace:
+#0 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(1140): FPDF->Error()
+#1 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(461): FPDF->_loadfont()
+#2 /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php(509): FPDF->AddFont()
+#3 /home/jmtalentgroup/public_html/BackEnd/vista/Report/rpt_estudiantes_x_sede.php(61): FPDF->SetFont()
+#4 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/recursos/fpdf185/fpdf.php on line 273

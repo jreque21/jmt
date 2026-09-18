@@ -1,0 +1,23 @@
+[07-Nov-2024 20:09:07 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/clubjma/public_html/BackEnd/modelo/class_consulta.php on line 8
+[24-Nov-2024 23:58:28 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/clubjma/public_html/BackEnd/modelo/class_consulta.php on line 8
+[26-Nov-2024 10:51:54 UTC] PHP Warning:  require_once(../../config/global.php): Failed to open stream: No such file or directory in /home/clubjma/public_html/BackEnd/modelo/class_pdf_personaliza.php on line 5
+[26-Nov-2024 10:51:54 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../config/global.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/clubjma/public_html/BackEnd/modelo/class_pdf_personaliza.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/clubjma/public_html/BackEnd/modelo/class_pdf_personaliza.php on line 5
+[01-Jan-2025 04:12:15 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/clubjma/public_html/BackEnd/modelo/class_venta.php on line 11
+[01-Jan-2025 04:12:15 America/Lima] PHP Warning:  Undefined array key "id_producto" in /home/clubjma/public_html/BackEnd/modelo/class_venta.php on line 13
+[02-Jan-2025 19:59:44 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/clubjma/public_html/BackEnd/modelo/class_venta.php on line 11
+[02-Jan-2025 19:59:44 America/Lima] PHP Warning:  Undefined array key "id_producto" in /home/clubjma/public_html/BackEnd/modelo/class_venta.php on line 13
+[24-May-2026 06:40:36 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_consulta.php on line 8
+[30-May-2026 22:38:25 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_venta.php on line 11
+[30-May-2026 22:38:25 America/Lima] PHP Warning:  Undefined array key "id_producto" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_venta.php on line 13
+[20-Jun-2026 00:56:53 UTC] PHP Warning:  require_once(../../config/global.php): Failed to open stream: No such file or directory in /home/jmtalentgroup/public_html/BackEnd/modelo/class_pdf_personaliza.php on line 5
+[20-Jun-2026 00:56:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../config/global.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/jmtalentgroup/public_html/BackEnd/modelo/class_pdf_personaliza.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/jmtalentgroup/public_html/BackEnd/modelo/class_pdf_personaliza.php on line 5
+[29-Jun-2026 21:07:09 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_consulta.php on line 8
+[13-Aug-2026 22:02:27 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_venta.php on line 11
+[13-Aug-2026 22:02:27 America/Lima] PHP Warning:  Undefined array key "id_producto" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_venta.php on line 13
+[10-Sep-2026 15:09:35 America/Lima] PHP Warning:  Undefined array key "operacion" in /home/jmtalentgroup/public_html/BackEnd/modelo/class_consulta.php on line 8
