@@ -89,13 +89,6 @@ function f_seccion_panel($an_cod_estudiante){
 // Instanciar clase de la B.D
 $crud = new crud();
 
-// Definir estructura
-$array_campo_pk	= array('V_ID');
-$array_valor_pk	= array(1);
-
-// Recuperar info
-$t_img_logo = $crud->fila_recuperar_campo('MAE_EMPRESA', $array_campo_pk, $array_valor_pk, 'V_FOTO');
-
 // Listado
 $array_campo_pk	= array('N_COD_ESTUDIANTE');
 $array_valor_pk	= array($an_cod_estudiante);
@@ -131,12 +124,33 @@ if ($arrayPadron["V_TIPO_EST"] == 'EST_INT') {
 	$array_valor_pk = [$arrayPadron["N_COD_SEDE"]];
 	$ls_sede 		= $crud->fila_recuperar_campo(DEF_TABLA_SEDE, $array_campo_pk, $array_valor_pk, 'V_NOMBRE');
 	$ls_lugar 		= $ls_sede;
+
+	// Logo: estudiante interno -> logo de la sede
+	$t_img_logo		= $crud->fila_recuperar_campo(DEF_TABLA_SEDE, $array_campo_pk, $array_valor_pk, 'V_FOTO');
+	$ls_logo_dir	= DEF_UPLOAD_SEDE_DIR;
 } else {
 	// Datos Academia
 	$array_campo_pk = ['N_COD_ACADEMIA'];
 	$array_valor_pk = [$arrayPadron["N_COD_ACADEMIA"]];
 	$ls_academia	= $crud->fila_recuperar_campo('MAE_ACADEMIA', $array_campo_pk, $array_valor_pk, 'V_DESCRIPCION');
 	$ls_lugar 		= $ls_academia;
+
+	// Logo: estudiante externo -> logo de la academia
+	$t_img_logo		= $crud->fila_recuperar_campo('MAE_ACADEMIA', $array_campo_pk, $array_valor_pk, 'V_LOGO');
+	$ls_logo_dir	= DEF_UPLOAD_ACADEMIA_DIR;
+}
+
+// Si la sede/academia no tiene logo propio, usar el logo general de la empresa
+if (empty($t_img_logo)) {
+	$t_img_logo		= $crud->fila_recuperar_campo('MAE_EMPRESA', array('V_ID'), array(1), 'V_FOTO');
+	$ls_logo_dir	= 'empresa';
+}
+
+// Si tampoco existe logo de empresa, usar una imagen genérica de taekwondo
+if (empty($t_img_logo)) {
+	$ls_logo_src = '../../website/recursos/images/t_fondo.jpg';
+} else {
+	$ls_logo_src = '../../upload/'.$ls_logo_dir.'/'.$t_img_logo;
 }
 
 // Contadores
@@ -148,7 +162,7 @@ $li_faltas = $crud->f_get_datosEstudiante($an_cod_estudiante,'N_FALTAS');
 ?>
 	<div align = 'center'>
 		</br>
-		<a class="brand-name" href="panel_intranet.php"><img src="../../upload/empresa/<?php echo $t_img_logo;?>" alt="" width="140" height="40"/></a>
+		<a class="brand-name" href="panel_intranet.php"><img src="<?php echo $ls_logo_src;?>" alt="" width="140" height="40"/></a>
 		</br></br>
 	</div>
 

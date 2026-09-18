@@ -63,7 +63,7 @@ require_once("BackEnd/config/global.php");
 			<?php require_once 'FrontEnd/vista/Layout/login_aviso.php';?>
 			<div class="form-header">
 				<img src="website/recursos/images/t_fondo.jpg" width="110" class="img-circle header-photo" alt="Taekwondo">
-				<h4 style="margin:14px 0 0;font-weight:700;letter-spacing:.5px;color:#14161a;">INTRANET ESTUDIANTE</h4>
+				<h4 style="margin:14px 0 0;font-weight:700;letter-spacing:.5px;color:#14161a;">Taekwondo WT</h4>
 			</div>
 			<form id="login-form" method="post" class="form-signin" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off">
 				<?php echo '<center><small class="text-muted">'.DEF_URL_LOGIN_SUBTITULO.'</small></center>'; ?>

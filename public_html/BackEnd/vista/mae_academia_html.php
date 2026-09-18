@@ -82,7 +82,6 @@ function f_listado($as_titulo, $as_icono, $as_msgRpta){
 
 										<thead>
 											<tr>
-												<th>Logo</th>
 												<th>Código</th>
 												<th>Descripción</th>
 												<th>Dirección</th>
@@ -100,12 +99,6 @@ function f_listado($as_titulo, $as_icono, $as_msgRpta){
 												?>
 												<tr>
 													<?php
-
-													echo "<td align='center'>";
-													if (strlen($row["V_LOGO"])>1){
-														echo '<img src="../../upload/'.DEF_UPLOAD_ACADEMIA_DIR.'/'.$row["V_LOGO"].'" width="40px" class="img-thumbnail" alt="Logo">';
-													}
-													echo "</td>";
 
 													echo "<td>";
 													echo f_r_url($url_editar_fila, $row["N_COD_ACADEMIA"],$row["V_DESCRIPCION"]);
