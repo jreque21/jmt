@@ -140,9 +140,9 @@ if ($arrayPadron["V_TIPO_EST"] == 'EST_INT') {
 	$ls_logo_dir	= DEF_UPLOAD_ACADEMIA_DIR;
 }
 
-// Si la sede/academia no tiene logo propio, usar el logo institucional (jmtalentgroup.com)
+// Si la sede/academia no tiene logo propio, usar una imagen genérica de taekwondo
 if (empty($t_img_logo)) {
-	$ls_logo_src = '../../website/recursos/images/Logo.png';
+	$ls_logo_src = '../../website/recursos/images/t_fondo.jpg';
 } else {
 	$ls_logo_src = '../../upload/'.$ls_logo_dir.'/'.$t_img_logo;
 }
@@ -154,138 +154,109 @@ $ls_prox_hora = $crud->f_get_datosEstudiante($an_cod_estudiante,'D_PROX_HORA');
 $li_faltas = $crud->f_get_datosEstudiante($an_cod_estudiante,'N_FALTAS');
 
 ?>
-	<div align = 'center'>
-		</br>
-		<a class="brand-name" href="panel_intranet.php"><img src="<?php echo $ls_logo_src;?>" alt="" width="140" height="40"/></a>
-		</br></br>
+<div class="tkd-panel">
+
+	<div class="tkd-hero">
+		<a class="tkd-hero__brand" href="panel_intranet.php"><img src="<?php echo $ls_logo_src;?>" alt="" width="86" height="86"/></a>
+		<div class="tkd-hero__title"><?php echo $ls_lugar; ?></div>
 	</div>
 
-		<div class="container">
+	<div class="container">
 		<div class="row">
 
 			<div class="col-lg-4">
-
-				<div class="panel panel-primary" align = 'center'>
-					<div class="panel-heading">F I C H A  &nbsp;&nbsp; T É C N I C A</div>
-					<div class="panel-body">
-						<?php			
+				<div class="tkd-card">
+					<div class="tkd-card__header"><span class="fa fa-id-card-o"></span> Ficha Técnica</div>
+					<div class="tkd-card__body tkd-profile">
+						<?php
 							if(strlen($ls_foto)>1){
-							?>	
-								<img class="img-rounded" src="../../upload/estudiante/<?php echo $ls_foto;?>" width="155" align ='center'>
+							?>
+								<img class="tkd-photo" src="../../upload/estudiante/<?php echo $ls_foto;?>">
 							<?php
 							}else{
-							?>	
-								<img class="img-rounded" src="../../upload/estudiante/<?php echo $ls_foto_default;?>" width="155">
+							?>
+								<img class="tkd-photo" src="../../upload/estudiante/<?php echo $ls_foto_default;?>">
 							<?php
 							}
-							echo "</br>";
-							echo $arrayPadron ["V_NOMBRES"].', '.$arrayPadron ["V_APE_PATERNO"].' '.$arrayPadron ["V_APE_MATERNO"].'</br>';
-							echo $li_edad.' Años - '.$ls_des_sexo.'</br>';							
-							?>
-							<img class="img-rounded" src="../../upload/cinturon/<?php echo $ls_cinturon_foto;?>" >
-							<?php
-							echo '</br>Cinturón '.$ls_cinturon.'</br>';
 						?>
+						<div class="tkd-profile__name"><?php echo $arrayPadron ["V_NOMBRES"].', '.$arrayPadron ["V_APE_PATERNO"].' '.$arrayPadron ["V_APE_MATERNO"]; ?></div>
+						<div class="tkd-profile__meta"><?php echo $li_edad.' Años · '.$ls_des_sexo; ?></div>
+						<div class="tkd-belt">
+							<img src="../../upload/cinturon/<?php echo $ls_cinturon_foto;?>">
+							<span>Cinturón <?php echo $ls_cinturon; ?></span>
+						</div>
 					</div>
-					<div class="panel-footer"><?php echo $ls_lugar; ?></div>
+					<div class="tkd-card__footer"><?php echo $ls_lugar; ?></div>
 				</div>
-	  
 			</div>
 
 			<div class="col-lg-4">
+				<div class="tkd-card">
+					<div class="tkd-card__header"><span class="fa fa-line-chart"></span> Indicadores</div>
+					<div class="tkd-card__body">
 
-				<div class="panel panel-primary" >
-					<div class="panel-heading" align = 'center'>I N D I C A D O R E S</div>
-					<div class="panel-body">						
-						&nbsp;
-						<div class="row g-0">
-							<div class="col-md-2">
-								<span class="fa fa-calendar fa-4x fa-lg"></span>
-							</div>
-							<div class="col-md-10">							
-								<div class ='h_sub'>Próxima Clase <strong>[ <?php echo $ls_prox_fecha; ?> ]</strong></div>
-							</div>
-						</div>
-						
-						<div class="row g-0">
-							<div class="col-md-2">
-								<span class="fa fa-clock-o fa-4x fa-lg"></span>
-							</div>
-							<div class="col-md-10">
-								<div class ='h_sub'>Hora de Clase <strong>[ <?php echo substr($ls_prox_hora,0,5); ?> ]</strong></div>
-							</div>
-						</div>
-						 
-						<div class="row g-0">
-							<div class="col-md-2">
-								<span class="fa fa-check-square-o fa-4x fa-lg"></span>
-							</div>
-							<div class="col-md-10">
-								<div class ='h_sub'>Faltas <strong>[ <?php echo $li_faltas; ?> ]</strong></div>
+						<div class="tkd-stat">
+							<div class="tkd-stat__icon"><span class="fa fa-calendar"></span></div>
+							<div>
+								<div class="tkd-stat__label">Próxima Clase</div>
+								<div class="tkd-stat__value"><?php echo $ls_prox_fecha; ?></div>
 							</div>
 						</div>
 
-						<div class="row g-0">
-							<div class="col-md-2">
-								<?php if ($ldc_deudas == 0) { ?>
-									<span class="fa fa-smile-o fa-4x fa-lg"></span>
-								<?php } else { ?>	
-									<span class="fa fa-frown-o fa-4x fa-lg"></span>
-								<?php } ?>	
+						<div class="tkd-stat">
+							<div class="tkd-stat__icon"><span class="fa fa-clock-o"></span></div>
+							<div>
+								<div class="tkd-stat__label">Hora de Clase</div>
+								<div class="tkd-stat__value"><?php echo substr($ls_prox_hora,0,5); ?></div>
 							</div>
-							<div class="col-md-10">
-								<div class ='h_sub'>Deudas <strong>[ <?php echo number_format($ldc_deudas, 2, '.', ' '); ?> ]</strong></div>
-								&nbsp;
+						</div>
+
+						<div class="tkd-stat">
+							<div class="tkd-stat__icon"><span class="fa fa-check-square-o"></span></div>
+							<div>
+								<div class="tkd-stat__label">Faltas</div>
+								<div class="tkd-stat__value"><?php echo $li_faltas; ?></div>
+							</div>
+						</div>
+
+						<div class="tkd-stat">
+							<?php if ($ldc_deudas == 0) { ?>
+								<div class="tkd-stat__icon is-ok"><span class="fa fa-smile-o"></span></div>
+							<?php } else { ?>
+								<div class="tkd-stat__icon is-warn"><span class="fa fa-frown-o"></span></div>
+							<?php } ?>
+							<div>
+								<div class="tkd-stat__label">Deudas</div>
+								<div class="tkd-stat__value"><?php echo number_format($ldc_deudas, 2, '.', ' '); ?></div>
 							</div>
 						</div>
 
 					</div>
-					<div class="panel-footer" align = 'center'><?php echo $ls_tipoest; ?></div>
+					<div class="tkd-card__footer"><?php echo $ls_tipoest; ?></div>
 				</div>
-	  
 			</div>
-							
+
 			<div class="col-lg-4">
-
-				<div class="panel panel-primary" align = 'center'>
-					<div class="panel-heading">S E G U I M I E N T O</div>
-					<div class="panel-body">
-
-						</br>
-
-						<a class="btn btn-info" style="width: 100%;" href="datos.php" role="button">
-							<span class="fa fa-drivers-license-o"></span> MIS DATOS PERSONALES
-						</a>
-						</br></br>
-						<a class="btn btn-warning" style="width: 100%;" href="cinturones.php" role="button">
-							<span class="fa fa-mortar-board"></span> MIS CINTURONES
-						</a>
-						</br></br>
-						<a class="btn btn-success" style="width: 100%;" href="asistencia.php" role="button">
-							<span class="fa fa-calendar-check-o"></span> MI ASISTENCIA
-						</a>
-						</br></br>
-						<a class="btn btn-warning" style="width: 100%;" href="pagos.php" role="button">
-							<span class="fa fa-cc-visa"></span> MIS PAGOS
-						</a>
-						</br></br>
-						<a class="btn btn-info" style="width: 100%;" href="notas.php" role="button">
-							<span class="fa fa-bar-chart-o"></span> MIS AVANCES
-						</a>
-						</br></br>
-						<a class="btn btn-success" style="width: 100%;" href="traslados.php" role="button">
-							<span class="fa fa-plane"></span> TRASLADOS
-						</a>
-						</br></br>
-
+				<div class="tkd-card">
+					<div class="tkd-card__header"><span class="fa fa-compass"></span> Seguimiento</div>
+					<div class="tkd-card__body">
+						<div class="tkd-nav">
+							<a href="datos.php"><span class="fa fa-drivers-license-o"></span> Mis datos personales</a>
+							<a href="cinturones.php"><span class="fa fa-mortar-board"></span> Mis cinturones</a>
+							<a href="asistencia.php"><span class="fa fa-calendar-check-o"></span> Mi asistencia</a>
+							<a href="pagos.php"><span class="fa fa-cc-visa"></span> Mis pagos</a>
+							<a href="notas.php"><span class="fa fa-bar-chart-o"></span> Mis avances</a>
+							<a href="traslados.php"><span class="fa fa-plane"></span> Traslados</a>
+						</div>
 					</div>
-					<div class="panel-footer"><a href="mae_cambiarclave.php">Cambiar Clave</a></div>
+					<div class="tkd-card__footer"><a href="mae_cambiarclave.php">Cambiar Clave</a></div>
 				</div>
-	  
 			</div>
 
 		</div>
 	</div>
+
+</div>
 
 <?php
 }
@@ -295,28 +266,36 @@ $li_faltas = $crud->f_get_datosEstudiante($an_cod_estudiante,'N_FALTAS');
 /********************************************************/
 function f_seccion_contacto(){
 ?>
+<div class="tkd-page-header">
+	<div class="tkd-page-header__icon"><span class="fa fa-envelope"></span></div>
+	<h4>Contáctanos</h4>
+	<p>Escríbenos y te responderemos a la brevedad</p>
+</div>
 <section class="bg-gray-lighter object-wrap" id="contacts">
 <div class="section-lg">
   <div class="container">
 	<div class="row justify-content-end">
 	  <div class="col-lg-5">
-		<h4 class="heading-decorated">Contáctanos</h4>
-		<!-- RD Mailform-->
-		<form data-form-type="contact" method="post" action="sendContact.php">
-		  <div class="form-wrap">
-			<input class="form-input" id="contact-name" type="text" name="nombre" data-constraints="@Required">
-			<label class="form-label" for="contact-name">Tu nombre</label>
-		  </div>
-		  <div class="form-wrap">
-			<input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
-			<label class="form-label" for="contact-email">Tu Email</label>
-		  </div>
-		  <div class="form-wrap">
-			<textarea class="form-input" id="contact-message" name="mensaje" data-constraints="@Required"></textarea>
-			<label class="form-label" for="contact-message">Tu mensaje</label>
-		  </div>
-		  <button class="button button-primary" type="submit">Enviar</button>
-		</form>
+		<div class="tkd-card">
+			<div class="tkd-card__body">
+				<!-- RD Mailform-->
+				<form data-form-type="contact" method="post" action="sendContact.php">
+				  <div class="form-wrap">
+					<input class="form-input" id="contact-name" type="text" name="nombre" data-constraints="@Required">
+					<label class="form-label" for="contact-name">Tu nombre</label>
+				  </div>
+				  <div class="form-wrap">
+					<input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Email @Required">
+					<label class="form-label" for="contact-email">Tu Email</label>
+				  </div>
+				  <div class="form-wrap">
+					<textarea class="form-input" id="contact-message" name="mensaje" data-constraints="@Required"></textarea>
+					<label class="form-label" for="contact-message">Tu mensaje</label>
+				  </div>
+				  <button class="tkd-btn-primary" type="submit" style="width:100%;">Enviar</button>
+				</form>
+			</div>
+		</div>
 	  </div>
 	</div>
   </div>
@@ -345,31 +324,27 @@ $array_valor_pk	= array('2');
 $array = $crud->fila_listar(DEF_TABLA_HORARIO, $array_campo_pk, $array_valor_pk, 'D_FEC_INICIO', 'D', 0, 10);
 	
 ?>
+<div class="tkd-page-header">
+	<div class="tkd-page-header__icon"><span class="fa fa-calendar"></span></div>
+	<h4>Horarios Disponibles</h4>
+	<p>Consulta los horarios aperturados y sus instructores</p>
+</div>
 <section class="section-md bg-default">
 	<div class="container">
-		<div class="row">
-		
-			<div class="col-md-8 col-lg-4">				
-				<img src="../images/t_left_horarios.jpg" alt="" />
-			</div>
-
-			<div class="col-md-11 col-lg-8">
-				<h4 class="heading-decorated">Horarios Disponibles</h4>
-				<!-- Cuerpo -->
+		<?php
+			if (!($array)) {
+				?>
+				<div class="tkd-empty"><?php echo DEF_MSG_SIN_REGISTROS;?></div>
 				<?php
-					if (!($array)) {
-						?>
-						<div class="alert alert-warning">
-							<?php echo DEF_MSG_SIN_REGISTROS;?>
-						</div>
-						<?php
-					}else {
-						?>
+			}else {
+				?>
+				<div class="tkd-card">
+					<div class="tkd-card__body" style="padding:0;">
 						<div class="table-responsive">
 
-							<table id="listax" class="table table-striped table-bordered table-hover">
+							<table id="listax" class="tkd-table">
 
-								<thead class="thead-dark">
+								<thead>
 									<tr>
 										<th>Horario</th>
 										<th>Sede</th>
@@ -428,7 +403,7 @@ $array = $crud->fila_listar(DEF_TABLA_HORARIO, $array_campo_pk, $array_valor_pk,
 											echo substr($row["D_HORA_INICIO"],0,5);
 											//echo date("H:i");
 											echo "</td>";
-											
+
 											// Categoria Estudiante
 											$array_campo_pk	= array('N_COD_CATESTUDIANTE');
 											$array_valor_pk	= array($row["N_COD_CATESTUDIANTE"]);
@@ -439,11 +414,11 @@ $array = $crud->fila_listar(DEF_TABLA_HORARIO, $array_campo_pk, $array_valor_pk,
 
 											echo "<td>";
 												$ls_estado =  $row["V_FLAG_ESTADO"];
-												if ($ls_estado =='0') $ls_des_estado = 'Cancelado';
-												if ($ls_estado =='1') $ls_des_estado = 'Registrado';
-												if ($ls_estado =='2') $ls_des_estado = 'Aperturado';
-												if ($ls_estado =='3') $ls_des_estado = 'Cerrado';
-												echo $ls_des_estado;
+												if ($ls_estado =='0') { $ls_des_estado = 'Cancelado'; $ls_badge_estado = 'is-cancelled'; }
+												if ($ls_estado =='1') { $ls_des_estado = 'Registrado'; $ls_badge_estado = 'is-registered'; }
+												if ($ls_estado =='2') { $ls_des_estado = 'Aperturado'; $ls_badge_estado = 'is-open'; }
+												if ($ls_estado =='3') { $ls_des_estado = 'Cerrado'; $ls_badge_estado = 'is-closed'; }
+												echo '<span class="tkd-badge '.$ls_badge_estado.'">'.$ls_des_estado.'</span>';
 											echo "</td>";
 
 											echo "<td align='center'>";
@@ -462,13 +437,12 @@ $array = $crud->fila_listar(DEF_TABLA_HORARIO, $array_campo_pk, $array_valor_pk,
 							</table>
 
 						</div>
+					</div>
+				</div>
 
-					<?php
-					}
-				?>					
-			</div>
-
-		</div>
+			<?php
+			}
+		?>
 	</div>
 </section>
 <?php
@@ -617,31 +591,27 @@ $array_valor_pk	= array('1');
 $array = $crud->fila_listar(DEF_TABLA_PROMOCION, $array_campo_pk, $array_valor_pk, 'D_FEC_PROG', 'D', 0, 10);
 	
 ?>
+<div class="tkd-page-header">
+	<div class="tkd-page-header__icon"><span class="fa fa-trophy"></span></div>
+	<h4>Promociones</h4>
+	<p>Próximos exámenes y eventos de promoción de cinturón</p>
+</div>
 <section class="section-md bg-default">
 	<div class="container">
-		<div class="row">
-		
-			<div class="col-md-8 col-lg-4">				
-				<img src="../images/t_left_promociones.jpg" alt="" />
-			</div>
-
-			<div class="col-md-11 col-lg-8">
-				<h4 class="heading-decorated">Promociones</h4>
-				<!-- Cuerpo -->
+		<?php
+			if (!($array)) {
+				?>
+				<div class="tkd-empty"><?php echo DEF_MSG_SIN_REGISTROS;?></div>
 				<?php
-					if (!($array)) {
-						?>
-						<div class="alert alert-warning">
-							<?php echo DEF_MSG_SIN_REGISTROS;?>
-						</div>
-						<?php
-					}else {
-						?>
+			}else {
+				?>
+				<div class="tkd-card">
+					<div class="tkd-card__body" style="padding:0;">
 						<div class="table-responsive">
 
-							<table id="lista" class="table table-striped table-bordered table-hover">
+							<table id="lista" class="tkd-table">
 
-								<thead class="thead-dark">
+								<thead>
 									<tr>
 										<th>Descripción</th>
 										<th>Lugar</th>
@@ -686,7 +656,7 @@ $array = $crud->fila_listar(DEF_TABLA_PROMOCION, $array_campo_pk, $array_valor_p
 											echo "</td>";
 
 											echo "<td>";
-												// Cantidad 
+												// Cantidad
 												$array_campo_pk	= array('N_COD_PROMOCION', 'V_FLAG_PROG');
 												$array_valor_pk	= array($row["N_COD_PROMOCION"], '1');
 												$li_cantidad	= $crud->fila_contar(DEF_TABLA_PROMOCIONPROG, $array_campo_pk, $array_valor_pk);
@@ -695,9 +665,9 @@ $array = $crud->fila_listar(DEF_TABLA_PROMOCION, $array_campo_pk, $array_valor_p
 
 											echo "<td>";
 												$ls_estado =  $row["V_FLAG_ESTADO"];
-												if ($ls_estado =='0') $estado = 'Inactivo';
-												if ($ls_estado =='1') $estado = 'Activo';
-												echo $estado;
+												if ($ls_estado =='0') { $estado = 'Inactivo'; $ls_badge_estado = 'is-inactive'; }
+												if ($ls_estado =='1') { $estado = 'Activo'; $ls_badge_estado = 'is-active'; }
+												echo '<span class="tkd-badge '.$ls_badge_estado.'">'.$estado.'</span>';
 											echo "</td>";
 
 											echo "<td align='center'>";
@@ -716,13 +686,12 @@ $array = $crud->fila_listar(DEF_TABLA_PROMOCION, $array_campo_pk, $array_valor_p
 							</table>
 
 						</div>
+					</div>
+				</div>
 
-					<?php
-					}
-				?>					
-			</div>
-
-		</div>
+			<?php
+			}
+		?>
 	</div>
 </section>
 <?php
@@ -895,31 +864,27 @@ $array_valor_pk	= array('1');
 $array = $crud->fila_listar(DEF_TABLA_EVENTO, $array_campo_pk, $array_valor_pk, 'D_FECHA', 'D', 0, 10);
 	
 ?>
+<div class="tkd-page-header">
+	<div class="tkd-page-header__icon"><span class="fa fa-star"></span></div>
+	<h4>Últimos Eventos</h4>
+	<p>Actividades y eventos programados por la academia</p>
+</div>
 <section class="section-md bg-default">
 	<div class="container">
-		<div class="row">
-		
-			<div class="col-md-8 col-lg-4">				
-				<img src="../images/t_left_eventos.jpg" alt="" />
-			</div>
-
-			<div class="col-md-11 col-lg-8">
-				<h4 class="heading-decorated">Últimos Eventos</h4>
-				<!-- Cuerpo -->
+		<?php
+			if (!($array)) {
+				?>
+				<div class="tkd-empty"><?php echo DEF_MSG_SIN_REGISTROS;?></div>
 				<?php
-					if (!($array)) {
-						?>
-						<div class="alert alert-warning">
-							<?php echo DEF_MSG_SIN_REGISTROS;?>
-						</div>
-						<?php
-					}else {
-						?>
+			}else {
+				?>
+				<div class="tkd-card">
+					<div class="tkd-card__body" style="padding:0;">
 						<div class="table-responsive">
 
-							<table id="listax" class="table table-striped table-bordered table-hover">
+							<table id="listax" class="tkd-table">
 
-								<thead class="thead-dark">
+								<thead>
 									<tr>
 										<th>Nombre de Evento</th>
 										<th>Lugar</th>
@@ -953,7 +918,7 @@ $array = $crud->fila_listar(DEF_TABLA_EVENTO, $array_campo_pk, $array_valor_pk, 
 											echo "</td>";
 
 											echo "<td>";
-												// Cantidad 
+												// Cantidad
 												$array_campo_pk	= array('N_COD_EVENTO', 'V_FLAG_PROG');
 												$array_valor_pk	= array($row["N_COD_EVENTO"], '1');
 												$li_cantidad	= $crud->fila_contar(DEF_TABLA_EVENTOPROG, $array_campo_pk, $array_valor_pk);
@@ -962,9 +927,9 @@ $array = $crud->fila_listar(DEF_TABLA_EVENTO, $array_campo_pk, $array_valor_pk, 
 
 											echo "<td>";
 												$ls_estado =  $row["V_FLAG_ESTADO"];
-												if ($ls_estado =='0') $estado = 'Inactivo';
-												if ($ls_estado =='1') $estado = 'Activo';
-												echo $estado;
+												if ($ls_estado =='0') { $estado = 'Inactivo'; $ls_badge_estado = 'is-inactive'; }
+												if ($ls_estado =='1') { $estado = 'Activo'; $ls_badge_estado = 'is-active'; }
+												echo '<span class="tkd-badge '.$ls_badge_estado.'">'.$estado.'</span>';
 											echo "</td>";
 
 										echo "</tr>";
@@ -975,13 +940,12 @@ $array = $crud->fila_listar(DEF_TABLA_EVENTO, $array_campo_pk, $array_valor_pk, 
 							</table>
 
 						</div>
+					</div>
+				</div>
 
-					<?php
-					}
-				?>					
-			</div>
-
-		</div>
+			<?php
+			}
+		?>
 	</div>
 </section>
 <?php
@@ -1003,31 +967,27 @@ $array_valor_pk	= array('1');
 $array = $crud->fila_listar(DEF_TABLA_CINTURON, $array_campo_pk, $array_valor_pk, 'N_ORDEN', 'A', 0, 999);
 	
 ?>
+<div class="tkd-page-header">
+	<div class="tkd-page-header__icon"><span class="fa fa-flag-checkered"></span></div>
+	<h4>Nuestro Objetivo</h4>
+	<p>Ruta de cinturones y grados a alcanzar</p>
+</div>
 <section class="section-md bg-default">
 	<div class="container">
-		<div class="row">
-		
-			<div class="col-md-8 col-lg-4">				
-				<img src="../images/t_left_metas.jpg" alt="" />
-			</div>
-
-			<div class="col-md-11 col-lg-8">
-				<h4 class="heading-decorated">Nuestro Objetivo</h4>
-				<!-- Cuerpo -->
+		<?php
+			if (!($array)) {
+				?>
+				<div class="tkd-empty"><?php echo DEF_MSG_SIN_REGISTROS;?></div>
 				<?php
-					if (!($array)) {
-						?>
-						<div class="alert alert-warning">
-							<?php echo DEF_MSG_SIN_REGISTROS;?>
-						</div>
-						<?php
-					}else {
-						?>
+			}else {
+				?>
+				<div class="tkd-card">
+					<div class="tkd-card__body" style="padding:0;">
 						<div class="table-responsive">
 
-							<table id="listax" class="table table-striped table-bordered table-hover">
+							<table id="listax" class="tkd-table">
 
-								<thead class="thead-dark">
+								<thead>
 									<tr>
 										<th>Orden</th>
 										<th>Cinturón</th>
@@ -1053,9 +1013,9 @@ $array = $crud->fila_listar(DEF_TABLA_CINTURON, $array_campo_pk, $array_valor_pk
 											echo "</td>";
 
 											echo "<td>";
-											?>														
-											<img class="img-rounded" src="../../upload/<?php echo DEF_UPLOAD_CINTURON_DIR.'/'.$row["V_FOTO"];?>">
-											<?php													
+											?>
+											<img class="tkd-thumb" src="../../upload/<?php echo DEF_UPLOAD_CINTURON_DIR.'/'.$row["V_FOTO"];?>">
+											<?php
 											echo "</td>";
 
 											// Tipo Grado
@@ -1069,9 +1029,9 @@ $array = $crud->fila_listar(DEF_TABLA_CINTURON, $array_campo_pk, $array_valor_pk
 
 											echo "<td>";
 												$ls_estado =  $row["V_FLAG_ESTADO"];
-												if ($ls_estado =='0') $estado = 'Inactivo';
-												if ($ls_estado =='1') $estado = 'Activo';
-												echo $estado;
+												if ($ls_estado =='0') { $estado = 'Inactivo'; $ls_badge_estado = 'is-inactive'; }
+												if ($ls_estado =='1') { $estado = 'Activo'; $ls_badge_estado = 'is-active'; }
+												echo '<span class="tkd-badge '.$ls_badge_estado.'">'.$estado.'</span>';
 											echo "</td>";
 
 										echo "</tr>";
@@ -1082,13 +1042,12 @@ $array = $crud->fila_listar(DEF_TABLA_CINTURON, $array_campo_pk, $array_valor_pk
 							</table>
 
 						</div>
+					</div>
+				</div>
 
-					<?php
-					}
-				?>					
-			</div>
-
-		</div>
+			<?php
+			}
+		?>
 	</div>
 </section>
 <?php
