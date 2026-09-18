@@ -1,0 +1,244 @@
+/* ============================================
+   Intranet Estudiante - JM Talent Group / Academia TKD
+   Sistema visual compartido para las páginas del FrontEnd
+   ============================================ */
+
+:root{
+	--tkd-red: #e30613;
+	--tkd-red-dark: #a80410;
+	--tkd-dark: #14161a;
+	--tkd-dark-2: #1c1f26;
+	--tkd-gray: #6b7178;
+}
+
+.tkd-panel{ padding-bottom: 40px; }
+
+/* ============ Hero / encabezado de página (banda oscura) ============ */
+.tkd-hero,
+.tkd-page-header{
+	text-align: center;
+	padding: 34px 20px 30px;
+	margin-bottom: 32px;
+	background: linear-gradient(180deg, #14161a 0%, #1c1f26 100%);
+}
+.tkd-hero img{
+	border-radius: 50%;
+	background: #fff;
+	padding: 4px;
+	box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+.tkd-hero__brand{ display:inline-block; margin-top: 12px; }
+.tkd-hero__title{
+	margin: 6px 0 0;
+	color: #f4f4f4;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+}
+
+.tkd-page-header__icon{
+	width: 64px; height: 64px;
+	margin: 0 auto 14px;
+	border-radius: 50%;
+	background: rgba(227,6,19,.15);
+	border: 2px solid var(--tkd-red);
+	display: flex; align-items: center; justify-content: center;
+}
+.tkd-page-header__icon .fa{ font-size: 26px; color: var(--tkd-red); }
+.tkd-page-header h4{
+	margin: 0;
+	color: #f4f4f4;
+	font-weight: 700;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+.tkd-page-header p{ margin: 6px 0 0; color: #9aa0a8; font-size: 13px; }
+
+/* ============ Tarjetas ============ */
+.tkd-card{
+	background: #fff;
+	border-radius: 12px;
+	border: 1px solid #eceef0;
+	box-shadow: 0 2px 10px rgba(20,22,26,.06);
+	overflow: hidden;
+	margin-bottom: 24px;
+	transition: box-shadow 180ms ease, transform 180ms ease;
+}
+.tkd-card:hover{ box-shadow: 0 10px 26px rgba(20,22,26,.1); transform: translateY(-2px); }
+.tkd-card__header{
+	padding: 14px 20px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: var(--tkd-dark);
+	border-bottom: 1px solid #f0f1f2;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.tkd-card__header .fa{ color: var(--tkd-red); }
+.tkd-card__body{ padding: 24px 20px; }
+.tkd-card__footer{
+	padding: 12px 20px;
+	background: #fafafa;
+	border-top: 1px solid #f0f1f2;
+	font-size: 13px;
+	color: var(--tkd-gray);
+	text-align: center;
+}
+.tkd-card__footer a{ color: var(--tkd-red); font-weight: 600; }
+
+/* ============ Ficha (perfil del panel) ============ */
+.tkd-profile{ text-align: center; }
+.tkd-profile img.tkd-photo{
+	border-radius: 50%;
+	width: 130px;
+	height: 130px;
+	object-fit: cover;
+	border: 3px solid #fff;
+	box-shadow: 0 4px 14px rgba(0,0,0,.15);
+}
+.tkd-profile__name{ margin: 14px 0 2px; font-size: 17px; font-weight: 700; color: var(--tkd-dark); }
+.tkd-profile__meta{ color: var(--tkd-gray); font-size: 13px; margin-bottom: 14px; }
+.tkd-belt{
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	background: #faf6ea;
+	border: 1px solid #f0e6c8;
+	border-radius: 30px;
+	padding: 6px 16px 6px 6px;
+}
+.tkd-belt img{ width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.tkd-belt span{ font-size: 13px; font-weight: 600; color: var(--tkd-dark); }
+
+/* ============ Indicadores (panel) ============ */
+.tkd-stat{ display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #f4f4f4; }
+.tkd-stat:last-child{ border-bottom: none; }
+.tkd-stat__icon{
+	flex: 0 0 auto;
+	width: 44px; height: 44px;
+	border-radius: 50%;
+	background: #fdecec;
+	display: flex; align-items: center; justify-content: center;
+}
+.tkd-stat__icon .fa{ color: var(--tkd-red); font-size: 18px; }
+.tkd-stat__icon.is-ok{ background: #eaf7e6; }
+.tkd-stat__icon.is-ok .fa{ color: #4caf50; }
+.tkd-stat__icon.is-warn{ background: #fdecec; }
+.tkd-stat__icon.is-warn .fa{ color: var(--tkd-red); }
+.tkd-stat__label{ font-size: 12px; color: var(--tkd-gray); text-transform: uppercase; letter-spacing: .3px; }
+.tkd-stat__value{ font-size: 15px; font-weight: 700; color: var(--tkd-dark); }
+
+/* ============ Navegación / accesos rápidos ============ */
+.tkd-nav{ display: flex; flex-direction: column; gap: 10px; }
+.tkd-nav a{
+	display: flex; align-items: center; gap: 12px;
+	padding: 12px 16px;
+	border-radius: 8px;
+	background: #f7f7f8;
+	color: var(--tkd-dark);
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	border: 1px solid transparent;
+	transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+.tkd-nav a:hover{ background: #fdecec; border-color: #f5c9c9; color: var(--tkd-red-dark); }
+.tkd-nav a .fa{ width: 20px; text-align: center; color: var(--tkd-red); }
+
+/* ============ Tablas de listado (horarios, promociones, eventos, metas) ============ */
+table.tkd-table{ width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
+table.tkd-table thead th{
+	background: var(--tkd-dark);
+	color: #fff;
+	text-align: left;
+	padding: 12px 14px;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: .5px;
+	font-weight: 700;
+	border: none;
+}
+table.tkd-table thead th:first-child{ border-top-left-radius: 8px; }
+table.tkd-table thead th:last-child{ border-top-right-radius: 8px; }
+table.tkd-table tbody td{ padding: 12px 14px; border-bottom: 1px solid #f0f1f2; color: #2c2f36; vertical-align: middle; }
+table.tkd-table tbody tr:hover{ background: #fdecec; }
+table.tkd-table tbody tr:last-child td{ border-bottom: none; }
+table.tkd-table td a{ color: var(--tkd-red); }
+table.tkd-table td a:hover{ color: var(--tkd-red-dark); }
+table.tkd-table img.tkd-thumb{ width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+
+.tkd-badge{
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 20px;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .3px;
+	white-space: nowrap;
+}
+.tkd-badge.is-active{ background: #eaf7e6; color: #2f8f3b; }
+.tkd-badge.is-inactive{ background: #f1f1f2; color: #777; }
+.tkd-badge.is-open{ background: #e7f0fd; color: #1d5fbf; }
+.tkd-badge.is-closed{ background: #f1f1f2; color: #777; }
+.tkd-badge.is-cancelled{ background: #fdecec; color: #c0392b; }
+.tkd-badge.is-registered{ background: #fff6e0; color: #9c7a11; }
+
+.tkd-empty{
+	background: #fff8ea;
+	border: 1px solid #f0e2b6;
+	color: #8a6d1d;
+	border-radius: 10px;
+	padding: 16px 20px;
+	font-size: 13.5px;
+}
+
+/* ============ Formulario de contacto ============ */
+.tkd-contact-card{ max-width: 560px; margin: 0 auto; }
+.tkd-contact-card .form-group{ margin-bottom: 16px; text-align: left; }
+.tkd-contact-card label{
+	font-weight: 600;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: .3px;
+	color: var(--tkd-gray);
+	margin-bottom: 6px;
+	display: block;
+}
+.tkd-contact-card .form-control{
+	width: 100%;
+	border-radius: 6px;
+	border: 1px solid #ddd;
+	padding: 10px 12px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.tkd-contact-card .form-control:focus{
+	border-color: var(--tkd-red);
+	box-shadow: 0 0 0 3px rgba(227,6,19,.12);
+	outline: none;
+}
+.tkd-btn-primary{
+	background: var(--tkd-red);
+	color: #fff;
+	border: none;
+	padding: 12px 22px;
+	border-radius: 6px;
+	font-weight: 700;
+	letter-spacing: .3px;
+	text-transform: uppercase;
+	font-size: 13px;
+	cursor: pointer;
+	transition: background-color 200ms ease;
+}
+.tkd-btn-primary:hover{ background: var(--tkd-red-dark); color: #fff; }
+
+@media (max-width: 991px){
+	.tkd-card{ margin-bottom: 20px; }
+	table.tkd-table{ font-size: 12.5px; }
+}

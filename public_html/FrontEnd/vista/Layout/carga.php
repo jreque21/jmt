@@ -18,6 +18,7 @@ function f_loag_pagina() {
     <link rel="stylesheet" href="../css/bootstrap.css">
 	  <link rel="stylesheet" href="../../BackEnd/recursos/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_tkd.css">
     <link rel="stylesheet" href="../../BackEnd/recursos/css/fonts.css">
 	  <link rel="stylesheet" href="../../BackEnd/recursos/css/ionicons.min.css">
 	  <script src="../../BackEnd/recursos/js/bootstrap.min.js"></script>

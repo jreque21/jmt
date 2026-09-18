@@ -140,9 +140,9 @@ if ($arrayPadron["V_TIPO_EST"] == 'EST_INT') {
 	$ls_logo_dir	= DEF_UPLOAD_ACADEMIA_DIR;
 }
 
-// Si la sede/academia no tiene logo propio, usar una imagen genérica de taekwondo
+// Si la sede/academia no tiene logo propio, usar el logo institucional (jmtalentgroup.com)
 if (empty($t_img_logo)) {
-	$ls_logo_src = '../../website/recursos/images/t_fondo.jpg';
+	$ls_logo_src = '../../website/recursos/images/Logo.png';
 } else {
 	$ls_logo_src = '../../upload/'.$ls_logo_dir.'/'.$t_img_logo;
 }
@@ -154,227 +154,138 @@ $ls_prox_hora = $crud->f_get_datosEstudiante($an_cod_estudiante,'D_PROX_HORA');
 $li_faltas = $crud->f_get_datosEstudiante($an_cod_estudiante,'N_FALTAS');
 
 ?>
-<style>
-	.tkd-panel{ --tkd-red:#e30613; --tkd-red-dark:#a80410; --tkd-dark:#14161a; --tkd-gray:#6b7178; }
-	.tkd-panel{ padding-bottom: 40px; }
-	.tkd-hero{
-		text-align: center;
-		padding: 36px 20px 28px;
-		background: linear-gradient(180deg, #14161a 0%, #1c1f26 100%);
-	}
-	.tkd-hero img{
-		border-radius: 50%;
-		background: #fff;
-		padding: 4px;
-		box-shadow: 0 6px 18px rgba(0,0,0,.35);
-	}
-	.tkd-hero__brand{ display:inline-block; margin-top: 12px; }
-	.tkd-hero__title{
-		margin: 6px 0 0;
-		color: #f4f4f4;
-		font-size: 15px;
-		font-weight: 600;
-		letter-spacing: .5px;
-		text-transform: uppercase;
-	}
-	.tkd-card{
-		background: #fff;
-		border-radius: 12px;
-		border: 1px solid #eceef0;
-		box-shadow: 0 2px 10px rgba(20,22,26,.06);
-		overflow: hidden;
-		margin-bottom: 24px;
-		transition: box-shadow 180ms ease, transform 180ms ease;
-	}
-	.tkd-card:hover{ box-shadow: 0 10px 26px rgba(20,22,26,.1); transform: translateY(-2px); }
-	.tkd-card__header{
-		padding: 14px 20px;
-		font-size: 12px;
-		font-weight: 700;
-		letter-spacing: 1.5px;
-		text-transform: uppercase;
-		color: var(--tkd-dark);
-		border-bottom: 1px solid #f0f1f2;
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
-	.tkd-card__header .fa{ color: var(--tkd-red); }
-	.tkd-card__body{ padding: 24px 20px; }
-	.tkd-card__footer{
-		padding: 12px 20px;
-		background: #fafafa;
-		border-top: 1px solid #f0f1f2;
-		font-size: 13px;
-		color: var(--tkd-gray);
-		text-align: center;
-	}
-	.tkd-card__footer a{ color: var(--tkd-red); font-weight: 600; }
-
-	/* Ficha técnica */
-	.tkd-profile{ text-align: center; }
-	.tkd-profile img.tkd-photo{
-		border-radius: 50%;
-		width: 130px;
-		height: 130px;
-		object-fit: cover;
-		border: 3px solid #fff;
-		box-shadow: 0 4px 14px rgba(0,0,0,.15);
-	}
-	.tkd-profile__name{ margin: 14px 0 2px; font-size: 17px; font-weight: 700; color: var(--tkd-dark); }
-	.tkd-profile__meta{ color: var(--tkd-gray); font-size: 13px; margin-bottom: 14px; }
-	.tkd-belt{
-		display: inline-flex;
-		align-items: center;
-		gap: 10px;
-		background: #faf6ea;
-		border: 1px solid #f0e6c8;
-		border-radius: 30px;
-		padding: 6px 16px 6px 6px;
-	}
-	.tkd-belt img{ width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
-	.tkd-belt span{ font-size: 13px; font-weight: 600; color: var(--tkd-dark); }
-
-	/* Indicadores */
-	.tkd-stat{ display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #f4f4f4; }
-	.tkd-stat:last-child{ border-bottom: none; }
-	.tkd-stat__icon{
-		flex: 0 0 auto;
-		width: 44px; height: 44px;
-		border-radius: 50%;
-		background: #fdecec;
-		display: flex; align-items: center; justify-content: center;
-	}
-	.tkd-stat__icon .fa{ color: var(--tkd-red); font-size: 18px; }
-	.tkd-stat__icon.is-ok{ background: #eaf7e6; }
-	.tkd-stat__icon.is-ok .fa{ color: #4caf50; }
-	.tkd-stat__icon.is-warn{ background: #fdecec; }
-	.tkd-stat__icon.is-warn .fa{ color: var(--tkd-red); }
-	.tkd-stat__label{ font-size: 12px; color: var(--tkd-gray); text-transform: uppercase; letter-spacing: .3px; }
-	.tkd-stat__value{ font-size: 15px; font-weight: 700; color: var(--tkd-dark); }
-
-	/* Seguimiento */
-	.tkd-nav{ display: flex; flex-direction: column; gap: 10px; }
-	.tkd-nav a{
-		display: flex; align-items: center; gap: 12px;
-		padding: 12px 16px;
-		border-radius: 8px;
-		background: #f7f7f8;
-		color: var(--tkd-dark);
-		font-size: 13px;
-		font-weight: 600;
-		text-decoration: none;
-		border: 1px solid transparent;
-		transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
-	}
-	.tkd-nav a:hover{ background: #fdecec; border-color: #f5c9c9; color: var(--tkd-red-dark); }
-	.tkd-nav a .fa{ width: 20px; text-align: center; color: var(--tkd-red); }
-	@media (max-width: 991px){ .tkd-card{ margin-bottom: 20px; } }
-</style>
-
-<div class="tkd-panel">
-
-	<div class="tkd-hero">
-		<a class="tkd-hero__brand" href="panel_intranet.php"><img src="<?php echo $ls_logo_src;?>" alt="" width="86" height="86"/></a>
-		<div class="tkd-hero__title"><?php echo $ls_lugar; ?></div>
+	<div align = 'center'>
+		</br>
+		<a class="brand-name" href="panel_intranet.php"><img src="<?php echo $ls_logo_src;?>" alt="" width="140" height="40"/></a>
+		</br></br>
 	</div>
 
-	<div class="container">
+		<div class="container">
 		<div class="row">
 
 			<div class="col-lg-4">
-				<div class="tkd-card">
-					<div class="tkd-card__header"><span class="fa fa-id-card-o"></span> Ficha Técnica</div>
-					<div class="tkd-card__body tkd-profile">
-						<?php
+
+				<div class="panel panel-primary" align = 'center'>
+					<div class="panel-heading">F I C H A  &nbsp;&nbsp; T É C N I C A</div>
+					<div class="panel-body">
+						<?php			
 							if(strlen($ls_foto)>1){
-							?>
-								<img class="tkd-photo" src="../../upload/estudiante/<?php echo $ls_foto;?>">
+							?>	
+								<img class="img-rounded" src="../../upload/estudiante/<?php echo $ls_foto;?>" width="155" align ='center'>
 							<?php
 							}else{
-							?>
-								<img class="tkd-photo" src="../../upload/estudiante/<?php echo $ls_foto_default;?>">
+							?>	
+								<img class="img-rounded" src="../../upload/estudiante/<?php echo $ls_foto_default;?>" width="155">
 							<?php
 							}
+							echo "</br>";
+							echo $arrayPadron ["V_NOMBRES"].', '.$arrayPadron ["V_APE_PATERNO"].' '.$arrayPadron ["V_APE_MATERNO"].'</br>';
+							echo $li_edad.' Años - '.$ls_des_sexo.'</br>';							
+							?>
+							<img class="img-rounded" src="../../upload/cinturon/<?php echo $ls_cinturon_foto;?>" >
+							<?php
+							echo '</br>Cinturón '.$ls_cinturon.'</br>';
 						?>
-						<div class="tkd-profile__name"><?php echo $arrayPadron ["V_NOMBRES"].', '.$arrayPadron ["V_APE_PATERNO"].' '.$arrayPadron ["V_APE_MATERNO"]; ?></div>
-						<div class="tkd-profile__meta"><?php echo $li_edad.' Años · '.$ls_des_sexo; ?></div>
-						<div class="tkd-belt">
-							<img src="../../upload/cinturon/<?php echo $ls_cinturon_foto;?>">
-							<span>Cinturón <?php echo $ls_cinturon; ?></span>
-						</div>
 					</div>
-					<div class="tkd-card__footer"><?php echo $ls_lugar; ?></div>
+					<div class="panel-footer"><?php echo $ls_lugar; ?></div>
 				</div>
+	  
 			</div>
 
 			<div class="col-lg-4">
-				<div class="tkd-card">
-					<div class="tkd-card__header"><span class="fa fa-line-chart"></span> Indicadores</div>
-					<div class="tkd-card__body">
 
-						<div class="tkd-stat">
-							<div class="tkd-stat__icon"><span class="fa fa-calendar"></span></div>
-							<div>
-								<div class="tkd-stat__label">Próxima Clase</div>
-								<div class="tkd-stat__value"><?php echo $ls_prox_fecha; ?></div>
+				<div class="panel panel-primary" >
+					<div class="panel-heading" align = 'center'>I N D I C A D O R E S</div>
+					<div class="panel-body">						
+						&nbsp;
+						<div class="row g-0">
+							<div class="col-md-2">
+								<span class="fa fa-calendar fa-4x fa-lg"></span>
+							</div>
+							<div class="col-md-10">							
+								<div class ='h_sub'>Próxima Clase <strong>[ <?php echo $ls_prox_fecha; ?> ]</strong></div>
+							</div>
+						</div>
+						
+						<div class="row g-0">
+							<div class="col-md-2">
+								<span class="fa fa-clock-o fa-4x fa-lg"></span>
+							</div>
+							<div class="col-md-10">
+								<div class ='h_sub'>Hora de Clase <strong>[ <?php echo substr($ls_prox_hora,0,5); ?> ]</strong></div>
+							</div>
+						</div>
+						 
+						<div class="row g-0">
+							<div class="col-md-2">
+								<span class="fa fa-check-square-o fa-4x fa-lg"></span>
+							</div>
+							<div class="col-md-10">
+								<div class ='h_sub'>Faltas <strong>[ <?php echo $li_faltas; ?> ]</strong></div>
 							</div>
 						</div>
 
-						<div class="tkd-stat">
-							<div class="tkd-stat__icon"><span class="fa fa-clock-o"></span></div>
-							<div>
-								<div class="tkd-stat__label">Hora de Clase</div>
-								<div class="tkd-stat__value"><?php echo substr($ls_prox_hora,0,5); ?></div>
+						<div class="row g-0">
+							<div class="col-md-2">
+								<?php if ($ldc_deudas == 0) { ?>
+									<span class="fa fa-smile-o fa-4x fa-lg"></span>
+								<?php } else { ?>	
+									<span class="fa fa-frown-o fa-4x fa-lg"></span>
+								<?php } ?>	
 							</div>
-						</div>
-
-						<div class="tkd-stat">
-							<div class="tkd-stat__icon"><span class="fa fa-check-square-o"></span></div>
-							<div>
-								<div class="tkd-stat__label">Faltas</div>
-								<div class="tkd-stat__value"><?php echo $li_faltas; ?></div>
-							</div>
-						</div>
-
-						<div class="tkd-stat">
-							<?php if ($ldc_deudas == 0) { ?>
-								<div class="tkd-stat__icon is-ok"><span class="fa fa-smile-o"></span></div>
-							<?php } else { ?>
-								<div class="tkd-stat__icon is-warn"><span class="fa fa-frown-o"></span></div>
-							<?php } ?>
-							<div>
-								<div class="tkd-stat__label">Deudas</div>
-								<div class="tkd-stat__value"><?php echo number_format($ldc_deudas, 2, '.', ' '); ?></div>
+							<div class="col-md-10">
+								<div class ='h_sub'>Deudas <strong>[ <?php echo number_format($ldc_deudas, 2, '.', ' '); ?> ]</strong></div>
+								&nbsp;
 							</div>
 						</div>
 
 					</div>
-					<div class="tkd-card__footer"><?php echo $ls_tipoest; ?></div>
+					<div class="panel-footer" align = 'center'><?php echo $ls_tipoest; ?></div>
 				</div>
+	  
 			</div>
-
+							
 			<div class="col-lg-4">
-				<div class="tkd-card">
-					<div class="tkd-card__header"><span class="fa fa-compass"></span> Seguimiento</div>
-					<div class="tkd-card__body">
-						<div class="tkd-nav">
-							<a href="datos.php"><span class="fa fa-drivers-license-o"></span> Mis datos personales</a>
-							<a href="cinturones.php"><span class="fa fa-mortar-board"></span> Mis cinturones</a>
-							<a href="asistencia.php"><span class="fa fa-calendar-check-o"></span> Mi asistencia</a>
-							<a href="pagos.php"><span class="fa fa-cc-visa"></span> Mis pagos</a>
-							<a href="notas.php"><span class="fa fa-bar-chart-o"></span> Mis avances</a>
-							<a href="traslados.php"><span class="fa fa-plane"></span> Traslados</a>
-						</div>
+
+				<div class="panel panel-primary" align = 'center'>
+					<div class="panel-heading">S E G U I M I E N T O</div>
+					<div class="panel-body">
+
+						</br>
+
+						<a class="btn btn-info" style="width: 100%;" href="datos.php" role="button">
+							<span class="fa fa-drivers-license-o"></span> MIS DATOS PERSONALES
+						</a>
+						</br></br>
+						<a class="btn btn-warning" style="width: 100%;" href="cinturones.php" role="button">
+							<span class="fa fa-mortar-board"></span> MIS CINTURONES
+						</a>
+						</br></br>
+						<a class="btn btn-success" style="width: 100%;" href="asistencia.php" role="button">
+							<span class="fa fa-calendar-check-o"></span> MI ASISTENCIA
+						</a>
+						</br></br>
+						<a class="btn btn-warning" style="width: 100%;" href="pagos.php" role="button">
+							<span class="fa fa-cc-visa"></span> MIS PAGOS
+						</a>
+						</br></br>
+						<a class="btn btn-info" style="width: 100%;" href="notas.php" role="button">
+							<span class="fa fa-bar-chart-o"></span> MIS AVANCES
+						</a>
+						</br></br>
+						<a class="btn btn-success" style="width: 100%;" href="traslados.php" role="button">
+							<span class="fa fa-plane"></span> TRASLADOS
+						</a>
+						</br></br>
+
 					</div>
-					<div class="tkd-card__footer"><a href="mae_cambiarclave.php">Cambiar Clave</a></div>
+					<div class="panel-footer"><a href="mae_cambiarclave.php">Cambiar Clave</a></div>
 				</div>
+	  
 			</div>
 
 		</div>
 	</div>
-
-</div>
 
 <?php
 }
