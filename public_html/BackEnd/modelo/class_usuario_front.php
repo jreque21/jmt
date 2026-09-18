@@ -2,8 +2,8 @@
 /* Sentencias Sql */
 
 // Incluye Clase BD
-require_once("../../BackEnd/config/class_baseDatos.php");
-require_once("../../BackEnd/config/conf_mensajes.php");
+require_once(__DIR__ . "/../config/class_baseDatos.php");
+require_once(__DIR__ . "/../config/conf_mensajes.php");
 
 class usuario{
 	
