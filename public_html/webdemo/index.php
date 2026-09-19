@@ -54,6 +54,46 @@ require_once __DIR__ . '/partials/header.php';
 		</div>
 	</section>
 
+	<section class="seccion seccion--publico">
+		<div class="container">
+			<div class="seccion__cabecera" data-animar>
+				<span class="seccion__kicker">¿Para quién son las clases?</span>
+				<h2 class="seccion__titulo">Taekwondo para toda la familia</h2>
+				<p>Formamos a cada estudiante según su etapa: desde los primeros pasos en la infancia hasta el entrenamiento competitivo en la adultez.</p>
+			</div>
+			<div class="grid grid--4">
+				<div class="card card--feature card--publico" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono feature-card__icono--publico"><i class="fa fa-child" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Niños</h3>
+						<p class="card__meta">Coordinación, disciplina y respeto desde temprana edad, en un ambiente seguro y divertido.</p>
+					</div>
+				</div>
+				<div class="card card--feature card--publico" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono feature-card__icono--publico"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Adolescentes</h3>
+						<p class="card__meta">Carácter, confianza y técnica en una etapa clave de su desarrollo personal.</p>
+					</div>
+				</div>
+				<div class="card card--feature card--publico" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono feature-card__icono--publico"><i class="fa fa-female" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Damas</h3>
+						<p class="card__meta">Defensa personal, acondicionamiento físico y superación, a cualquier edad.</p>
+					</div>
+				</div>
+				<div class="card card--feature card--publico" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono feature-card__icono--publico"><i class="fa fa-male" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Varones</h3>
+						<p class="card__meta">Entrenamiento técnico y físico para jóvenes y adultos que buscan un reto real.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="seccion">
 		<div class="container">
 			<div class="seccion__cabecera" data-animar>

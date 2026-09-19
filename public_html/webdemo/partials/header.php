@@ -30,6 +30,16 @@
 
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+<div class="topbar">
+	<div class="container topbar__inner">
+		<span class="topbar__msg">
+			<i class="fa fa-bullhorn" aria-hidden="true"></i>
+			Promociones vigentes y graduaciones de cinturón durante todo el año
+		</span>
+		<a href="contacto.php" class="topbar__link">Consultar fechas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+	</div>
+</div>
+
 <header class="site-header">
 	<div class="container site-header__inner">
 		<a href="index.php" class="brand">
