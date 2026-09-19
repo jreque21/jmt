@@ -26,23 +26,28 @@ require_once __DIR__ . '/partials/header.php';
 				<a href="horarios.php" class="btn btn--secundario">Ver horarios</a>
 			</div>
 		</div>
+		<span class="hero__scroll" aria-hidden="true"></span>
 	</section>
 
 	<section class="stats">
 		<div class="container stats__grid">
-			<div>
+			<div data-animar>
+				<span class="stats__icono"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
 				<span class="stats__numero"><?php echo (int) $total_sedes; ?></span>
 				<span class="stats__etiqueta"><?php echo $total_sedes == 1 ? 'Sede' : 'Sedes'; ?> en Chachapoyas</span>
 			</div>
-			<div>
+			<div data-animar>
+				<span class="stats__icono"><i class="fa fa-user" aria-hidden="true"></i></span>
 				<span class="stats__numero"><?php echo (int) $total_instructores; ?></span>
 				<span class="stats__etiqueta"><?php echo $total_instructores == 1 ? 'Instructor certificado' : 'Instructores certificados'; ?></span>
 			</div>
-			<div>
+			<div data-animar>
+				<span class="stats__icono"><i class="fa fa-certificate" aria-hidden="true"></i></span>
 				<span class="stats__numero"><?php echo count($cinturones); ?></span>
 				<span class="stats__etiqueta">Niveles de cinturón</span>
 			</div>
-			<div>
+			<div data-animar>
+				<span class="stats__icono"><i class="fa fa-shield" aria-hidden="true"></i></span>
 				<span class="stats__numero">100%</span>
 				<span class="stats__etiqueta">Enfoque en disciplina y valores</span>
 			</div>
