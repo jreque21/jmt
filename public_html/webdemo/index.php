@@ -16,14 +16,49 @@ require_once __DIR__ . '/partials/header.php';
 
 <main id="contenido">
 
-	<section class="hero" style="background-image:url('recursos/images/t_fondo.jpg');">
-		<div class="container hero__inner">
-			<span class="hero__kicker">Academia de Taekwondo WT</span>
-			<h1><?php echo h($empresa_nombre); ?></h1>
-			<p><?php echo h(!empty($empresa_lema) ? $empresa_lema : 'Formamos disciplina, respeto y fortaleza a través del taekwondo, con clases para toda la familia en nuestras sedes de Chachapoyas.'); ?></p>
-			<div class="hero__acciones">
-				<a href="contacto.php" class="btn btn--primario">Solicitar información</a>
-				<a href="horarios.php" class="btn btn--secundario">Ver horarios</a>
+	<section class="hero hero--portada" style="background-image:url('recursos/images/t_fondo.jpg');">
+		<div class="container hero__grid">
+			<div class="hero__inner">
+				<span class="hero__kicker"><i class="fa fa-shield" aria-hidden="true"></i> Academia de Taekwondo WT</span>
+				<h1><?php echo h($empresa_nombre); ?></h1>
+				<p><?php echo h(!empty($empresa_lema) ? $empresa_lema : 'Formamos disciplina, respeto y fortaleza a través del taekwondo, con clases para toda la familia en nuestras sedes de Chachapoyas.'); ?></p>
+				<div class="hero__acciones">
+					<a href="contacto.php" class="btn btn--primario btn--grande">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i> Solicitar información
+					</a>
+					<a href="horarios.php" class="btn btn--secundario btn--grande">
+						<i class="fa fa-calendar" aria-hidden="true"></i> Ver horarios
+					</a>
+				</div>
+				<div class="hero__confianza">
+					<span><i class="fa fa-check-circle" aria-hidden="true"></i> Instructores certificados</span>
+					<span><i class="fa fa-check-circle" aria-hidden="true"></i> Múltiples sedes</span>
+					<span><i class="fa fa-check-circle" aria-hidden="true"></i> Todas las edades</span>
+				</div>
+			</div>
+
+			<div class="hero__tarjeta" data-animar>
+				<div class="hero__tarjeta-cabecera">
+					<span class="hero__tarjeta-belt" aria-hidden="true"></span>
+					<strong>Resumen de la academia</strong>
+				</div>
+				<div class="hero__tarjeta-stats">
+					<div>
+						<span class="hero__tarjeta-num"><?php echo (int) $total_sedes; ?></span>
+						<span><?php echo $total_sedes == 1 ? 'Sede' : 'Sedes'; ?></span>
+					</div>
+					<div>
+						<span class="hero__tarjeta-num"><?php echo (int) $total_instructores; ?></span>
+						<span><?php echo $total_instructores == 1 ? 'Instructor' : 'Instructores'; ?></span>
+					</div>
+					<div>
+						<span class="hero__tarjeta-num"><?php echo count($cinturones); ?></span>
+						<span>Grados</span>
+					</div>
+				</div>
+				<a href="contacto.php" class="hero__tarjeta-cta">
+					Reserva tu clase de prueba <i class="fa fa-angle-right" aria-hidden="true"></i>
+				</a>
 			</div>
 		</div>
 		<span class="hero__scroll" aria-hidden="true"></span>
@@ -267,6 +302,17 @@ require_once __DIR__ . '/partials/header.php';
 						<h3 class="card__titulo">Pagos flexibles</h3>
 						<p class="card__meta">Distintas modalidades de pago (mensual, por paquete de clases) y registro de pagos por estudiante.</p>
 					</div>
+				</div>
+			</div>
+
+			<div class="medios-pago" data-animar>
+				<span class="medios-pago__titulo">Medios de pago aceptados</span>
+				<div class="medios-pago__lista">
+					<span class="medio-pago"><i class="fa fa-credit-card" aria-hidden="true"></i> Tarjeta de crédito/débito</span>
+					<span class="medio-pago medio-pago--yape"><i class="fa fa-mobile" aria-hidden="true"></i> Yape</span>
+					<span class="medio-pago medio-pago--plin"><i class="fa fa-mobile" aria-hidden="true"></i> Plin</span>
+					<span class="medio-pago"><i class="fa fa-university" aria-hidden="true"></i> Transferencia bancaria</span>
+					<span class="medio-pago"><i class="fa fa-money" aria-hidden="true"></i> Efectivo en sede</span>
 				</div>
 			</div>
 		</div>

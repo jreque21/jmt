@@ -339,6 +339,113 @@ button { font-family: inherit; cursor: pointer; }
 	margin-top: var(--esp-6);
 }
 
+/* ---- Portada (hero con tarjeta flotante) ---- */
+.hero--portada { padding-block: calc(var(--esp-10) + var(--esp-4)) calc(var(--esp-11) + var(--esp-4)); }
+.hero--portada::before { opacity: 0.35; }
+.hero__grid {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: 1.2fr 0.9fr;
+	gap: var(--esp-8);
+	align-items: center;
+}
+.hero__grid .hero__inner { max-width: none; }
+
+.btn--grande { padding: 15px 30px; font-size: 1rem; }
+
+.hero__confianza {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--esp-5);
+	margin-top: var(--esp-6);
+	padding-top: var(--esp-5);
+	border-top: 1px solid rgba(255,255,255,0.15);
+}
+.hero__confianza span {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.85rem;
+	color: rgba(255,255,255,0.85);
+	font-weight: 500;
+}
+.hero__confianza .fa-check-circle { color: var(--color-primario-claro); }
+
+.hero__tarjeta {
+	position: relative;
+	background: rgba(255,255,255,0.08);
+	backdrop-filter: blur(16px);
+	border: 1px solid rgba(255,255,255,0.18);
+	border-radius: var(--radio-lg);
+	padding: var(--esp-6);
+	box-shadow: var(--sombra-lg);
+	color: #fff;
+}
+.hero__tarjeta-cabecera {
+	display: flex;
+	align-items: center;
+	gap: var(--esp-3);
+	margin-bottom: var(--esp-5);
+	font-size: 0.95rem;
+}
+.hero__tarjeta-belt {
+	width: 34px;
+	height: 8px;
+	border-radius: var(--radio-pill);
+	background: linear-gradient(90deg,
+		#f5f5f5 0 16.6%, #f4d03f 16.6% 33.2%, #27ae60 33.2% 49.8%,
+		#2980b9 49.8% 66.4%, var(--color-primario) 66.4% 83%, #111 83% 100%);
+	flex-shrink: 0;
+}
+.hero__tarjeta-stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--esp-3);
+	text-align: center;
+	margin-bottom: var(--esp-6);
+}
+.hero__tarjeta-stats > div {
+	padding: var(--esp-3) var(--esp-1);
+	background: rgba(255,255,255,0.06);
+	border-radius: var(--radio-md);
+}
+.hero__tarjeta-stats > div > span:first-child { display: block; }
+.hero__tarjeta-num {
+	font-size: 1.9rem;
+	font-weight: 800;
+	color: var(--color-primario-claro);
+}
+.hero__tarjeta-stats > div > span:last-child {
+	font-size: 0.72rem;
+	color: rgba(255,255,255,0.75);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+.hero__tarjeta-cta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--esp-2);
+	background: var(--color-primario);
+	color: #fff;
+	font-weight: 600;
+	font-size: 0.92rem;
+	padding: 14px 18px;
+	border-radius: var(--radio-md);
+	transition: background var(--transicion), transform var(--transicion);
+}
+.hero__tarjeta-cta:hover { background: var(--color-primario-oscuro); transform: translateY(-2px); }
+
+@media (max-width: 900px) {
+	.hero__grid { grid-template-columns: 1fr; }
+	.hero__tarjeta { max-width: 420px; }
+}
+@media (max-width: 640px) {
+	.hero__confianza { gap: var(--esp-3); }
+	.btn--grande { padding: 13px 24px; font-size: 0.92rem; }
+}
+
 .hero__scroll {
 	position: absolute;
 	left: 50%;
@@ -697,6 +804,51 @@ button { font-family: inherit; cursor: pointer; }
 .sede-chip:hover { background: var(--color-primario); color: #fff; border-color: var(--color-primario); }
 .sede-chip .fa { color: var(--color-primario); transition: color var(--transicion); }
 .sede-chip:hover .fa { color: #fff; }
+
+/* ---- Medios de pago ---- */
+.medios-pago {
+	margin-top: var(--esp-7);
+	padding-top: var(--esp-6);
+	border-top: 1px solid var(--color-borde);
+	text-align: center;
+}
+.medios-pago__titulo {
+	display: block;
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--color-texto-suave);
+	margin-bottom: var(--esp-3);
+}
+.medios-pago__lista {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--esp-2);
+}
+.medios-pago__lista--vertical { justify-content: flex-start; }
+.medio-pago {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 16px;
+	border-radius: var(--radio-pill);
+	background: var(--color-fondo-alterno);
+	border: 1px solid var(--color-borde);
+	font-size: 0.85rem;
+	font-weight: 500;
+	color: var(--color-texto);
+}
+.medio-pago .fa { color: var(--color-primario); }
+.medio-pago--yape { background: rgba(114,44,168,0.08); border-color: rgba(114,44,168,0.25); color: #722ca8; }
+.medio-pago--yape .fa { color: #722ca8; }
+.medio-pago--plin { background: rgba(0,190,164,0.08); border-color: rgba(0,190,164,0.3); color: #00786a; }
+.medio-pago--plin .fa { color: #00a896; }
+
+@media (max-width: 640px) {
+	.medios-pago__lista { justify-content: flex-start; }
+}
 
 /* ---- Formulario ---- */
 .formulario { display: grid; gap: var(--esp-4); }

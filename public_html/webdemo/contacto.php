@@ -95,6 +95,19 @@ require_once __DIR__ . '/partials/header.php';
 					</div>
 				</div>
 
+				<div class="card" style="margin-top: var(--esp-5);">
+					<div class="card__cuerpo">
+						<h3 class="card__titulo">Medios de pago</h3>
+						<div class="medios-pago__lista medios-pago__lista--vertical">
+							<span class="medio-pago"><i class="fa fa-credit-card" aria-hidden="true"></i> Tarjeta de crédito/débito</span>
+							<span class="medio-pago medio-pago--yape"><i class="fa fa-mobile" aria-hidden="true"></i> Yape</span>
+							<span class="medio-pago medio-pago--plin"><i class="fa fa-mobile" aria-hidden="true"></i> Plin</span>
+							<span class="medio-pago"><i class="fa fa-university" aria-hidden="true"></i> Transferencia bancaria</span>
+							<span class="medio-pago"><i class="fa fa-money" aria-hidden="true"></i> Efectivo en sede</span>
+						</div>
+					</div>
+				</div>
+
 				<?php if (!empty($sedes)): ?>
 					<div class="card" style="margin-top: var(--esp-5);">
 						<div class="card__cuerpo">
