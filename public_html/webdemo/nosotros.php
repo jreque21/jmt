@@ -94,7 +94,124 @@ require_once __DIR__ . '/partials/header.php';
 	</section>
 	<?php endif; ?>
 
+	<section class="seccion seccion--alterna">
+		<div class="container">
+			<div class="seccion__cabecera" data-animar>
+				<span class="seccion__kicker">Fundamentos</span>
+				<h2 class="seccion__titulo">Técnicas básicas del Taekwondo</h2>
+				<p>Un vistazo a los pilares técnicos que se trabajan progresivamente en cada cinturón.</p>
+			</div>
+			<div class="grid grid--3">
+				<div class="card" data-animar>
+					<div class="card__cuerpo">
+						<h3 class="card__titulo"><i class="fa fa-star" aria-hidden="true" style="color:var(--color-primario);"></i> Chagi (Patadas)</h3>
+						<p class="card__meta">La técnica más distintiva del Taekwondo: patadas frontales, laterales, circulares y giratorias, base de su estilo de combate.</p>
+					</div>
+				</div>
+				<div class="card" data-animar>
+					<div class="card__cuerpo">
+						<h3 class="card__titulo"><i class="fa fa-hand-rock-o" aria-hidden="true" style="color:var(--color-primario);"></i> Jirugi (Golpes de puño)</h3>
+						<p class="card__meta">Técnicas de puño directo y de precisión que complementan el trabajo de piernas.</p>
+					</div>
+				</div>
+				<div class="card" data-animar>
+					<div class="card__cuerpo">
+						<h3 class="card__titulo"><i class="fa fa-shield" aria-hidden="true" style="color:var(--color-primario);"></i> Makgi (Bloqueos)</h3>
+						<p class="card__meta">Defensas con brazos y piernas para neutralizar ataques antes de responder.</p>
+					</div>
+				</div>
+				<div class="card" data-animar>
+					<div class="card__cuerpo">
+						<h3 class="card__titulo"><i class="fa fa-male" aria-hidden="true" style="color:var(--color-primario);"></i> Seogi (Posturas)</h3>
+						<p class="card__meta">Posiciones de base que dan estabilidad, equilibrio y fuerza a cada técnica.</p>
+					</div>
+				</div>
+				<div class="card" data-animar>
+					<div class="card__cuerpo">
+						<h3 class="card__titulo"><i class="fa fa-refresh" aria-hidden="true" style="color:var(--color-primario);"></i> Poomsae (Formas)</h3>
+						<p class="card__meta">Secuencias predefinidas de técnicas que se evalúan en cada examen de grado.</p>
+					</div>
+				</div>
+				<div class="card" data-animar>
+					<div class="card__cuerpo">
+						<h3 class="card__titulo"><i class="fa fa-users" aria-hidden="true" style="color:var(--color-primario);"></i> Kyorugi (Combate)</h3>
+						<p class="card__meta">Práctica de combate controlado, con reglas y protección, donde se aplican las técnicas aprendidas.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="seccion">
+		<div class="container">
+			<div class="seccion__cabecera" data-animar>
+				<span class="seccion__kicker">Equipamiento</span>
+				<h2 class="seccion__titulo">Implementos del Taekwondo</h2>
+				<p>El equipo básico que acompaña la práctica, desde el primer día hasta el combate.</p>
+			</div>
+			<div class="grid grid--4">
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-tint" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Dobok</h3>
+						<p class="card__meta">El uniforme tradicional de entrenamiento, en color blanco.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-minus" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Ti (Cinturón)</h3>
+						<p class="card__meta">Indica el grado y nivel de progreso del estudiante dentro del sistema de cinturones.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-shield" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Peto (Hogu)</h3>
+						<p class="card__meta">Protector de tronco usado en la práctica de combate (Kyorugi).</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Casco protector</h3>
+						<p class="card__meta">Protege la cabeza durante los combates de práctica y competencia.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Guantines y espinilleras</h3>
+						<p class="card__meta">Protección de manos, antebrazos y piernas para entrenar con seguridad.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Coquilla</h3>
+						<p class="card__meta">Protector pélvico indispensable, especialmente en la práctica de combate.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-hand-rock-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Paos y manoplas</h3>
+						<p class="card__meta">Objetivos de golpeo usados en clase para trabajar precisión y potencia de patadas.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-certificate" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Tablas de ruptura</h3>
+						<p class="card__meta">Se usan en exámenes de grado y exhibiciones para demostrar potencia técnica.</p>
+					</div>
+				</div>
+			</div>
+			<p class="faq-panel__intro" style="text-align:center; margin-top: var(--esp-6);">La academia orienta sobre dónde adquirir cada implemento según el nivel del estudiante.</p>
+		</div>
+	</section>
+
+	<section class="seccion seccion--alterna">
 		<div class="container">
 			<div class="seccion__cabecera" data-animar>
 				<span class="seccion__kicker">Nuestros valores</span>
