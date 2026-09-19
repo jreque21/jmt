@@ -42,6 +42,29 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader" aria-hidden="true">
+	<div class="preloader__anillo">
+		<img src="<?php echo h($empresa_logo); ?>" alt="" class="preloader__logo">
+	</div>
+</div>
+<script>
+	(function () {
+		var preloader = document.getElementById('preloader');
+		if (!preloader) return;
+		var oculto = false;
+		function ocultarPreloader() {
+			if (oculto) return;
+			oculto = true;
+			preloader.classList.add('preloader--oculto');
+			setTimeout(function () {
+				if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
+			}, 350);
+		}
+		window.addEventListener('load', ocultarPreloader);
+		setTimeout(ocultarPreloader, 900);
+	})();
+</script>
+
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <div class="topbar">
