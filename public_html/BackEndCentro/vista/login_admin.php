@@ -62,7 +62,7 @@ require_once("../config/global.php");
 			<?php require_once 'Layout/login_aviso.php';?>
 			<div class="form-header">
 				<div class="admin-badge">
-					<i class="fa fa-user-md"></i>
+					<img src="../../website/recursos/images/Logo.png" alt="Logo">
 				</div>
 				<h4>Acceso Administrador</h4>
 				<small class="text-muted">Centro Terapéutico</small>

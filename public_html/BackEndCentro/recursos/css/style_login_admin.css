@@ -43,19 +43,27 @@ body{
 }
 
 .admin-badge{
-	width: 68px;
-	height: 68px;
+	width: 84px;
+	height: 84px;
 	margin: 0 auto 16px;
 	border-radius: 50%;
-	background: rgba(14,149,148,.1);
+	background: #fff;
 	border: 2px solid var(--ct-teal);
+	box-shadow: 0 4px 14px rgba(0,0,0,.12);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	overflow: hidden;
 }
 .admin-badge i{
 	font-size: 28px;
 	color: var(--ct-teal);
+	margin: 0;
+}
+.admin-badge img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	margin: 0;
 }
 
