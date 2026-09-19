@@ -54,6 +54,78 @@ require_once __DIR__ . '/partials/header.php';
 		</div>
 	</section>
 
+	<section class="seccion">
+		<div class="container grid grid--tkd">
+			<div data-animar>
+				<span class="seccion__kicker">¿Qué es el Taekwondo?</span>
+				<h2 class="seccion__titulo">Mucho más que patadas</h2>
+				<p>El Taekwondo (태권도) es un arte marcial coreano reconocido como deporte olímpico, que combina técnicas de golpeo con manos y pies, alta exigencia física y una filosofía basada en el respeto, la disciplina y la superación personal. Es practicado por millones de personas en el mundo, en la Federación Mundial de Taekwondo (World Taekwondo).</p>
+				<p>En nuestras clases, cada estudiante avanza a su propio ritmo dentro de un sistema de grados (cinturones) que reconoce tanto el nivel técnico como el compromiso y los valores demostrados dentro y fuera del dojang.</p>
+				<a href="nosotros.php" class="btn btn--primario">Conocer nuestra metodología</a>
+			</div>
+			<div class="video-embed" data-animar>
+				<div class="video-embed__frame">
+					<iframe src="https://www.youtube.com/embed/Y6JkrMVw4Lo" title="Presentación oficial de World Taekwondo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<p class="video-embed__credito">Video oficial de <a href="https://www.youtube.com/@worldtaekwondo" target="_blank" rel="noopener">World Taekwondo</a>, la federación internacional del deporte.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="seccion seccion--alterna">
+		<div class="container">
+			<div class="seccion__cabecera" data-animar>
+				<span class="seccion__kicker">Beneficios</span>
+				<h2 class="seccion__titulo">Por qué practicar Taekwondo</h2>
+				<p>Un entrenamiento completo que trabaja el cuerpo y la mente, con beneficios que se notan dentro y fuera del dojang.</p>
+			</div>
+			<div class="grid grid--3">
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Salud física</h3>
+						<p class="card__meta">Mejora la fuerza, flexibilidad, coordinación y resistencia cardiovascular en cada sesión.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-shield" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Defensa personal</h3>
+						<p class="card__meta">Técnicas prácticas de defensa que generan seguridad y confianza en cualquier situación.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-smile-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Confianza y autoestima</h3>
+						<p class="card__meta">Cada nuevo cinturón refuerza la autodisciplina y la seguridad en uno mismo.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-balance-scale" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Disciplina y enfoque</h3>
+						<p class="card__meta">Rutinas estructuradas que mejoran la concentración dentro y fuera de clase.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-users" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Valores y comunidad</h3>
+						<p class="card__meta">Respeto, cortesía e integridad, practicados junto a compañeros de todas las edades.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Manejo del estrés</h3>
+						<p class="card__meta">Una vía saludable para liberar energía y tensión, dentro de una rutina constante.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="seccion seccion--publico">
 		<div class="container">
 			<div class="seccion__cabecera" data-animar>
