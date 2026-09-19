@@ -46,8 +46,9 @@ if (isset($_POST) && !empty($_POST)) {
 
     // ==================================== VALIDACIONES SERVIDOR ==================================== //
 
-    // Validar que la cita no esté reprogramada, cancelada o atendida
-    // (una vez reprogramada, la cita original queda congelada como historial)
+    // Validar que la cita no esté reprogramada, cancelada o completada
+    // (una vez reprogramada, la cita original queda congelada como historial).
+    // Una cita "Atendida" sí puede seguir modificándose hasta marcarse "Completada".
     if ($lb_result == true) {
 
         $array_campo_pk = array('N_COD_CITA');
@@ -61,8 +62,8 @@ if (isset($_POST) && !empty($_POST)) {
         } elseif ($ls_estado_actual == 'CAN') {
             $ls_mensaje = 'Esta cita está cancelada y ya no puede modificarse.';
             $lb_result  = false;
-        } elseif ($ls_estado_actual == 'ATE') {
-            $ls_mensaje = 'Esta cita ya fue atendida y ya no puede modificarse.';
+        } elseif ($ls_estado_actual == 'COM') {
+            $ls_mensaje = 'Esta cita ya fue completada y ya no puede modificarse.';
             $lb_result  = false;
         }
     }

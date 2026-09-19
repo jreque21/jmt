@@ -9,6 +9,7 @@ function f_estados_cita() {
 		'PRO' => array('Programada',  'label-default'),
 		'CON' => array('Confirmada',  'label-info'),
 		'ATE' => array('Atendida',    'label-success'),
+		'COM' => array('Completada',  'label-primary'),
 		'REP' => array('Reprogramada','label-warning'),
 		'CAN' => array('Cancelada',   'label-danger'),
 		'NOA' => array('No asistió',  'label-danger'),
@@ -247,7 +248,7 @@ function f_listado($as_titulo, $as_icono, $as_msgRpta, $as_fec_filtro = '', $as_
 														<a href="<?php echo $url_editar_fila?>">
 															<i class="fa fa-edit" title="Editar / Ver detalle"></i>
 														</a>
-														<?php if ($ls_estado_cod != 'CAN' && $ls_estado_cod != 'ATE') { ?>
+														<?php if ($ls_estado_cod != 'CAN' && $ls_estado_cod != 'ATE' && $ls_estado_cod != 'COM') { ?>
 														&nbsp;
 														<a href="javascript:void(0)" onclick="f_cancelar_cita(<?php echo intval($row["N_COD_CITA"]); ?>)">
 															<i class="fa fa-times-circle text-danger" title="Cancelar cita"></i>
@@ -332,7 +333,10 @@ function f_formulario($as_titulo, $as_icono, $as_msgRpta, $array = "") {
 
 	// Inicalizando variables
 	$lb_edit = is_array($array);
-	$lb_readonly = $lb_edit && in_array($array["V_ESTADO_CITA"], array('REP', 'CAN', 'ATE'));
+	// Una cita "Completada", "Cancelada" o "Reprogramada" ya no se puede modificar.
+	// Una cita "Atendida" sí se puede seguir editando (por ejemplo, para completar diagnóstico
+	// u observaciones antes de marcarla como "Completada").
+	$lb_readonly = $lb_edit && in_array($array["V_ESTADO_CITA"], array('REP', 'CAN', 'COM'));
 
 	// Instanciar clase
 	$crud = new crud();
@@ -646,7 +650,7 @@ function f_formulario($as_titulo, $as_icono, $as_msgRpta, $array = "") {
 								</div>
 								<?php } ?>
 
-								<?php if ($lb_edit && $array["V_ESTADO_CITA"] != 'CAN' && $array["V_ESTADO_CITA"] != 'ATE' && $array["V_ESTADO_CITA"] != 'REP') { ?>
+								<?php if ($lb_edit && $array["V_ESTADO_CITA"] != 'CAN' && $array["V_ESTADO_CITA"] != 'ATE' && $array["V_ESTADO_CITA"] != 'REP' && $array["V_ESTADO_CITA"] != 'COM') { ?>
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="panel panel-default" id="panel_reprogramar" style="display:none;">
@@ -698,11 +702,11 @@ function f_formulario($as_titulo, $as_icono, $as_msgRpta, $array = "") {
 											<input class="btn btn-success" type="submit" id="btn_actualizar" value="Actualizar"
 												onclick="this.form.action='<?php echo $url_actualizar?>'">
 											<?php } ?>
-											<?php if ($array["V_ESTADO_CITA"] != 'CAN' && $array["V_ESTADO_CITA"] != 'ATE' && $array["V_ESTADO_CITA"] != 'REP') { ?>
+											<?php if ($array["V_ESTADO_CITA"] != 'CAN' && $array["V_ESTADO_CITA"] != 'ATE' && $array["V_ESTADO_CITA"] != 'REP' && $array["V_ESTADO_CITA"] != 'COM') { ?>
 											<input class="btn btn-danger" type="button" id="btn_eliminar" value="Cancelar Cita"
 												onclick="f_cancelar_cita_form()">
 											<?php } ?>
-											<?php if ($array["V_ESTADO_CITA"] != 'CAN' && $array["V_ESTADO_CITA"] != 'ATE' && $array["V_ESTADO_CITA"] != 'REP') { ?>
+											<?php if ($array["V_ESTADO_CITA"] != 'CAN' && $array["V_ESTADO_CITA"] != 'ATE' && $array["V_ESTADO_CITA"] != 'REP' && $array["V_ESTADO_CITA"] != 'COM') { ?>
 											<input class="btn btn-warning" type="button" id="btn_reprogramar" value="Reprogramar"
 												onclick="$('#panel_reprogramar').slideDown()">
 											<?php } ?>
