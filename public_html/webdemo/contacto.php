@@ -21,56 +21,74 @@ require_once __DIR__ . '/partials/header.php';
 	</section>
 
 	<section class="seccion">
-		<div class="container grid grid--2">
-			<div data-animar>
-				<?php if ($estado === 'ok'): ?>
-					<div class="alerta alerta--exito">
-						<i class="fa fa-check-circle" aria-hidden="true"></i>
-						Tu mensaje fue enviado correctamente. Te contactaremos pronto.
-					</div>
-				<?php elseif ($estado === 'error'): ?>
-					<div class="alerta alerta--error">
-						<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-						No pudimos enviar tu mensaje. Por favor, revisa los datos e intenta nuevamente.
-					</div>
-				<?php endif; ?>
+		<div class="container grid grid--contacto">
+			<div class="card card--formulario" data-animar>
+				<div class="card__cuerpo">
+					<span class="formulario__kicker"><i class="fa fa-paper-plane" aria-hidden="true"></i> Escríbenos</span>
+					<h2 class="formulario__titulo">Cuéntanos qué necesitas</h2>
 
-				<form class="formulario" id="formContacto" action="controlador/contacto_enviar.php" method="post" novalidate>
-					<div class="campo">
-						<label for="nombre">Nombre completo</label>
-						<input type="text" id="nombre" name="nombre" maxlength="150" required>
-					</div>
-					<div class="campo">
-						<label for="email">Correo electrónico</label>
-						<input type="email" id="email" name="email" maxlength="150" required>
-					</div>
-					<div class="campo">
-						<label for="telefono">Teléfono (opcional)</label>
-						<input type="tel" id="telefono" name="telefono" maxlength="20">
-					</div>
-					<div class="campo">
-						<label for="mensaje">Mensaje</label>
-						<textarea id="mensaje" name="mensaje" rows="5" maxlength="1000" required></textarea>
-					</div>
-					<button type="submit" class="btn btn--primario btn--bloque">Enviar mensaje</button>
-				</form>
+					<?php if ($estado === 'ok'): ?>
+						<div class="alerta alerta--exito">
+							<i class="fa fa-check-circle" aria-hidden="true"></i>
+							Tu mensaje fue enviado correctamente. Te contactaremos pronto.
+						</div>
+					<?php elseif ($estado === 'error'): ?>
+						<div class="alerta alerta--error">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+							No pudimos enviar tu mensaje. Por favor, revisa los datos e intenta nuevamente.
+						</div>
+					<?php endif; ?>
+
+					<form class="formulario" id="formContacto" action="controlador/contacto_enviar.php" method="post" novalidate>
+						<div class="campo">
+							<label for="nombre">Nombre completo</label>
+							<input type="text" id="nombre" name="nombre" maxlength="150" required>
+						</div>
+						<div class="campo">
+							<label for="email">Correo electrónico</label>
+							<input type="email" id="email" name="email" maxlength="150" required>
+						</div>
+						<div class="campo">
+							<label for="telefono">Teléfono (opcional)</label>
+							<input type="tel" id="telefono" name="telefono" maxlength="20">
+						</div>
+						<div class="campo">
+							<label for="mensaje">Mensaje</label>
+							<textarea id="mensaje" name="mensaje" rows="5" maxlength="1000" required></textarea>
+						</div>
+						<button type="submit" class="btn btn--primario btn--bloque">
+							Enviar mensaje <i class="fa fa-arrow-right" aria-hidden="true"></i>
+						</button>
+					</form>
+				</div>
 			</div>
 
-			<div data-animar>
-				<div class="card">
+			<div class="contacto-aside" data-animar>
+				<div class="card card--info-oscura">
 					<div class="card__cuerpo">
 						<h3 class="card__titulo">Información de contacto</h3>
+
 						<?php if (!empty($empresa_direccion)): ?>
-							<p><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo h($empresa_direccion); ?></p>
+							<div class="contacto-item">
+								<span class="contacto-item__icono"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+								<span><?php echo h($empresa_direccion); ?></span>
+							</div>
 						<?php endif; ?>
 						<?php if (!empty($empresa_movil)): ?>
-							<p><i class="fa fa-whatsapp" aria-hidden="true"></i> <?php echo h($empresa_movil); ?></p>
+							<div class="contacto-item">
+								<span class="contacto-item__icono"><i class="fa fa-whatsapp" aria-hidden="true"></i></span>
+								<span><?php echo h($empresa_movil); ?></span>
+							</div>
 						<?php endif; ?>
 						<?php if (!empty($empresa_email)): ?>
-							<p><i class="fa fa-envelope-o" aria-hidden="true"></i> <?php echo h($empresa_email); ?></p>
+							<div class="contacto-item">
+								<span class="contacto-item__icono"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+								<span><?php echo h($empresa_email); ?></span>
+							</div>
 						<?php endif; ?>
+
 						<?php if (!empty($empresa_movil)): ?>
-							<a class="btn btn--whatsapp" href="<?php echo h(f_whatsapp($empresa_movil, 'Hola, quisiera información sobre ' . $empresa_nombre)); ?>" target="_blank" rel="noopener">
+							<a class="btn btn--whatsapp btn--bloque btn--whatsapp-glow" href="<?php echo h(f_whatsapp($empresa_movil, 'Hola, quisiera información sobre ' . $empresa_nombre)); ?>" target="_blank" rel="noopener">
 								<i class="fa fa-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp
 							</a>
 						<?php endif; ?>
@@ -81,11 +99,11 @@ require_once __DIR__ . '/partials/header.php';
 					<div class="card" style="margin-top: var(--esp-5);">
 						<div class="card__cuerpo">
 							<h3 class="card__titulo">Nuestras sedes</h3>
-							<ul class="site-footer__lista">
+							<div class="sedes-chips">
 								<?php foreach ($sedes as $sede): ?>
-									<li style="color:var(--color-texto-suave); margin-bottom: var(--esp-2);"><?php echo h($sede['V_NOMBRE']); ?></li>
+									<span class="sede-chip"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo h($sede['V_NOMBRE']); ?></span>
 								<?php endforeach; ?>
-							</ul>
+							</div>
 						</div>
 					</div>
 				<?php endif; ?>

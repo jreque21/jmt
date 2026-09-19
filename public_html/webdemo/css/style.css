@@ -579,7 +579,87 @@ button { font-family: inherit; cursor: pointer; }
 .tabla-horarios tr:hover td { background: var(--color-fondo-alterno); }
 .tabla-wrapper { overflow-x: auto; border-radius: var(--radio-lg); }
 
-/* ---- Formulario de contacto ---- */
+/* ---- Página de contacto ---- */
+.grid--contacto {
+	grid-template-columns: 1.3fr 1fr;
+	align-items: start;
+}
+.card--formulario { box-shadow: var(--sombra-lg); }
+.card--formulario .card__cuerpo { padding: var(--esp-7); }
+.card--formulario:hover { transform: none; box-shadow: var(--sombra-lg); }
+.card--formulario:hover .card__imagen img { transform: none; }
+.formulario__kicker {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--color-primario);
+	font-weight: 700;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	margin-bottom: var(--esp-2);
+}
+.formulario__titulo { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: var(--esp-5); }
+
+.contacto-aside { display: flex; flex-direction: column; }
+.card--info-oscura {
+	background: linear-gradient(155deg, var(--color-secundario), #000);
+	color: #fff;
+	border-color: transparent;
+}
+.card--info-oscura .card__titulo { color: #fff; }
+.card--info-oscura:hover { transform: none; }
+
+.contacto-item {
+	display: flex;
+	align-items: center;
+	gap: var(--esp-3);
+	margin-bottom: var(--esp-4);
+	color: rgba(255,255,255,0.85);
+	font-size: 0.95rem;
+}
+.contacto-item__icono {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: rgba(200,16,46,0.22);
+	color: var(--color-primario-claro);
+	font-size: 1rem;
+}
+
+.btn--whatsapp-glow {
+	margin-top: var(--esp-5);
+	box-shadow: 0 10px 26px -8px rgba(37,211,102,0.55);
+	animation: whatsapp-pulse 2.4s ease-in-out infinite;
+}
+@keyframes whatsapp-pulse {
+	0%, 100% { box-shadow: 0 10px 26px -8px rgba(37,211,102,0.55); }
+	50% { box-shadow: 0 10px 32px -4px rgba(37,211,102,0.85); }
+}
+
+.sedes-chips { display: flex; flex-wrap: wrap; gap: var(--esp-2); }
+.sede-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border-radius: var(--radio-pill);
+	background: var(--color-fondo-alterno);
+	border: 1px solid var(--color-borde);
+	font-size: 0.85rem;
+	font-weight: 500;
+	color: var(--color-texto);
+	transition: background var(--transicion), color var(--transicion), border-color var(--transicion);
+}
+.sede-chip:hover { background: var(--color-primario); color: #fff; border-color: var(--color-primario); }
+.sede-chip .fa { color: var(--color-primario); transition: color var(--transicion); }
+.sede-chip:hover .fa { color: #fff; }
+
+/* ---- Formulario ---- */
 .formulario { display: grid; gap: var(--esp-4); }
 .campo { display: flex; flex-direction: column; gap: var(--esp-1); }
 .campo label { font-weight: 600; font-size: 0.9rem; }
@@ -680,6 +760,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ---- Breakpoints ---- */
 @media (max-width: 1024px) {
 	.grid--3, .grid--4 { grid-template-columns: repeat(2, 1fr); }
+	.grid--contacto { grid-template-columns: 1fr; }
 	.site-footer__inner { grid-template-columns: 1fr 1fr; }
 }
 
