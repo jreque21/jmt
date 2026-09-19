@@ -11,6 +11,43 @@ $total_instructores = db_query_all("SELECT COUNT(*) AS N FROM MAE_INSTRUCTOR WHE
 $total_instructores = !empty($total_instructores) ? (int) $total_instructores[0]['N'] : 0;
 $cinturones = db_query_all("SELECT * FROM MAE_CINTURON WHERE V_FLAG_ESTADO = '1' ORDER BY N_ORDEN ASC");
 
+// Carrusel: solo fotos reales que existan en el servidor (sedes/instructores con
+// foto propia subida por el admin), más la foto de entrenamiento ya disponible.
+// No se inventa ninguna imagen: si el cliente sube más fotos desde el panel admin,
+// aparecerán aquí automáticamente.
+$carrusel_slides = array();
+$carrusel_slides[] = array('foto' => 'recursos/images/t_fondo.jpg', 'texto' => 'Entrenamiento en nuestras sedes');
+foreach ($sedes as $sede) {
+	if (!empty($sede['V_FOTO']) && file_exists(__DIR__ . '/' . SITE_UPLOAD_SEDE_DIR . $sede['V_FOTO'])) {
+		$carrusel_slides[] = array('foto' => SITE_UPLOAD_SEDE_DIR . $sede['V_FOTO'], 'texto' => h($sede['V_NOMBRE']));
+	}
+}
+$instructores_foto = db_query_all("SELECT V_NOMBRES, V_APE_PATERNO, V_APE_MATERNO, V_FOTO FROM MAE_INSTRUCTOR WHERE V_FLAG_ESTADO = '1'");
+foreach ($instructores_foto as $inst) {
+	if (!empty($inst['V_FOTO']) && file_exists(__DIR__ . '/' . SITE_UPLOAD_INSTRUCTOR_DIR . $inst['V_FOTO'])) {
+		$carrusel_slides[] = array('foto' => SITE_UPLOAD_INSTRUCTOR_DIR . $inst['V_FOTO'], 'texto' => f_nombre_completo($inst['V_NOMBRES'], $inst['V_APE_PATERNO'], $inst['V_APE_MATERNO']));
+	}
+}
+
+// Últimas graduaciones/cambios de cinturón realizados (histórico real, no fechas inventadas).
+$graduaciones_recientes = db_query_all("
+	SELECT p.V_DESCRIPCION, p.V_LUGAR, p.D_FEC_PROG, s.V_NOMBRE AS SEDE_NOMBRE
+	FROM MOV_PROMOCION p
+	LEFT JOIN MAE_SEDE s ON s.N_COD_SEDE = p.N_COD_SEDE
+	WHERE p.D_FEC_PROG IS NOT NULL
+	ORDER BY p.D_FEC_PROG DESC
+	LIMIT 4
+");
+
+// Eventos/campeonatos en los que ha participado la academia (histórico real).
+$eventos_recientes = db_query_all("
+	SELECT V_DESCRIPCION, V_LUGAR, D_FECHA
+	FROM MOV_EVENTO
+	WHERE D_FECHA IS NOT NULL
+	ORDER BY D_FECHA DESC
+	LIMIT 3
+");
+
 require_once __DIR__ . '/partials/header.php';
 ?>
 
@@ -63,6 +100,28 @@ require_once __DIR__ . '/partials/header.php';
 		</div>
 		<span class="hero__scroll" aria-hidden="true"></span>
 	</section>
+
+	<?php if (count($carrusel_slides) > 1): ?>
+	<section class="carrusel-seccion" data-animar>
+		<div class="carrusel" id="carruselFotos">
+			<div class="carrusel__pista" id="carruselPista">
+				<?php foreach ($carrusel_slides as $slide): ?>
+					<div class="carrusel__slide">
+						<img src="<?php echo h($slide['foto']); ?>" alt="<?php echo h($slide['texto']); ?>" loading="lazy">
+						<span class="carrusel__leyenda"><?php echo h($slide['texto']); ?></span>
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<button type="button" class="carrusel__flecha carrusel__flecha--izq" id="carruselAnterior" aria-label="Foto anterior">
+				<i class="fa fa-angle-left" aria-hidden="true"></i>
+			</button>
+			<button type="button" class="carrusel__flecha carrusel__flecha--der" id="carruselSiguiente" aria-label="Foto siguiente">
+				<i class="fa fa-angle-right" aria-hidden="true"></i>
+			</button>
+			<div class="carrusel__puntos" id="carruselPuntos"></div>
+		</div>
+	</section>
+	<?php endif; ?>
 
 	<section class="stats">
 		<div class="container stats__grid">
@@ -339,6 +398,63 @@ require_once __DIR__ . '/partials/header.php';
 					</div>
 				<?php endforeach; ?>
 			</div>
+		</div>
+	</section>
+	<?php endif; ?>
+
+	<?php if (!empty($graduaciones_recientes) || !empty($eventos_recientes)): ?>
+	<section class="seccion">
+		<div class="container">
+			<div class="seccion__cabecera" data-animar>
+				<span class="seccion__kicker">Vida en la academia</span>
+				<h2 class="seccion__titulo">Graduaciones y eventos</h2>
+				<p>Un vistazo a nuestras últimas ceremonias de cambio de cinturón y participación en campeonatos.</p>
+			</div>
+
+			<?php if (!empty($graduaciones_recientes)): ?>
+				<h3 class="cronologia__subtitulo">Últimas graduaciones de cinturón</h3>
+				<div class="grid grid--3">
+					<?php foreach ($graduaciones_recientes as $grad): ?>
+						<div class="card card--feature" data-animar>
+							<div class="card__cuerpo card__cuerpo--feature">
+								<span class="feature-card__icono"><i class="fa fa-certificate" aria-hidden="true"></i></span>
+								<h3 class="card__titulo"><?php echo h($grad['V_DESCRIPCION']); ?></h3>
+								<p class="card__meta">
+									<i class="fa fa-calendar" aria-hidden="true"></i>
+									<?php echo h(date('d/m/Y', strtotime($grad['D_FEC_PROG']))); ?>
+									<?php if (!empty($grad['SEDE_NOMBRE'])): ?> · <?php echo h($grad['SEDE_NOMBRE']); ?><?php endif; ?>
+								</p>
+								<?php if (!empty($grad['V_LUGAR'])): ?>
+									<p class="card__meta"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo h($grad['V_LUGAR']); ?></p>
+								<?php endif; ?>
+							</div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+
+			<?php if (!empty($eventos_recientes)): ?>
+				<h3 class="cronologia__subtitulo" style="margin-top: var(--esp-7);">Participación en eventos y campeonatos</h3>
+				<div class="grid grid--3">
+					<?php foreach ($eventos_recientes as $evento): ?>
+						<div class="card card--feature" data-animar>
+							<div class="card__cuerpo card__cuerpo--feature">
+								<span class="feature-card__icono"><i class="fa fa-trophy" aria-hidden="true"></i></span>
+								<h3 class="card__titulo"><?php echo h($evento['V_DESCRIPCION']); ?></h3>
+								<p class="card__meta">
+									<i class="fa fa-calendar" aria-hidden="true"></i>
+									<?php echo h(date('d/m/Y', strtotime($evento['D_FECHA']))); ?>
+								</p>
+								<?php if (!empty($evento['V_LUGAR'])): ?>
+									<p class="card__meta"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo h($evento['V_LUGAR']); ?></p>
+								<?php endif; ?>
+							</div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+
+			<p class="faq-panel__intro" style="text-align:center; margin-top: var(--esp-6);">¿Quieres que te avisemos de la próxima fecha de graduación? <a href="contacto.php">Escríbenos</a>.</p>
 		</div>
 	</section>
 	<?php endif; ?>

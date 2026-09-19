@@ -1148,6 +1148,93 @@ button { font-family: inherit; cursor: pointer; }
 	.calculadora-cinturon { grid-template-columns: 1fr; }
 }
 
+/* ---- Carrusel de fotos ---- */
+.carrusel-seccion { padding-block: var(--esp-7) 0; }
+.carrusel {
+	position: relative;
+	max-width: 1100px;
+	margin: 0 auto;
+	border-radius: var(--radio-lg);
+	overflow: hidden;
+	box-shadow: var(--sombra-lg);
+}
+.carrusel__pista {
+	display: flex;
+	transition: transform 450ms ease;
+}
+.carrusel__slide {
+	position: relative;
+	min-width: 100%;
+	aspect-ratio: 16 / 7;
+	background: var(--color-secundario);
+}
+.carrusel__slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.carrusel__leyenda {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	padding: var(--esp-5) var(--esp-6);
+	background: linear-gradient(0deg, rgba(0,0,0,0.65), transparent);
+	color: #fff;
+	font-weight: 600;
+	font-size: 0.95rem;
+}
+.carrusel__flecha {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	border: none;
+	background: rgba(255,255,255,0.85);
+	color: var(--color-secundario);
+	font-size: 1.1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background var(--transicion);
+}
+.carrusel__flecha:hover { background: #fff; }
+.carrusel__flecha--izq { left: var(--esp-4); }
+.carrusel__flecha--der { right: var(--esp-4); }
+.carrusel__puntos {
+	position: absolute;
+	bottom: var(--esp-3);
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 8px;
+}
+.carrusel__punto {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.5);
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+.carrusel__punto.es-activo { background: #fff; width: 22px; border-radius: var(--radio-pill); transition: width var(--transicion); }
+
+@media (max-width: 640px) {
+	.carrusel__slide { aspect-ratio: 4 / 5; }
+	.carrusel__flecha { width: 36px; height: 36px; font-size: 0.95rem; }
+}
+
+.cronologia__subtitulo {
+	font-size: 1.1rem;
+	font-weight: 700;
+	margin-bottom: var(--esp-4);
+}
+
 /* ---- Preloader ---- */
 .preloader {
 	position: fixed;
