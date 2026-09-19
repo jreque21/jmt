@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /webdemo/
+Disallow: /BackEnd/
+Disallow: /FrontEnd/
+Disallow: /controlador/
+
+Sitemap: https://www.jmtalentgroup.com/webdemo/sitemap.xml
