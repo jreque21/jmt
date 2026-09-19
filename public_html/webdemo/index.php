@@ -94,6 +94,67 @@ require_once __DIR__ . '/partials/header.php';
 	</section>
 	<?php endif; ?>
 
+	<section class="seccion" id="plataforma">
+		<div class="container">
+			<div class="seccion__cabecera" data-animar>
+				<span class="seccion__kicker">Plataforma para familias</span>
+				<h2 class="seccion__titulo">Todo el seguimiento de tu hijo, en un solo lugar</h2>
+				<p>Además de las clases presenciales, padres y estudiantes acceden a un sistema en línea para seguir de cerca su progreso, sin depender de llamadas o mensajes sueltos.</p>
+			</div>
+			<div class="grid grid--3">
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-tags" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Promociones</h3>
+						<p class="card__meta">Campañas y descuentos vigentes visibles para los estudiantes, sin tener que preguntar en sede.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-certificate" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Graduaciones</h3>
+						<p class="card__meta">Historial de exámenes y ascensos de cinturón de cada estudiante, con fecha y grado obtenido.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Control de asistencias</h3>
+						<p class="card__meta">Registro de asistencia por clase, para que el padre sepa si su hijo asistió sin tener que preguntar.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Notas y evaluaciones</h3>
+						<p class="card__meta">Desempeño técnico registrado por el instructor en cada sesión o evaluación de grado.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Seguimiento para el padre</h3>
+						<p class="card__meta">Un panel propio para que cada padre o estudiante revise su progreso, asistencia y pagos desde su cuenta.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Horarios actualizados</h3>
+						<p class="card__meta">Días, horas, sede e instructor de cada clase, siempre al día y consultables desde el celular.</p>
+					</div>
+				</div>
+				<div class="card card--feature" data-animar>
+					<div class="card__cuerpo card__cuerpo--feature">
+						<span class="feature-card__icono"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+						<h3 class="card__titulo">Pagos flexibles</h3>
+						<p class="card__meta">Distintas modalidades de pago (mensual, por paquete de clases) y registro de pagos por estudiante.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<?php if (!empty($instructores_home)): ?>
 	<section class="seccion">
 		<div class="container">

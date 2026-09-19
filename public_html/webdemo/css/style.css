@@ -316,6 +316,25 @@ button { font-family: inherit; cursor: pointer; }
 .card--sede .card__cuerpo { flex: 1; display: flex; flex-direction: column; }
 .card--sede .btn { margin-top: auto; align-self: flex-start; }
 
+/* ---- Tarjetas de funcionalidad (sin imagen, con ícono) ---- */
+.card--feature { text-align: center; }
+.card__cuerpo--feature { display: flex; flex-direction: column; align-items: center; }
+.feature-card__icono {
+	width: 64px;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: var(--color-fondo-alterno);
+	color: var(--color-primario);
+	font-size: 1.6rem;
+	margin-bottom: var(--esp-4);
+	transition: background var(--transicion), color var(--transicion);
+}
+.card--feature:hover .feature-card__icono { background: var(--color-primario); color: #fff; }
+.card__cuerpo--feature .card__meta { margin: 0; }
+
 /* ---- Cinturones ---- */
 .cinturones { display: flex; flex-wrap: wrap; gap: var(--esp-3); margin-top: var(--esp-5); }
 .cinturon-chip {
