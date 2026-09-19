@@ -113,7 +113,7 @@ require_once __DIR__ . '/partials/header.php';
 						<?php endif; ?>
 
 						<?php if (!empty($empresa_movil)): ?>
-							<a class="btn btn--whatsapp btn--bloque btn--whatsapp-glow" href="<?php echo h(f_whatsapp($empresa_movil, 'Hola, quisiera información sobre ' . $empresa_nombre)); ?>" target="_blank" rel="noopener">
+							<a class="btn btn--whatsapp btn--whatsapp-glow" href="<?php echo h(f_whatsapp($empresa_movil, 'Hola, quisiera información sobre ' . $empresa_nombre)); ?>" target="_blank" rel="noopener">
 								<i class="fa fa-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp
 							</a>
 						<?php endif; ?>

@@ -11,24 +11,6 @@ $total_instructores = db_query_all("SELECT COUNT(*) AS N FROM MAE_INSTRUCTOR WHE
 $total_instructores = !empty($total_instructores) ? (int) $total_instructores[0]['N'] : 0;
 $cinturones = db_query_all("SELECT * FROM MAE_CINTURON WHERE V_FLAG_ESTADO = '1' ORDER BY N_ORDEN ASC");
 
-// Carrusel: solo fotos reales que existan en el servidor (sedes/instructores con
-// foto propia subida por el admin), más la foto de entrenamiento ya disponible.
-// No se inventa ninguna imagen: si el cliente sube más fotos desde el panel admin,
-// aparecerán aquí automáticamente.
-$carrusel_slides = array();
-$carrusel_slides[] = array('foto' => 'recursos/images/t_fondo.jpg', 'texto' => 'Entrenamiento en nuestras sedes');
-foreach ($sedes as $sede) {
-	if (!empty($sede['V_FOTO']) && file_exists(__DIR__ . '/' . SITE_UPLOAD_SEDE_DIR . $sede['V_FOTO'])) {
-		$carrusel_slides[] = array('foto' => SITE_UPLOAD_SEDE_DIR . $sede['V_FOTO'], 'texto' => h($sede['V_NOMBRE']));
-	}
-}
-$instructores_foto = db_query_all("SELECT V_NOMBRES, V_APE_PATERNO, V_APE_MATERNO, V_FOTO FROM MAE_INSTRUCTOR WHERE V_FLAG_ESTADO = '1'");
-foreach ($instructores_foto as $inst) {
-	if (!empty($inst['V_FOTO']) && file_exists(__DIR__ . '/' . SITE_UPLOAD_INSTRUCTOR_DIR . $inst['V_FOTO'])) {
-		$carrusel_slides[] = array('foto' => SITE_UPLOAD_INSTRUCTOR_DIR . $inst['V_FOTO'], 'texto' => f_nombre_completo($inst['V_NOMBRES'], $inst['V_APE_PATERNO'], $inst['V_APE_MATERNO']));
-	}
-}
-
 // Últimas graduaciones/cambios de cinturón realizados (histórico real, no fechas inventadas).
 $graduaciones_recientes = db_query_all("
 	SELECT p.V_DESCRIPCION, p.V_LUGAR, p.D_FEC_PROG, s.V_NOMBRE AS SEDE_NOMBRE
@@ -100,28 +82,6 @@ require_once __DIR__ . '/partials/header.php';
 		</div>
 		<span class="hero__scroll" aria-hidden="true"></span>
 	</section>
-
-	<?php if (count($carrusel_slides) > 1): ?>
-	<section class="carrusel-seccion" data-animar>
-		<div class="carrusel" id="carruselFotos">
-			<div class="carrusel__pista" id="carruselPista">
-				<?php foreach ($carrusel_slides as $slide): ?>
-					<div class="carrusel__slide">
-						<img src="<?php echo h($slide['foto']); ?>" alt="<?php echo h($slide['texto']); ?>" loading="lazy">
-						<span class="carrusel__leyenda"><?php echo h($slide['texto']); ?></span>
-					</div>
-				<?php endforeach; ?>
-			</div>
-			<button type="button" class="carrusel__flecha carrusel__flecha--izq" id="carruselAnterior" aria-label="Foto anterior">
-				<i class="fa fa-angle-left" aria-hidden="true"></i>
-			</button>
-			<button type="button" class="carrusel__flecha carrusel__flecha--der" id="carruselSiguiente" aria-label="Foto siguiente">
-				<i class="fa fa-angle-right" aria-hidden="true"></i>
-			</button>
-			<div class="carrusel__puntos" id="carruselPuntos"></div>
-		</div>
-	</section>
-	<?php endif; ?>
 
 	<section class="stats">
 		<div class="container stats__grid">

@@ -167,46 +167,6 @@
 		doc.save('certificado-bienvenida.pdf');
 	}
 
-	// Carrusel de fotos
-	var carruselPista = document.getElementById('carruselPista');
-	if (carruselPista) {
-		var slides = Array.prototype.slice.call(carruselPista.children);
-		var puntosCont = document.getElementById('carruselPuntos');
-		var indiceActual = 0;
-		var autoplayId = null;
-
-		slides.forEach(function (_, i) {
-			var punto = document.createElement('button');
-			punto.type = 'button';
-			punto.className = 'carrusel__punto' + (i === 0 ? ' es-activo' : '');
-			punto.setAttribute('aria-label', 'Ir a la foto ' + (i + 1));
-			punto.addEventListener('click', function () { irASlide(i); });
-			if (puntosCont) puntosCont.appendChild(punto);
-		});
-
-		function irASlide(indice) {
-			indiceActual = (indice + slides.length) % slides.length;
-			carruselPista.style.transform = 'translateX(-' + (indiceActual * 100) + '%)';
-			if (puntosCont) {
-				Array.prototype.forEach.call(puntosCont.children, function (punto, i) {
-					punto.classList.toggle('es-activo', i === indiceActual);
-				});
-			}
-		}
-
-		function reiniciarAutoplay() {
-			if (autoplayId) clearInterval(autoplayId);
-			autoplayId = setInterval(function () { irASlide(indiceActual + 1); }, 5000);
-		}
-
-		var btnAnterior = document.getElementById('carruselAnterior');
-		var btnSiguiente = document.getElementById('carruselSiguiente');
-		if (btnAnterior) btnAnterior.addEventListener('click', function () { irASlide(indiceActual - 1); reiniciarAutoplay(); });
-		if (btnSiguiente) btnSiguiente.addEventListener('click', function () { irASlide(indiceActual + 1); reiniciarAutoplay(); });
-
-		if (slides.length > 1) reiniciarAutoplay();
-	}
-
 	// Calculadora de progreso de cinturón
 	var selectCinturon = document.getElementById('selectCinturon');
 	if (selectCinturon) {
