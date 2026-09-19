@@ -86,4 +86,15 @@
 			}
 		});
 	}
+
+	// Chat flotante: muestra el globo de texto un momento tras cargar la página
+	var globo = document.querySelector('.chat-flotante__globo');
+	if (globo) {
+		setTimeout(function () {
+			globo.classList.add('es-visible');
+			setTimeout(function () {
+				globo.classList.remove('es-visible');
+			}, 6000);
+		}, 2500);
+	}
 })();

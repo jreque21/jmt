@@ -82,6 +82,23 @@
 	</div>
 </footer>
 
+<?php if (!empty($empresa_movil)): ?>
+	<div class="chat-flotante">
+		<div class="chat-flotante__globo">
+			¿Tienes dudas? Escríbenos y te respondemos al toque.
+		</div>
+		<a
+			class="chat-flotante__boton"
+			href="<?php echo h(f_whatsapp($empresa_movil, 'Hola, quisiera información sobre ' . $empresa_nombre)); ?>"
+			target="_blank"
+			rel="noopener"
+			aria-label="Chatear por WhatsApp"
+		>
+			<i class="fa fa-whatsapp" aria-hidden="true"></i>
+		</a>
+	</div>
+<?php endif; ?>
+
 <script src="js/main.js"></script>
 </body>
 </html>

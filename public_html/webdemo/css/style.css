@@ -987,3 +987,56 @@ button { font-family: inherit; cursor: pointer; }
 	.hero__acciones { flex-direction: column; align-items: stretch; }
 	.btn { justify-content: center; }
 }
+
+/* ---- Chat flotante (WhatsApp) ---- */
+.chat-flotante {
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	z-index: 60;
+	display: flex;
+	align-items: center;
+	gap: var(--esp-3);
+}
+.chat-flotante__globo {
+	max-width: 220px;
+	background: #fff;
+	color: var(--color-texto);
+	font-size: 0.82rem;
+	font-weight: 500;
+	line-height: 1.35;
+	padding: 12px 14px;
+	border-radius: var(--radio-md);
+	box-shadow: var(--sombra-lg);
+	opacity: 0;
+	transform: translateX(8px) scale(0.96);
+	transition: opacity var(--transicion), transform var(--transicion);
+	pointer-events: none;
+}
+.chat-flotante:hover .chat-flotante__globo,
+.chat-flotante__globo.es-visible {
+	opacity: 1;
+	transform: translateX(0) scale(1);
+}
+.chat-flotante__boton {
+	width: 58px;
+	height: 58px;
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: #25D366;
+	color: #fff;
+	font-size: 1.7rem;
+	box-shadow: 0 10px 26px -6px rgba(37,211,102,0.6);
+	animation: whatsapp-pulse 2.4s ease-in-out infinite;
+	transition: transform var(--transicion);
+}
+.chat-flotante__boton:hover { transform: scale(1.08); }
+
+@media (max-width: 640px) {
+	.chat-flotante { right: 16px; bottom: 16px; }
+	.chat-flotante__globo { display: none; }
+	.chat-flotante__boton { width: 52px; height: 52px; font-size: 1.5rem; }
+}
