@@ -37,6 +37,8 @@ function limpiar_cabecera($valor) {
 $nombre   = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
 $email    = isset($_POST['email']) ? trim($_POST['email']) : '';
 $telefono = isset($_POST['telefono']) ? trim($_POST['telefono']) : '';
+$sede     = isset($_POST['sede']) ? trim($_POST['sede']) : '';
+$horario  = isset($_POST['horario']) ? trim($_POST['horario']) : '';
 $mensaje  = isset($_POST['mensaje']) ? trim($_POST['mensaje']) : '';
 
 $errores = array();
@@ -49,6 +51,12 @@ if ($email === '' || mb_strlen($email) > 150 || !filter_var($email, FILTER_VALID
 }
 if ($telefono !== '' && mb_strlen($telefono) > 20) {
 	$errores[] = 'telefono';
+}
+if ($sede !== '' && mb_strlen($sede) > 150) {
+	$errores[] = 'sede';
+}
+if ($horario !== '' && mb_strlen($horario) > 150) {
+	$errores[] = 'horario';
 }
 if ($mensaje === '' || mb_strlen($mensaje) > 1000) {
 	$errores[] = 'mensaje';
@@ -77,6 +85,12 @@ $cuerpo .= "Nombre: " . $nombre . "\n";
 $cuerpo .= "Email: " . $email . "\n";
 if ($telefono !== '') {
 	$cuerpo .= "Teléfono: " . $telefono . "\n";
+}
+if ($sede !== '') {
+	$cuerpo .= "Sede de interés: " . $sede . "\n";
+}
+if ($horario !== '') {
+	$cuerpo .= "Horario preferido: " . $horario . "\n";
 }
 $cuerpo .= "\nMensaje:\n" . $mensaje . "\n";
 

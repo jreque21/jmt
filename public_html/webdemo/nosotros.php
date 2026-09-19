@@ -64,6 +64,36 @@ require_once __DIR__ . '/partials/header.php';
 	</section>
 	<?php endif; ?>
 
+	<?php if (!empty($cinturones) && count($cinturones) > 1): ?>
+	<section class="seccion">
+		<div class="container">
+			<div class="calculadora-cinturon" data-animar>
+				<div class="calculadora-cinturon__texto">
+					<span class="seccion__kicker">Herramienta</span>
+					<h2 class="seccion__titulo">¿Cuánto te falta para el cinturón negro?</h2>
+					<p>Elige tu cinturón actual y te mostramos cuántos grados te faltan dentro de nuestro sistema de <?php echo count($cinturones); ?> niveles.</p>
+				</div>
+				<div class="calculadora-cinturon__caja">
+					<label for="selectCinturon">Mi cinturón actual es:</label>
+					<select id="selectCinturon" data-total-grados="<?php echo (int) count($cinturones); ?>">
+						<?php foreach ($cinturones as $indice => $cinturon): ?>
+							<option value="<?php echo (int) ($indice + 1); ?>"><?php echo h($cinturon['V_DES_LARGA']); ?></option>
+						<?php endforeach; ?>
+					</select>
+
+					<div class="calculadora-cinturon__resultado" id="resultadoCinturon">
+						<div class="calculadora-cinturon__barra">
+							<div class="calculadora-cinturon__progreso" id="barraCinturon"></div>
+						</div>
+						<p id="textoResultadoCinturon"></p>
+						<a href="contacto.php" class="btn btn--primario">Consultar mi plan de avance</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php endif; ?>
+
 	<section class="seccion">
 		<div class="container">
 			<div class="seccion__cabecera" data-animar>

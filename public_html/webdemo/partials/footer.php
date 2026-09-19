@@ -82,6 +82,31 @@
 	</div>
 </footer>
 
+	<button type="button" class="faq-boton" id="faqBoton" aria-label="Abrir preguntas frecuentes" aria-expanded="false">
+		<i class="fa fa-question" aria-hidden="true"></i>
+	</button>
+
+	<div class="faq-panel" id="faqPanel" hidden>
+		<div class="faq-panel__cabecera">
+			<div>
+				<strong>Asistente de preguntas frecuentes</strong>
+				<small>Respuestas automáticas, no es un chat con una persona en vivo.</small>
+			</div>
+			<button type="button" class="faq-panel__cerrar" id="faqCerrar" aria-label="Cerrar">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</button>
+		</div>
+		<div class="faq-panel__cuerpo" id="faqCuerpo">
+			<p class="faq-panel__intro">Elige una pregunta:</p>
+			<div class="faq-panel__preguntas" id="faqListaPreguntas"></div>
+		</div>
+		<?php if (!empty($empresa_movil)): ?>
+			<a class="faq-panel__whatsapp" href="<?php echo h(f_whatsapp($empresa_movil, 'Hola, tengo una consulta sobre ' . $empresa_nombre)); ?>" target="_blank" rel="noopener">
+				<i class="fa fa-whatsapp" aria-hidden="true"></i> ¿No encontraste tu respuesta? Escríbenos
+			</a>
+		<?php endif; ?>
+	</div>
+
 <?php if (!empty($empresa_movil)): ?>
 	<div class="chat-flotante">
 		<div class="chat-flotante__globo">

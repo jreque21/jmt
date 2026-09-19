@@ -7,6 +7,9 @@ $meta_descripcion = 'Escríbenos para más información sobre clases, horarios y
 
 $estado = isset($_GET['estado']) ? $_GET['estado'] : '';
 
+// Turnos vigentes, para que el visitante indique su horario preferido (opcional).
+$turnos = db_query_all("SELECT DISTINCT t.V_DES_LARGA FROM MAE_CAT_TURNO t INNER JOIN MOV_HORARIO h ON h.N_COD_CATURNO = t.N_COD_CATURNO WHERE h.V_FLAG_ESTADO = '2' ORDER BY t.V_DES_LARGA ASC");
+
 require_once __DIR__ . '/partials/header.php';
 ?>
 
@@ -39,7 +42,7 @@ require_once __DIR__ . '/partials/header.php';
 						</div>
 					<?php endif; ?>
 
-					<form class="formulario" id="formContacto" action="controlador/contacto_enviar.php" method="post" novalidate>
+					<form class="formulario" id="formContacto" action="controlador/contacto_enviar.php" method="post" novalidate data-empresa="<?php echo h($empresa_nombre); ?>">
 						<div class="campo">
 							<label for="nombre">Nombre completo</label>
 							<input type="text" id="nombre" name="nombre" maxlength="150" required>
@@ -52,6 +55,28 @@ require_once __DIR__ . '/partials/header.php';
 							<label for="telefono">Teléfono (opcional)</label>
 							<input type="tel" id="telefono" name="telefono" maxlength="20">
 						</div>
+						<?php if (!empty($sedes)): ?>
+						<div class="campo">
+							<label for="sede">Sede de tu interés (opcional)</label>
+							<select id="sede" name="sede">
+								<option value="">Selecciona una sede</option>
+								<?php foreach ($sedes as $sede): ?>
+									<option value="<?php echo h($sede['V_NOMBRE']); ?>"><?php echo h($sede['V_NOMBRE']); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<?php endif; ?>
+						<?php if (!empty($turnos)): ?>
+						<div class="campo">
+							<label for="horario">Horario preferido (opcional)</label>
+							<select id="horario" name="horario">
+								<option value="">Selecciona un turno</option>
+								<?php foreach ($turnos as $turno): ?>
+									<option value="<?php echo h($turno['V_DES_LARGA']); ?>"><?php echo h($turno['V_DES_LARGA']); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<?php endif; ?>
 						<div class="campo">
 							<label for="mensaje">Mensaje</label>
 							<textarea id="mensaje" name="mensaje" rows="5" maxlength="1000" required></textarea>

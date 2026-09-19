@@ -45,6 +45,58 @@
 	--sombra-md: 0 8px 24px rgba(17, 17, 17, 0.10);
 	--sombra-lg: 0 20px 48px rgba(17, 17, 17, 0.14);
 
+	--transicion-tema: background 250ms ease, color 250ms ease, border-color 250ms ease;
+}
+
+/* ---- Modo oscuro ---- */
+html[data-theme="oscuro"] {
+	--color-fondo: #14151a;
+	--color-fondo-alterno: #1b1c22;
+	--color-texto: #f2f2f4;
+	--color-texto-suave: #b7b8c0;
+	--color-borde: #2c2d35;
+	--color-blanco: #1e1f26;
+}
+html[data-theme="oscuro"] body { background: var(--color-fondo); color: var(--color-texto); }
+html[data-theme="oscuro"] .site-header { background: var(--color-fondo); border-color: var(--color-borde); }
+html[data-theme="oscuro"] .card,
+html[data-theme="oscuro"] .card--formulario,
+html[data-theme="oscuro"] .tabla-horarios,
+html[data-theme="oscuro"] .medio-pago,
+html[data-theme="oscuro"] .sede-chip,
+html[data-theme="oscuro"] .chat-flotante__globo,
+html[data-theme="oscuro"] .faq-panel {
+	background: var(--color-fondo-alterno);
+	border-color: var(--color-borde);
+	color: var(--color-texto);
+}
+html[data-theme="oscuro"] input,
+html[data-theme="oscuro"] textarea,
+html[data-theme="oscuro"] select {
+	background: var(--color-fondo-alterno);
+	border-color: var(--color-borde);
+	color: var(--color-texto);
+}
+html[data-theme="oscuro"] .nav { background: var(--color-fondo); }
+html * { transition: var(--transicion-tema); }
+
+.theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid var(--color-borde);
+	background: var(--color-fondo-alterno);
+	color: var(--color-texto);
+	font-size: 1rem;
+	cursor: pointer;
+	margin-left: var(--esp-3);
+	flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--color-primario); color: var(--color-primario); }
+
 	/* Movimiento */
 	--transicion: 200ms ease;
 }
@@ -854,15 +906,17 @@ button { font-family: inherit; cursor: pointer; }
 .formulario { display: grid; gap: var(--esp-4); }
 .campo { display: flex; flex-direction: column; gap: var(--esp-1); }
 .campo label { font-weight: 600; font-size: 0.9rem; }
-.campo input, .campo textarea {
+.campo input, .campo textarea, .campo select {
 	padding: 12px 14px;
 	border-radius: var(--radio-sm);
 	border: 1px solid var(--color-borde);
 	font-family: inherit;
 	font-size: 0.95rem;
+	background: var(--color-fondo);
+	color: var(--color-texto);
 	transition: border-color var(--transicion), box-shadow var(--transicion);
 }
-.campo input:focus, .campo textarea:focus {
+.campo input:focus, .campo textarea:focus, .campo select:focus {
 	border-color: var(--color-primario);
 	box-shadow: 0 0 0 3px rgba(200,16,46,0.12);
 	outline: none;
@@ -1039,4 +1093,153 @@ button { font-family: inherit; cursor: pointer; }
 	.chat-flotante { right: 16px; bottom: 16px; }
 	.chat-flotante__globo { display: none; }
 	.chat-flotante__boton { width: 52px; height: 52px; font-size: 1.5rem; }
+}
+
+/* ---- Calculadora de progreso de cinturón ---- */
+.calculadora-cinturon {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--esp-8);
+	align-items: center;
+	background: var(--color-fondo-alterno);
+	border: 1px solid var(--color-borde);
+	border-radius: var(--radio-lg);
+	padding: var(--esp-7);
+}
+.calculadora-cinturon__caja label {
+	display: block;
+	font-weight: 600;
+	font-size: 0.85rem;
+	margin-bottom: var(--esp-2);
+}
+.calculadora-cinturon__caja select {
+	width: 100%;
+	padding: 12px 14px;
+	border-radius: var(--radio-md);
+	border: 1px solid var(--color-borde);
+	background: var(--color-fondo);
+	color: var(--color-texto);
+	font-family: var(--fuente-base);
+	font-size: 0.95rem;
+	margin-bottom: var(--esp-5);
+}
+.calculadora-cinturon__barra {
+	width: 100%;
+	height: 10px;
+	border-radius: var(--radio-pill);
+	background: var(--color-borde);
+	overflow: hidden;
+	margin-bottom: var(--esp-3);
+}
+.calculadora-cinturon__progreso {
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(90deg, var(--color-primario), var(--color-primario-claro));
+	border-radius: var(--radio-pill);
+	transition: width 500ms ease;
+}
+#textoResultadoCinturon {
+	font-size: 0.95rem;
+	margin-bottom: var(--esp-4);
+}
+#textoResultadoCinturon strong { color: var(--color-primario); }
+
+@media (max-width: 900px) {
+	.calculadora-cinturon { grid-template-columns: 1fr; }
+}
+
+/* ---- Asistente de preguntas frecuentes ---- */
+.faq-boton {
+	position: fixed;
+	right: 22px;
+	bottom: 92px;
+	z-index: 60;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: none;
+	background: var(--color-secundario);
+	color: #fff;
+	font-size: 1.2rem;
+	box-shadow: var(--sombra-lg);
+	cursor: pointer;
+	transition: transform var(--transicion), background var(--transicion);
+}
+.faq-boton:hover { background: var(--color-primario); transform: scale(1.06); }
+
+.faq-panel {
+	position: fixed;
+	right: 22px;
+	bottom: 152px;
+	z-index: 61;
+	width: 320px;
+	max-width: calc(100vw - 32px);
+	max-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	background: var(--color-fondo);
+	border: 1px solid var(--color-borde);
+	border-radius: var(--radio-lg);
+	box-shadow: var(--sombra-lg);
+	overflow: hidden;
+}
+.faq-panel[hidden] { display: none; }
+.faq-panel__cabecera {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--esp-3);
+	padding: var(--esp-4);
+	background: var(--color-secundario);
+	color: #fff;
+}
+.faq-panel__cabecera strong { display: block; font-size: 0.95rem; }
+.faq-panel__cabecera small { display: block; opacity: 0.75; font-size: 0.72rem; margin-top: 2px; }
+.faq-panel__cerrar { background: none; border: none; color: #fff; font-size: 1rem; cursor: pointer; flex-shrink: 0; }
+.faq-panel__cuerpo { padding: var(--esp-4); overflow-y: auto; flex: 1; }
+.faq-panel__intro { font-size: 0.82rem; color: var(--color-texto-suave); margin-bottom: var(--esp-3); }
+.faq-panel__preguntas { display: flex; flex-direction: column; gap: var(--esp-2); }
+.faq-panel__pregunta {
+	text-align: left;
+	padding: 10px 12px;
+	border-radius: var(--radio-sm);
+	border: 1px solid var(--color-borde);
+	background: var(--color-fondo-alterno);
+	color: var(--color-texto);
+	font-size: 0.85rem;
+	font-family: inherit;
+	cursor: pointer;
+	transition: border-color var(--transicion), background var(--transicion);
+}
+.faq-panel__pregunta:hover { border-color: var(--color-primario); }
+.faq-panel__respuesta { font-size: 0.88rem; line-height: 1.5; }
+.faq-panel__volver {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: var(--esp-4);
+	background: none;
+	border: none;
+	color: var(--color-primario);
+	font-weight: 600;
+	font-size: 0.82rem;
+	cursor: pointer;
+	padding: 0;
+}
+.faq-panel__whatsapp {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px;
+	background: #25D366;
+	color: #fff;
+	font-weight: 600;
+	font-size: 0.85rem;
+	flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+	.faq-boton { right: 16px; bottom: 80px; width: 46px; height: 46px; font-size: 1.05rem; }
+	.faq-panel { right: 16px; bottom: 134px; }
 }

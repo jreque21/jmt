@@ -3,6 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		(function () {
+			try {
+				var tema = localStorage.getItem('tema');
+				if (tema === 'oscuro') {
+					document.documentElement.setAttribute('data-theme', 'oscuro');
+				}
+			} catch (e) {}
+		})();
+	</script>
 	<title><?php echo h($meta_titulo); ?></title>
 	<meta name="description" content="<?php echo h($meta_descripcion); ?>">
 
@@ -25,6 +35,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" href="css/style.css">
+
+	<?php if ($pagina_actual === 'contacto'): ?>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+	<?php endif; ?>
 </head>
 <body>
 
@@ -63,5 +77,9 @@
 			<a href="contacto.php"<?php echo ($pagina_actual == 'contacto') ? ' class="is-active"' : ''; ?>>Contacto</a>
 			<a href="../index.php" class="nav__cta">Acceso Estudiantes</a>
 		</nav>
+
+		<button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo oscuro">
+			<i class="fa fa-moon-o" aria-hidden="true"></i>
+		</button>
 	</div>
 </header>
