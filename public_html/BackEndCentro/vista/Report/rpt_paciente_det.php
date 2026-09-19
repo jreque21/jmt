@@ -74,7 +74,11 @@ $array_empresa = $crud->fila_recuperar('MAE_EMPRESA', $array_campo_pk, $array_va
 
 class FichaPacientePDF extends FPDF {
     public $empresa_nombre = '';
+    public $empresa_logo = '';
     function Header() {
+        if (!empty($this->empresa_logo) && file_exists($this->empresa_logo)) {
+            $this->Image($this->empresa_logo, 15, 10, 18, 18);
+        }
         $this->SetFont('Arial', 'B', 14);
         $this->Cell(0, 8, utf8_decode($this->empresa_nombre), 0, 1, 'C');
         $this->SetFont('Arial', 'B', 11);
@@ -89,8 +93,24 @@ class FichaPacientePDF extends FPDF {
     }
 }
 
+// Logo de la empresa (el mismo del login). Si no tiene logo propio, se usa el institucional.
+$ls_ruta_logo_empresa = '';
+if ($array_empresa && !empty($array_empresa['V_FOTO'])) {
+    $ls_ruta_candidata = __DIR__ . '/../../../upload/' . DEF_UPLOAD_EMPRESA_DIR . '/' . $array_empresa['V_FOTO'];
+    if (file_exists($ls_ruta_candidata)) {
+        $ls_ruta_logo_empresa = $ls_ruta_candidata;
+    }
+}
+if (empty($ls_ruta_logo_empresa)) {
+    $ls_ruta_candidata = __DIR__ . '/../../../website/recursos/images/Logo.png';
+    if (file_exists($ls_ruta_candidata)) {
+        $ls_ruta_logo_empresa = $ls_ruta_candidata;
+    }
+}
+
 $pdf = new FichaPacientePDF('P', 'mm', 'A4');
 $pdf->empresa_nombre = $array_empresa ? $array_empresa['V_DESCRIPCION'] : '';
+$pdf->empresa_logo = $ls_ruta_logo_empresa;
 $pdf->AddPage();
 $pdf->SetMargins(15, 15, 15);
 

@@ -12,6 +12,34 @@ class TablaPDF extends FPDF {
     public $subtitulo_reporte = '';
 
     function Header() {
+
+        // Logo de la empresa (el mismo configurado en Mantenimiento > Empresa,
+        // usado también en el login). Si no tiene logo propio, se usa el
+        // logo institucional por defecto.
+        $ls_ruta_logo = '';
+        if (class_exists('crud')) {
+            $crud_logo = new crud();
+            $array_campo_pk_logo = array('V_ID');
+            $array_valor_pk_logo = array(1);
+            $ls_foto_empresa = $crud_logo->fila_recuperar_campo(DEF_TABLA_EMPRESA, $array_campo_pk_logo, $array_valor_pk_logo, 'V_FOTO');
+
+            if (!empty($ls_foto_empresa)) {
+                $ls_ruta_candidata = __DIR__ . '/../../upload/' . DEF_UPLOAD_EMPRESA_DIR . '/' . $ls_foto_empresa;
+                if (file_exists($ls_ruta_candidata)) {
+                    $ls_ruta_logo = $ls_ruta_candidata;
+                }
+            }
+            if (empty($ls_ruta_logo)) {
+                $ls_ruta_candidata = __DIR__ . '/../../website/recursos/images/Logo.png';
+                if (file_exists($ls_ruta_candidata)) {
+                    $ls_ruta_logo = $ls_ruta_candidata;
+                }
+            }
+        }
+        if (!empty($ls_ruta_logo)) {
+            $this->Image($ls_ruta_logo, 10, 8, 18, 18);
+        }
+
         $this->SetFont('Arial', 'B', 14);
         $this->Cell(0, 8, utf8_decode($this->titulo_reporte), 0, 1, 'C');
         if (!empty($this->subtitulo_reporte)) {
