@@ -1,6 +1,20 @@
 <?php
 
 function f_admin_cabecera(){
+
+	// Logo de la empresa (el mismo configurado en Mantenimiento > Empresa
+	// y usado en el login). Si no tiene logo propio cargado, se usa el
+	// logo institucional por defecto.
+	$crud_cabecera = new crud();
+	$array_campo_pk_logo = array('V_ID');
+	$array_valor_pk_logo = array(1);
+	$ls_foto_empresa_cabecera = $crud_cabecera->fila_recuperar_campo(DEF_TABLA_EMPRESA, $array_campo_pk_logo, $array_valor_pk_logo, 'V_FOTO');
+
+	if (!empty($ls_foto_empresa_cabecera)) {
+		$ls_logo_cabecera = "../../upload/".DEF_UPLOAD_EMPRESA_DIR."/".$ls_foto_empresa_cabecera;
+	} else {
+		$ls_logo_cabecera = "../../website/recursos/images/Logo.png";
+	}
 ?>
 <!-- Inicio Pagina -->
 <div class='wrapper'>
@@ -36,7 +50,7 @@ function f_admin_cabecera(){
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../website/recursos/images/Logo.png" class="img-circle" alt="Imagen Logo">
+                                <img src="<?php echo $ls_logo_cabecera; ?>" class="img-circle" alt="Imagen Logo">
                                 <p>
                                     Soporte : <?php echo SOPORTE_MOVIL ?>
                                     <small><?php echo SOPORTE_EMAIL ?></small>
