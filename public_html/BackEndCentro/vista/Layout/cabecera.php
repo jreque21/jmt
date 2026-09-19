@@ -36,7 +36,7 @@ function f_admin_cabecera(){
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../website/recursos/images/Logo.jpg" class="img-circle" alt="Imagen Logo">
+                                <img src="../../website/recursos/images/Logo.png" class="img-circle" alt="Imagen Logo">
                                 <p>
                                     Soporte : <?php echo SOPORTE_MOVIL ?>
                                     <small><?php echo SOPORTE_EMAIL ?></small>
