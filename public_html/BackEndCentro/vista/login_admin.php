@@ -1,10 +1,11 @@
-<?php 
+<?php
 ob_start();
 session_start();
-require_once("../modelo/class_usuario.php"); 
+require_once("../modelo/class_usuario.php");
 require_once("../config/global.php");
+require_once("../config/class_crud.php");
 ?>
-<?php 
+<?php
 	if( !empty( $_POST )){
 		try {
 			$user_obj = new usuario();
@@ -18,6 +19,19 @@ require_once("../config/global.php");
 	}
 	if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
 		header('Location: panel_admin.php');
+	}
+
+	// Logo de la empresa (el mismo configurado en Mantenimiento > Empresa).
+	// Si no tiene logo propio cargado, se usa el logo institucional por defecto.
+	$crud = new crud();
+	$array_campo_pk = array('V_ID');
+	$array_valor_pk = array(1);
+	$ls_foto_empresa = $crud->fila_recuperar_campo(DEF_TABLA_EMPRESA, $array_campo_pk, $array_valor_pk, 'V_FOTO');
+
+	if (!empty($ls_foto_empresa)) {
+		$ls_logo_src = "../../upload/".DEF_UPLOAD_EMPRESA_DIR."/".$ls_foto_empresa;
+	} else {
+		$ls_logo_src = "../../website/recursos/images/Logo.png";
 	}
 ?>
 <!DOCTYPE html>
@@ -62,7 +76,7 @@ require_once("../config/global.php");
 			<?php require_once 'Layout/login_aviso.php';?>
 			<div class="form-header">
 				<div class="admin-badge">
-					<img src="../../website/recursos/images/Logo.png" alt="Logo">
+					<img src="<?php echo $ls_logo_src; ?>" alt="Logo">
 				</div>
 				<h4>Acceso Administrador</h4>
 				<small class="text-muted">Centro Terapéutico</small>
