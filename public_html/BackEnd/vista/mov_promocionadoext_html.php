@@ -550,7 +550,7 @@ function f_formulario($as_titulo, $as_icono, $as_msgRpta, $array = "", $an_id_co
 								$array_valor_pk = ['1', 'EST_EXT'];
 
 								// Padrón de Estudiantes
-								$array_padron = $crud->fila_listar_not_in(DEF_TABLA_ESTUDIANTE, $array_campo_pk, $array_valor_pk, DEF_TABLA_PROMOCIONPROG, 'N_COD_ESTUDIANTE', 'N_COD_PROMOCION', $li_id_codigo_padre,'V_APE_PATERNO, V_APE_MATERNO, V_NOMBRES', 'A', 0, 100);
+								$array_padron = $crud->fila_listar_not_in(DEF_TABLA_ESTUDIANTE, $array_campo_pk, $array_valor_pk, DEF_TABLA_PROMOCIONPROG, 'N_COD_ESTUDIANTE', 'N_COD_PROMOCION', $li_id_codigo_padre,'V_APE_PATERNO, V_APE_MATERNO, V_NOMBRES', 'A', 0, 9999);
 								
 								?>
 
